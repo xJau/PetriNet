@@ -1,0 +1,5 @@
+Available Networks: 1	Network n.0: 
+			Matrix in :
+				1 
+			Matrix out :
+				0 
