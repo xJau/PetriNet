@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import static Utils.MyUtil.*;
 
 public class Network {
 
@@ -40,6 +41,15 @@ public class Network {
     }
 
     private boolean checkConnectivity() {
+    	/*List<Node> n = new ArrayList<>();
+    	for(Link l: links) {
+    		n.add(l.getInGoingNode());
+    	}
+    	for(Node c: n) {
+    		if(n instanceof Transition) {
+    			for(int i = 0; i<transitions.size(); i++)if(((Transition)n).getId() == transitions.get(i).getId());
+    		}
+    	}*/
         //TODO: controllare la connessione e quindi validita' della rete
         return true;
     }
@@ -109,7 +119,8 @@ public class Network {
     public boolean equals(Object net) {
         if (this == net) return true;
         if (net == null || getClass() != net.getClass()) return false;
-//        TODO: controllare se this.Network e' uguale a net (Network) verificando che MatrixIn e MatrixOut siano uguali
+        if(!matEquals(matrixIn,((Network)net).getMatrixIn()))return false;
+        if(!matEquals(matrixOut,((Network)net).getMatrixOut()))return false;
         return true;
     }
 
