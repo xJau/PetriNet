@@ -134,7 +134,6 @@ public class Main {
 
     }
 
-
     private static void createNet() {
 
         int input = -1;

@@ -10,7 +10,7 @@ public class DataSaver {
     private final List<Network> nets;
     private final String fileName;
     private final String path = "./";
-    private final String extension = ".txt";
+    private final String extension = ".petri";
     private final String filePath;
     private File file;
 

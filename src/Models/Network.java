@@ -53,11 +53,8 @@ public class Network {
         for(Link link: links){
             if(link.getOutGoingNode() instanceof Transition)
             matrixIn[link.getInGoingNode().getId()][link.getOutGoingNode().getId()] = 1;
-        }
-
-        for(Link link: links){
-            if(link.getInGoingNode() instanceof Transition)
-            matrixOut[link.getOutGoingNode().getId()][link.getInGoingNode().getId()] = 1;
+            else if(link.getInGoingNode() instanceof Transition)
+                matrixOut[link.getOutGoingNode().getId()][link.getInGoingNode().getId()] = 1;
         }
     }
 
@@ -109,10 +106,9 @@ public class Network {
         return id;
     }
 
-    @Override
     public boolean equals(Object net) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
+        if (this == net) return true;
+        if (net == null || getClass() != net.getClass()) return false;
 //        TODO: controllare se this.Network e' uguale a net (Network) verificando che MatrixIn e MatrixOut siano uguali
         return true;
     }
