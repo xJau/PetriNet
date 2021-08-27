@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import static Utils.MyUtil.*;
+import static Utils.MatrixOperation.*;
 
 public class Network {
 
@@ -41,16 +41,8 @@ public class Network {
     }
 
     private boolean checkConnectivity() {
-    	/*List<Node> n = new ArrayList<>();
-    	for(Link l: links) {
-    		n.add(l.getInGoingNode());
-    	}
-    	for(Node c: n) {
-    		if(n instanceof Transition) {
-    			for(int i = 0; i<transitions.size(); i++)if(((Transition)n).getId() == transitions.get(i).getId());
-    		}
-    	}*/
-        //TODO: controllare la connessione e quindi validita' della rete
+    	int[][] m = matrixSum(matrixIn, matrixOut);
+    	if(checkColumns(m, 0) || checkRows(m, 0))return false;
         return true;
     }
 
@@ -123,5 +115,5 @@ public class Network {
         if(!matEquals(matrixOut,((Network)net).getMatrixOut()))return false;
         return true;
     }
-
+    
 }
