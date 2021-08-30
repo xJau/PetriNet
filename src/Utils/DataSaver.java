@@ -65,13 +65,15 @@ public class DataSaver {
         int column = matrixIn[0].length;
 
         StringBuilder stringBuilder = new StringBuilder();
-        String netId = " n." + String.valueOf(activeNet.getId());
-        stringBuilder.append("\r\tNetwork"+ netId + ": ");
+        String netId =String.valueOf(activeNet.getId());
+        stringBuilder.append("\r\tNetwork name: " + netId);
         stringBuilder.append("\n");
-        stringBuilder.append("\t\t\tMatrix in :");
+        stringBuilder.append("\t\t\tDimension: " + row + " : " + column);
+        stringBuilder.append("\n");
+        stringBuilder.append("\t\t\t\tMatrix in:");
 
         for(int i = 0; i < row; i++){
-            stringBuilder.append("\n\t\t\t\t");
+            stringBuilder.append("\n\t\t\t\t\t");
             for (int j = 0; j < column; j++) {
                 stringBuilder.append(matrixIn[i][j]);
                 stringBuilder.append(" ");
@@ -79,11 +81,11 @@ public class DataSaver {
         }
 
         stringBuilder.append("\n");
-        stringBuilder.append("\t\t\tMatrix out :");
+        stringBuilder.append("\t\t\t\tMatrix out:");
 
 
         for(int i = 0; i < row; i++){
-            stringBuilder.append("\n\t\t\t\t");
+            stringBuilder.append("\n\t\t\t\t\t");
             for (int j = 0; j < column; j++) {
                 stringBuilder.append(matrixOut[i][j]);
                 stringBuilder.append(" ");

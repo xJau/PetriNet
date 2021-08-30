@@ -95,7 +95,7 @@ public class Main {
     private static void load() {
 
         DataLoader loader = new DataLoader(fileName);
-        loader.loadFile();
+        nets = loader.readFile();
     }
 
     private static void save(String fileName) {
@@ -132,6 +132,10 @@ public class Main {
 
         DataSaver saver = new DataSaver(savedNets,fileName);
         saver.writeFile();
+
+    }
+
+    private static void modifyNet(Network network){
 
     }
 

@@ -1,9 +1,8 @@
 package Models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
+
 import static Utils.MatrixOperation.*;
 
 public class Network {
@@ -27,9 +26,42 @@ public class Network {
         addTransition(transitionId, place, true);
     }
 
+    public Network(int id, int[][] matrixIn, int[][] matrixOut) {
+        this.id = id;
+        this.matrixIn = matrixIn;
+        this.matrixOut = matrixOut;
+        this.places = new ArrayList<>();
+        this.transitions = new ArrayList<>();
+        this.links = new ArrayList<>();
+        addPlaces(matrixIn.length);
+        addTransitions(matrixIn[0].length);
+        interConnect();
+    }
+
     private void connect(Node in, Node out) {
         Link link = new Link(in, out);
         links.add(link);
+    }
+
+    private void interConnect() {
+        for (int i = 0; i < matrixIn.length; i++) {
+            Place place = places.get(i);
+            for (int j = 0; j < matrixIn[0].length; j++) {
+                if (matrixIn[i][j] != 0) {
+                    Transition transition = transitions.get(j);
+                    connect(place, transition);
+                }
+            }
+        }
+        for (int i = 0; i < matrixOut.length; i++) {
+            Place place = places.get(i);
+            for (int j = 0; j < matrixOut[0].length; j++) {
+                if (matrixOut[i][j] != 0) {
+                    Transition transition = transitions.get(j);
+                    connect(transition, place);
+                }
+            }
+        }
     }
 
     public List<Place> getPlaces() {
@@ -41,21 +73,21 @@ public class Network {
     }
 
     private boolean checkConnectivity() {
-    	int[][] m = matrixSum(matrixIn, matrixOut);
-    	if(checkColumns(m, 0) || checkRows(m, 0))return false;
+        int[][] m = matrixSum(matrixIn, matrixOut);
+        if (checkColumns(m, 0) || checkRows(m, 0)) return false;
         return true;
     }
 
-    public void generateMatrix(){
-        int tSize =transitions.size();
-        int pSize =places.size();
+    public void generateMatrix() {
+        int tSize = transitions.size();
+        int pSize = places.size();
         this.matrixIn = new int[pSize][tSize];
         this.matrixOut = new int[pSize][tSize];
 
-        for(Link link: links){
-            if(link.getOutGoingNode() instanceof Transition)
-            matrixIn[link.getInGoingNode().getId()][link.getOutGoingNode().getId()] = 1;
-            else if(link.getInGoingNode() instanceof Transition)
+        for (Link link : links) {
+            if (link.getOutGoingNode() instanceof Transition)
+                matrixIn[link.getInGoingNode().getId()][link.getOutGoingNode().getId()] = 1;
+            else if (link.getInGoingNode() instanceof Transition)
                 matrixOut[link.getOutGoingNode().getId()][link.getInGoingNode().getId()] = 1;
         }
     }
@@ -70,6 +102,20 @@ public class Network {
         }
     }
 
+    private void addPlaces(int numNodes) {
+        for (int i = 0; i < numNodes; i++) {
+            Place place = new Place(i);
+            places.add(place);
+        }
+    }
+
+    private void addTransitions(int numNodes) {
+        for (int i = 0; i < numNodes; i++) {
+            Transition transition = new Transition(i);
+            transitions.add(transition);
+        }
+    }
+
     public void addTransition(int id, Place place, boolean ingoing) {
         Transition transition = new Transition(id);
         transitions.add(transition);
@@ -80,11 +126,12 @@ public class Network {
             connect(transition, place);
         }
     }
+
     public void addTransition(int id, Place in, Place out) {
         Transition transition = new Transition(id);
         transitions.add(transition);
-        connect(in,transition);
-        connect(transition,out);
+        connect(in, transition);
+        connect(transition, out);
     }
 
     public void printNet() {
@@ -94,6 +141,14 @@ public class Network {
             System.out.println(in + " --> " + out);
 
         }
+    }
+
+    public void setMatrixIn(int[][] matrixIn) {
+        this.matrixIn = matrixIn;
+    }
+
+    public void setMatrixOut(int[][] matrixOut) {
+        this.matrixOut = matrixOut;
     }
 
     public int[][] getMatrixIn() {
@@ -111,9 +166,9 @@ public class Network {
     public boolean equals(Object net) {
         if (this == net) return true;
         if (net == null || getClass() != net.getClass()) return false;
-        if(!matEquals(matrixIn,((Network)net).getMatrixIn()))return false;
-        if(!matEquals(matrixOut,((Network)net).getMatrixOut()))return false;
+        if (!matEquals(matrixIn, ((Network) net).getMatrixIn())) return false;
+        if (!matEquals(matrixOut, ((Network) net).getMatrixOut())) return false;
         return true;
     }
-    
+
 }
