@@ -207,7 +207,7 @@ public class NetworksManager {
 
         }
 
-        public void addTransition() {
+        /*public void addTransition() {
             int ingoing = -1;
             int outgoing = -1;
             List<Place> places = activeNetwork.getPlaces();
@@ -225,6 +225,33 @@ public class NetworksManager {
 
             activeNetwork.addTransition(activeNetwork.getTransitions().size(), activeNetwork.getPlaces().get(ingoing), activeNetwork.getPlaces().get(outgoing));
 
+        }*/
+        
+        public void addTransition() {
+        	String ingoing;
+            boolean ingoingbool;
+            int input =-1;
+            List<Place> places = activeNetwork.getPlaces();
+            int placeSize = places.size();
+            menu.selectPlaces(places);
+            do {
+                input = input + in.nextInt();
+                if (input == -1) return;
+            } while (input < 0 || input > placeSize);
+            menu.transitionInGoing();
+            do {
+                ingoing = in.next();
+                ingoing = ingoing.toLowerCase();
+                if (ingoing.equals("y")) {
+                    ingoingbool = true;
+                    break;
+                } else if (ingoing.equals("n")) {
+                    ingoingbool = false;
+                    break;
+                } else menu.yesNo();
+            } while (true);
+
+            activeNetwork.addTransition(activeNetwork.getPlaces().size(), activeNetwork.getPlaces().get(input), ingoingbool); 
         }
 
     }
