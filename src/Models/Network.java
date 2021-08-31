@@ -5,7 +5,7 @@ import java.util.List;
 
 import static Utils.MatrixOperation.*;
 
-public class Network {
+public class Network implements Identificabile {
 
     private int id;
     private List<Place> places;

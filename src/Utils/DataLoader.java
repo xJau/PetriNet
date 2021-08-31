@@ -1,6 +1,7 @@
 package Utils;
 
 import Models.Network;
+import Models.Identificabile;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -110,7 +111,7 @@ public class DataLoader {
             String data = scanner.nextLine();
             if (data.contains("Network name")) {
                 netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
-                System.out.println(Integer.toString(netNumber) + "loaded");
+                System.out.println("Network n." + Integer.toString(netNumber) + " loaded");
             } else if (data.contains("Dimension")) {
                 String dimScannerValue = data.replaceAll("[^0-9:]", "");
                 Scanner dimensioneScanner = new Scanner(dimScannerValue);

@@ -1,6 +1,6 @@
 package Models;
 
-public class Place extends Node{
+public class Place extends Node implements Identificabile {
     public Place(int id) {
         super(id);
     }
@@ -9,4 +9,5 @@ public class Place extends Node{
     public String toString() {
         return "Place"+getId();
     }
+
 }
