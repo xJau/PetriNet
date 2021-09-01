@@ -37,7 +37,7 @@ public class Network{
         interConnect();
     }
 
-    private void connect(Node in, Node out) {
+    public void connect(Node in, Node out) {
         Link link = new Link(in, out);
         links.add(link);
     }

@@ -17,4 +17,10 @@ public class Link {
     public Node getOutGoingNode() {
         return outGoingNode;
     }
+    
+    public boolean equals(Link l) {
+    	if(this.inGoingNode.equals(l.getInGoingNode()))return this.outGoingNode.equals(l.getOutGoingNode());
+		return false;
+    }
+    
 }

@@ -9,5 +9,10 @@ public class Place extends Node {
     public String toString() {
         return "Posto n." + getId();
     }
+    
+    public boolean equals(Node n) {
+    	if(n instanceof Place)return(this.getId() == n.getId());
+    	return false;
+    }
 
 }

@@ -7,18 +7,19 @@ import java.util.Scanner;
 public class Menu {
 
     private final String NUOVO_VALORE = ") Per crearne una nuova";
-    private final String RITORNA_AL_MAIN_MENU = "Per tornare al menù principale";
-    private final String SELEZIONA_POSTI = "Seleziona i posti da collegare alla nuova transizione";
+    private final String RITORNA_AL_MAIN_MENU = "Per tornare al menu principale";
+    private final String SELEZIONA_POSTI = "Seleziona il posto che vuoi collegare";
     private final String FINE = "Per terminare";
-    private final String SELEZIONE_AZIONE_NET = "Vuoi selezionare (1) o Salvare/Caricare (2) una Network?";
+    private final String SELEZIONE_AZIONE_NET = "Vuoi selezionare (1) o Salvare/Caricare (2) una Network? (0) Per chiudere.";
     private final String CARICA_O_SALVA = "Caricare le reti dal file locale (1) o salvare in esso (2)?";
-    private final String INSERIMENTO_VALIDO = "Inserire un valore valido: ";
+    private final String INSERIMENTO_NON_VALIDO = "Inserire un valore valido(presente tra quelli elencati): ";
     private final String SALVA_O_CONTINUA = "(1) Per Salvare (2) Per Continuare";
-    private final String AGGIUNGI_NODO = "Vuoi aggiungere un Posto(1) o una Transizione(2), (0) per uscire";
-    private final String SELEZINA_TRANSIIZONE = "Seleziona la transizione da collegare al nuovo posto";
-    private final String P_INGRESSO_O_USCITA = "La transizione seleizonata è in ingresso al posto appena creato? (Y/N)";
-    private final String T_INGRESSO_O_USCITA = "Il posto seleizonato è in ingresso alla transizione appena creata? (Y/N)";
+    private final String GESTISCI = "Vuoi aggiungere un Posto(1) o una Transizione(2), o collegare due nodi(3)? (0)Per uscire";
+    private final String SELEZINA_TRANSIIZONE = "Seleziona la transizione da collegare";
+    private final String P_INGRESSO_O_USCITA = "La transizione selezionata è in ingresso al posto? (Y/N)";
+    private final String T_INGRESSO_O_USCITA = "Il posto selezionato è in ingresso alla transizione ? (Y/N)";
     private final String S_N = "Inserisci (s) o (n) per continuare";
+    private final String POSTO_TRANSIZIONE = "Posto(1) o Transizione(2)";
     
 
     Scanner in;
@@ -73,15 +74,15 @@ public class Menu {
     }
 
     public void printValue() {
-        System.out.print(INSERIMENTO_VALIDO);
+        System.out.print(INSERIMENTO_NON_VALIDO);
     }
 
     public void save() {
         System.out.println(SALVA_O_CONTINUA);
     }
 
-    public void createNet() {
-        System.out.println(AGGIUNGI_NODO);
+    public void manage() {
+        System.out.println(GESTISCI);
     }
 
     public void selectTransitions(Iterable<Transition> transitions) {
@@ -103,4 +104,10 @@ public class Menu {
     public void yesNo(){
         System.out.println(S_N);
     }
+    
+    public void postoTransizione() {
+    	
+    }
+    
+
 }
