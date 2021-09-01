@@ -1,13 +1,13 @@
 package Models;
 
-public class Transition extends Node implements Identificabile {
+public class Transition extends Node {
     public Transition(int id) {
         super(id);
     }
 
     @Override
     public String toString() {
-        return "Transition"+getId();
+        return "Transizione n."+getId();
     }
 
 }

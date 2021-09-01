@@ -1,6 +1,6 @@
 package Models;
 
-public abstract class Node implements Identificabile {
+public abstract class Node {
 
     private int id;
 
@@ -8,8 +8,6 @@ public abstract class Node implements Identificabile {
         this.id = id;
 
     }
-
-    @Override
     public int getId() {
         return id;
     }

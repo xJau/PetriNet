@@ -1,19 +1,8 @@
-Available Networks: 2	Network name: 0
-			Dimension: 3 : 5
+Available Networks: 1	Network name: 0
+			Dimension: 2 : 2
 				Matrix in:
-					1 1 1 0 0 
-					0 0 0 0 0 
-					1 0 0 1 1 
+					1 1 
+					0 0 
 				Matrix out:
-					0 0 0 0 0 
-					1 1 0 1 0 
-					0 0 1 0 1 	Network name: 1
-			Dimension: 3 : 4
-				Matrix in:
-					1 1 1 0 
-					0 0 0 0 
-					0 0 1 1 
-				Matrix out:
-					0 1 0 1 
-					0 1 1 0 
-					0 0 0 0 
+					0 0 
+					1 0 

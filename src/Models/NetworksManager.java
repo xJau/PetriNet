@@ -251,7 +251,7 @@ public class NetworksManager {
                 } else menu.yesNo();
             } while (true);
 
-            activeNetwork.addTransition(activeNetwork.getPlaces().size(), activeNetwork.getPlaces().get(input), ingoingbool); 
+            activeNetwork.addTransition(activeNetwork.getTransitions().size(), activeNetwork.getPlaces().get(input), ingoingbool);
         }
 
     }

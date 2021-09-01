@@ -1,7 +1,7 @@
 package Utils;
 
 import Models.Network;
-import Models.Identificabile;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 public class DataLoader {
 
-    List<Network> loadedNets;
     private final String fileName;
     private final String path = "./";
     private final String extension = ".petri";
@@ -28,8 +27,8 @@ public class DataLoader {
     private void loadFile() {
         this.file = new File(filePath);
         if (file.exists()) {
-            System.out.println(filePath + " is loaded");
-        } else System.out.println(filePath + " does not exist");
+            System.out.println(filePath + " è stata caricata");
+        } else System.out.println(filePath + " non esiste");
     }
 
     public void printFile() {
@@ -42,7 +41,7 @@ public class DataLoader {
             myReader.close();
         } catch (
                 FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.out.println("Errore Rilevato.");
             e.printStackTrace();
         }
     }
@@ -58,7 +57,7 @@ public class DataLoader {
 
             while (scanner.hasNext()) {
                 String data = scanner.nextLine();
-                System.out.println(data);
+
 
                 if (data.contains("Available Networks")) {
                     networks = loadNetworks(scanner, data);
@@ -68,7 +67,7 @@ public class DataLoader {
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.out.println("Errore Rilevato.");
             e.printStackTrace();
         }
         return null;
@@ -78,7 +77,7 @@ public class DataLoader {
         List<Network> networks = new ArrayList<>();
         int netNumber;
         netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
-        System.out.println(Integer.toString(netNumber) + " networks loaded");
+        System.out.println(Integer.toString(netNumber) + " networks caricate");
 
         for (int i = 0; i < netNumber; i++) {
             Network net = loadNetwork(scanner);
@@ -111,7 +110,7 @@ public class DataLoader {
             String data = scanner.nextLine();
             if (data.contains("Network name")) {
                 netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
-                System.out.println("Network n." + Integer.toString(netNumber) + " loaded");
+                System.out.println("Network n." + Integer.toString(netNumber) + " caricata");
             } else if (data.contains("Dimension")) {
                 String dimScannerValue = data.replaceAll("[^0-9:]", "");
                 Scanner dimensioneScanner = new Scanner(dimScannerValue);

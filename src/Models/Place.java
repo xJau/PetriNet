@@ -1,13 +1,13 @@
 package Models;
 
-public class Place extends Node implements Identificabile {
+public class Place extends Node {
     public Place(int id) {
         super(id);
     }
 
     @Override
     public String toString() {
-        return "Place"+getId();
+        return "Posto n." + getId();
     }
 
 }

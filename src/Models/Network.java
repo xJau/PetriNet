@@ -5,7 +5,7 @@ import java.util.List;
 
 import static Utils.MatrixOperation.*;
 
-public class Network implements Identificabile {
+public class Network{
 
     private int id;
     private List<Place> places;
@@ -21,7 +21,6 @@ public class Network implements Identificabile {
         this.links = new ArrayList<>();
         Place place = new Place(places.size());
         this.places.add(place);
-        Transition transition = new Transition(transitions.size());
         int transitionId = this.transitions.size();
         addTransition(transitionId, place, true);
     }
@@ -122,7 +121,6 @@ public class Network implements Identificabile {
         if (ingoing) {
             connect(place, transition);
         } else {
-
             connect(transition, place);
         }
     }
@@ -171,4 +169,8 @@ public class Network implements Identificabile {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Network n." + id;
+    }
 }

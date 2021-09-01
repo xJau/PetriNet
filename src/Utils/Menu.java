@@ -38,32 +38,26 @@ public class Menu {
 
     }
 
-    private void printNetwork(List<Network> net) {
+    private void printNetwork(Iterable<Network> nets) {
 
-        int listSize = net.size();
-
-        for (int i = 0; i < listSize; i++) {
-            System.out.println((i + 1) + ") Network n." + net.get(i).getId());
+        for (Network net: nets) {
+            System.out.println((net.getId() + 1)  + ") " + net.toString());
         }
     }
-    private void printTransition(List<Transition> transitions) {
+    private void printTransition(Iterable<Transition> transitions) {
 
-        int listSize = transitions.size();
-
-        for (int i = 0; i < listSize; i++) {
-            System.out.println((i + 1) + ") Transition n." + transitions.get(i).getId());
+        for (Transition transition: transitions) {
+            System.out.println((transition.getId() + 1)  + ") " + transition.toString());
         }
     }
-    private void printPlaces(List<Place> places) {
+    private void printPlaces(Iterable<Place> places) {
 
-        int listSize = places.size();
-
-        for (int i = 0; i < listSize; i++) {
-            System.out.println((i + 1) + ") Place n." + places.get(i).getId());
+        for (Place place: places) {
+            System.out.println((place.getId() + 1)  + ") " + place.toString());
         }
     }
 
-    public void selectPlaces(List<Place> places){
+    public void selectPlaces(Iterable<Place> places){
         System.out.println(SELEZIONA_POSTI);
         printPlaces(places);
         System.out.println("\n0) "+FINE);
@@ -90,7 +84,7 @@ public class Menu {
         System.out.println(AGGIUNGI_NODO);
     }
 
-    public void selectTransitions(List<Transition> transitions) {
+    public void selectTransitions(Iterable<Transition> transitions) {
 
         System.out.println(SELEZINA_TRANSIIZONE);
         printTransition(transitions);
