@@ -18,7 +18,7 @@ public class Menu {
     private final String SELEZINA_TRANSIIZONE = "Seleziona la transizione da collegare al nuovo posto";
     private final String P_INGRESSO_O_USCITA = "La transizione seleizonata è in ingresso al posto appena creato? (Y/N)";
     private final String T_INGRESSO_O_USCITA = "Il posto seleizonato è in ingresso alla transizione appena creata? (Y/N)";
-    private final String S_N = "Inserisci (s) o (n) per continuare";
+    private final String S_N = "Inserisci (y) o (n) per continuare";
     
 
     Scanner in;

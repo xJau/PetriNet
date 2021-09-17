@@ -2,9 +2,11 @@ package Models;
 
 import Utils.*;
 import Utils.Menu;
+import static Utils.InputManager.*;
 
 import java.util.*;
 import java.util.List;
+
 
 public class NetworksManager {
 
@@ -37,8 +39,9 @@ public class NetworksManager {
             menu.selectNets(nets);
 
             do {
-                input = input + in.nextInt();
+                input = input + inInt();
                 if (input == -1) return;
+                else if (input == -2)menu.printValue();
                 else if (input == netsSize) createNet();
             } while (input < 0 || input > netsSize + 1);
 
@@ -52,7 +55,7 @@ public class NetworksManager {
             while (blocker) {
                 menu.mainMenu();
                 do {
-                    input = in.nextInt();
+                    input = inInt();
                     switch (input) {
                         case 0:
                             blocker = false;
@@ -64,7 +67,7 @@ public class NetworksManager {
                             saveLoad();
                             break;
                         default:
-                            System.out.print("Insert a valid value: ");
+                        	menu.printValue();
                             break;
                     }
                 } while (input < 0 || input > 2);
@@ -80,7 +83,7 @@ public class NetworksManager {
             while (blocker) {
                 menu.saveLoad();
                 do {
-                    input = in.nextInt();
+                    input = inInt();
                     switch (input) {
                         case 0:
                             return;
@@ -118,16 +121,18 @@ public class NetworksManager {
                 do {
                     input = -1;
                     if(netsSize == 0) break;
-                    input = input + in.nextInt();
+                    input = input + inInt();
                     if (input == -1) return;
+                    else if(input == -2)menu.printValue();
                 } while (input < 0 || input > netsSize);
 
                 savingNets.add(savableNets.get(input));
                 savableNets.remove(input);
                 menu.save();
                 do {
-                    input = in.nextInt();
+                    input = inInt();
                     if(input == 1) stop = true;
+                    else if(input == -1)menu.printValue();
                 } while (input < 0 || input > 2);
 
             } while (!stop);
@@ -155,7 +160,7 @@ public class NetworksManager {
                 activeNetwork.printNet();
                 menu.createNet();
                 do {
-                    input = in.nextInt();
+                    input = inInt();
                     switch (input) {
                         case 0:
                             blocker = false;
@@ -187,12 +192,13 @@ public class NetworksManager {
             int transSize = transitions.size();
             menu.selectTransitions(transitions);
             do {
-                input = input + in.nextInt();
+                input = input + inInt();
                 if (input == -1) return;
+                else if(input == -2)menu.printValue();
             } while (input < 0 || input > transSize);
             menu.placeInGoing();
             do {
-                ingoing = in.next();
+                ingoing = inString();
                 ingoing = ingoing.toLowerCase();
                 if (ingoing.equals("y")) {
                     ingoingbool = true;
@@ -235,12 +241,12 @@ public class NetworksManager {
             int placeSize = places.size();
             menu.selectPlaces(places);
             do {
-                input = input + in.nextInt();
+                input = input + inInt();
                 if (input == -1) return;
             } while (input < 0 || input > placeSize);
             menu.transitionInGoing();
             do {
-                ingoing = in.next();
+                ingoing = inString();
                 ingoing = ingoing.toLowerCase();
                 if (ingoing.equals("y")) {
                     ingoingbool = true;
