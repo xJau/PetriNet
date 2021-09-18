@@ -8,18 +8,19 @@ public class Menu {
 
     private final String NUOVO_VALORE = ") Per crearne una nuova";
     private final String RITORNA_AL_MAIN_MENU = "Per tornare al menù principale";
-    private final String SELEZIONA_POSTI = "Seleziona i posti da collegare alla nuova transizione";
+    private final String SELEZIONA_POSTI = "Seleziona il posto da collegare";
     private final String FINE = "Per terminare";
     private final String SELEZIONE_AZIONE_NET = "Vuoi selezionare (1) o Salvare/Caricare (2) una Network?";
     private final String CARICA_O_SALVA = "Caricare le reti dal file locale (1) o salvare in esso (2)?";
     private final String INSERIMENTO_VALIDO = "Inserire un valore valido: ";
     private final String SALVA_O_CONTINUA = "(1) Per Salvare (2) Per Continuare";
-    private final String AGGIUNGI_NODO = "Vuoi aggiungere un Posto(1) o una Transizione(2), (0) per uscire";
-    private final String SELEZINA_TRANSIIZONE = "Seleziona la transizione da collegare al nuovo posto";
+    private final String AGGIUNGI = "Vuoi aggiungere un Posto (1), una Transizione (2) o un Link (3)? (0) Per uscire";
+    private final String SELEZINA_TRANSIIZONE = "Seleziona la transizione da collegare";
     private final String P_INGRESSO_O_USCITA = "La transizione seleizonata è in ingresso al posto appena creato? (Y/N)";
-    private final String T_INGRESSO_O_USCITA = "Il posto seleizonato è in ingresso alla transizione appena creata? (Y/N)";
+    private final String T_INGRESSO_O_USCITA = "Il posto selezionato è in ingresso alla transizione appena creata? (Y/N)";
     private final String S_N = "Inserisci (y) o (n) per continuare";
-    
+    private final String SELETIONA_POT = "Vuoi avere un posto(p) come origine o una transizione(t)?";
+    private final String LINK_GIA_ESISTENTE = "Il link che vuoi aggiungere è già presente nella rete";
 
     Scanner in;
 
@@ -32,12 +33,13 @@ public class Menu {
 
         int netsSize = nets.size();
 
-        printNetwork(nets);
+        //printNetwork(nets);
+        print(nets);
         System.out.println((netsSize + 1) + NUOVO_VALORE );
         System.out.println("\n0) "+RITORNA_AL_MAIN_MENU);
 
     }
-
+    /*
     private void printNetwork(Iterable<Network> nets) {
 
         for (Network net: nets) {
@@ -55,11 +57,17 @@ public class Menu {
         for (Place place: places) {
             System.out.println((place.getId() + 1)  + ") " + place.toString());
         }
+    }*/
+    
+    private void print(Iterable<? extends Identificable> id) {
+    	for (Identificable i: id)
+    		System.out.println((i.getId() + 1)  + ") " + i.toString());
     }
 
     public void selectPlaces(Iterable<Place> places){
         System.out.println(SELEZIONA_POSTI);
-        printPlaces(places);
+        //printPlaces(places);
+        print(places);
         System.out.println("\n0) "+FINE);
     }
 
@@ -81,13 +89,14 @@ public class Menu {
     }
 
     public void createNet() {
-        System.out.println(AGGIUNGI_NODO);
+        System.out.println(AGGIUNGI);
     }
 
     public void selectTransitions(Iterable<Transition> transitions) {
 
         System.out.println(SELEZINA_TRANSIIZONE);
-        printTransition(transitions);
+        //printTransition(transitions);
+        print(transitions);
         System.out.println("\n0) "+FINE);
     }
 
@@ -103,4 +112,15 @@ public class Menu {
     public void yesNo(){
         System.out.println(S_N);
     }
+
+
+	public void selezionaPoT() {
+		System.out.println(SELETIONA_POT);	
+	}
+
+
+	public void linkEsiste() {
+		System.out.println(LINK_GIA_ESISTENTE);	
+	}
+	
 }

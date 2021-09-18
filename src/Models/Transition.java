@@ -9,5 +9,10 @@ public class Transition extends Node {
     public String toString() {
         return "Transizione n."+getId();
     }
+    
+    public boolean equals(Object t) {
+    	if(t instanceof Transition)return super.equals(t);
+    	return false;
+    }
 
 }

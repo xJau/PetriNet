@@ -5,7 +5,7 @@ import java.util.List;
 
 import static Utils.MatrixOperation.*;
 
-public class Network{
+public class Network implements Identificable{
 
     private int id;
     private List<Place> places;
@@ -70,11 +70,20 @@ public class Network{
     public List<Transition> getTransitions() {
         return transitions;
     }
+    
+    public List<Link> getLinks(){
+    	return links;
+    }
 
     private boolean checkConnectivity() {
         int[][] m = matrixSum(matrixIn, matrixOut);
         if (checkColumns(m, 0) || checkRows(m, 0)) return false;
         return true;
+    }
+    
+    public boolean checkLinkExist(Link l){
+    	for(Link a: links)if(a.equals(l))return true;
+    	return false;
     }
 
     public void generateMatrix() {
@@ -173,4 +182,7 @@ public class Network{
     public String toString() {
         return "Network n." + id;
     }
+    
+
+    
 }

@@ -107,25 +107,42 @@ public class NetworksManager {
             DataLoader loader = new DataLoader(fileName);
             nets = loader.readFile();
         }
-
+        
+        public int select(List<?extends Identificable> id) {
+        	int input;
+        	do {
+                input = -1;
+                if(id.size() == 0) break;
+                input = input + inInt();
+                //if (input == -1) break;
+                if(input == -2)menu.printValue();
+            } while (input < 0 || input > id.size());
+        	return input;
+        }
+        
         private void save(String fileName) {
             List<Network> savableNets = nets;
             List<Network> savingNets = new ArrayList<>();
-            int netsSize;
+            //int netsSize;
             boolean stop = false;
-            int input;
+            int input=-1;
             do {
-                netsSize = savableNets.size();
+               // netsSize = savableNets.size();
                 if(savableNets.isEmpty()) break;
                menu.selectNets(savableNets);
-                do {
+
+                /*do {
                     input = -1;
                     if(netsSize == 0) break;
                     input = input + inInt();
                     if (input == -1) return;
                     else if(input == -2)menu.printValue();
-                } while (input < 0 || input > netsSize);
-
+                } while (input < 0 || input > netsSize);*/
+               
+               input = input + select(savableNets);
+               if(input == -1)return;      		//messaggio?
+               if(input == -2)return;			//messaggio errore?
+               
                 savingNets.add(savableNets.get(input));
                 savableNets.remove(input);
                 menu.save();
@@ -171,11 +188,14 @@ public class NetworksManager {
                         case 2:
                             addTransition();
                             break;
+                        case 3: 
+                        	addLink();
+                        	break;
                         default:
                             menu.printValue();
                             break;
                     }
-                } while (input < 0 || input > 2);
+                } while (input < 0 || input > 3);
             }
 
             activeNetwork.generateMatrix();
@@ -189,13 +209,14 @@ public class NetworksManager {
             boolean ingoingbool;
             int input = -1;
             List<Transition> transitions = activeNetwork.getTransitions();
-            int transSize = transitions.size();
+            //int transSize = transitions.size();
             menu.selectTransitions(transitions);
-            do {
+            /*do {
                 input = input + inInt();
                 if (input == -1) return;
                 else if(input == -2)menu.printValue();
-            } while (input < 0 || input > transSize);
+            } while (input < 0 || input > transSize);*/
+            input = select(transitions);
             menu.placeInGoing();
             do {
                 ingoing = inString();
@@ -236,14 +257,15 @@ public class NetworksManager {
         public void addTransition() {
         	String ingoing;
             boolean ingoingbool;
-            int input =-1;
+            int input;
             List<Place> places = activeNetwork.getPlaces();
-            int placeSize = places.size();
+            //int placeSize = places.size();
             menu.selectPlaces(places);
-            do {
+            /*do {
                 input = input + inInt();
                 if (input == -1) return;
-            } while (input < 0 || input > placeSize);
+            } while (input < 0 || input > placeSize);*/
+            input = select(places);
             menu.transitionInGoing();
             do {
                 ingoing = inString();
@@ -259,6 +281,44 @@ public class NetworksManager {
 
             activeNetwork.addTransition(activeNetwork.getTransitions().size(), activeNetwork.getPlaces().get(input), ingoingbool);
         }
+        
+        public void addLink() {
+        	Link l;
+        	int inputX;
+        	int inputY;
+        	List<Place> places = activeNetwork.getPlaces();
+        	List<Transition> transitions = activeNetwork.getTransitions();
+        	menu.selezionaPoT();
+        	do {
+        		String s = inString();
+        		if(s.equals("p")) {
+        			menu.selectPlaces(places);
+        			inputX = select(places);
+        			menu.selectTransitions(transitions);
+        			inputY = select(transitions);
+        			l = new Link(places.get(inputX), transitions.get(inputY));
+        			break;
+        		}
+        		else if(s.equals("t")) {
+        			menu.selectTransitions(transitions);
+        			inputX = select(transitions);
+        			menu.selectPlaces(places);
+        			inputY = select(places);
+        			l = new Link(transitions.get(inputX), places.get(inputY));
+        			break;
+        		}
+        		else {
+        			menu.printValue();
+        		}
+        	}while(true);
 
+        	if(activeNetwork.checkLinkExist(l))menu.linkEsiste();
+        	else {
+        		activeNetwork.getLinks().add(l);
+        	}
+        	
+        }
+
+        
     }
 }
