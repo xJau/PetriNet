@@ -43,6 +43,7 @@ public class NetworksManager {
                 if (input == -1) return;
                 else if (input == -2)menu.printValue();
                 else if (input == netsSize) createNet();
+                else modifyNet(nets.get(input));
             } while (input < 0 || input > netsSize + 1);
 
         }
@@ -140,8 +141,13 @@ public class NetworksManager {
                 } while (input < 0 || input > netsSize);*/
                
                input = input + select(savableNets);
-               if(input == -1)return;      		//messaggio?
-               if(input == -2)return;			//messaggio errore?
+               if(input == -1) {
+            	   return;      		//messaggio?
+               }
+               if(input == -2) {
+            	   menu.noNet();
+            	   return;			//messaggio errore?
+               }
                
                 savingNets.add(savableNets.get(input));
                 savableNets.remove(input);
@@ -161,21 +167,19 @@ public class NetworksManager {
 
         }
 
-        public static void modifyNet(Network network){
-
+        public void modifyNet(Network network){ //da terminare...
+        	activeNetwork = network;
+        	modifyNet();
         }
+        
+        public void modifyNet() {
+        	
+        	int input = -1;
+        	boolean blocker = true;
 
-        public void createNet() {
-
-            int input = -1;
-
-            Network network = new Network(nets.size());
-            activeNetwork = network;
-            boolean blocker = true;
-
-            while (blocker) {
+            while (blocker) { //perché questo while?
                 activeNetwork.printNet();
-                menu.createNet();
+                menu.doToNet();
                 do {
                     input = inInt();
                     switch (input) {
@@ -197,6 +201,41 @@ public class NetworksManager {
                     }
                 } while (input < 0 || input > 3);
             }
+        }
+
+        public void createNet() {
+
+            //int input = -1;
+
+            Network network = new Network(nets.size());
+            activeNetwork = network;
+            /*boolean blocker = true;
+
+            while (blocker) {
+                activeNetwork.printNet();
+                menu.doToNet();
+                do {
+                    input = inInt();
+                    switch (input) {
+                        case 0:
+                            blocker = false;
+                            break;
+                        case 1:
+                            addPlace();
+                            break;
+                        case 2:
+                            addTransition();
+                            break;
+                        case 3: 
+                        	addLink();
+                        	break;
+                        default:
+                            menu.printValue();
+                            break;
+                    }
+                } while (input < 0 || input > 3);
+            }*/
+            modifyNet();
 
             activeNetwork.generateMatrix();
 

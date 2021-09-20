@@ -21,6 +21,7 @@ public class Menu {
     private final String S_N = "Inserisci (y) o (n) per continuare";
     private final String SELETIONA_POT = "Vuoi avere un posto(p) come origine o una transizione(t)?";
     private final String LINK_GIA_ESISTENTE = "Il link che vuoi aggiungere è già presente nella rete";
+    private final String NO_RETI = "Non ci sono reti salvabili";
 
     Scanner in;
 
@@ -88,7 +89,7 @@ public class Menu {
         System.out.println(SALVA_O_CONTINUA);
     }
 
-    public void createNet() {
+    public void doToNet() {
         System.out.println(AGGIUNGI);
     }
 
@@ -121,6 +122,12 @@ public class Menu {
 
 	public void linkEsiste() {
 		System.out.println(LINK_GIA_ESISTENTE);	
+	}
+
+
+	public void noNet() {
+		System.out.println(NO_RETI);	
+		
 	}
 	
 }
