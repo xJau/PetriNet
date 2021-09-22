@@ -5,6 +5,7 @@ import Models.Network;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,7 +29,21 @@ public class DataLoader {
         this.file = new File(filePath);
         if (file.exists()) {
             System.out.println(filePath + " è stata caricata");
-        } else System.out.println(filePath + " non esiste");
+        } else createFile();
+    }
+
+    private void createFile(){
+        this.file = new File(filePath);
+        try {
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
     public void printFile() {
@@ -46,11 +61,8 @@ public class DataLoader {
         }
     }
 
-    public List<Network> readFile() {
-        List<Network> networks;
-        int netNumber;
-        int activeNetNumber;
-        Network activeNet;
+    public ArrayList<Network> readFile() {
+        ArrayList<Network> networks = new ArrayList<>();
         try {
             Scanner scanner = new Scanner(file);
 //            scanner.useDelimiter(":");
@@ -70,11 +82,11 @@ public class DataLoader {
             System.out.println("Errore Rilevato.");
             e.printStackTrace();
         }
-        return null;
+        return new ArrayList<>();
     }
 
-    private List<Network> loadNetworks(Scanner scanner, String data) {
-        List<Network> networks = new ArrayList<>();
+    private ArrayList<Network> loadNetworks(Scanner scanner, String data) {
+        ArrayList<Network> networks = new ArrayList<>();
         int netNumber;
         netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
         System.out.println(Integer.toString(netNumber) + " networks caricate");

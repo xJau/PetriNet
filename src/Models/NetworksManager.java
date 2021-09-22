@@ -12,8 +12,8 @@ public class NetworksManager {
 
     public static class NetworkManager {
 
-        static List<Network> nets = new ArrayList<>();
-        static List<Network> savedNets = new ArrayList<>();
+        static ArrayList<Network> nets = new ArrayList<>();
+        static ArrayList<Network> savedNets = new ArrayList<>();
         static Network activeNetwork;
         static Scanner in = new Scanner(System.in);
         static String fileName = "Networks";
@@ -28,13 +28,19 @@ public class NetworksManager {
 
             NetworkManager manager = new NetworkManager();
 
+            load();
+
             manager.mainMenu();
         }
 
         public void selectNet() {
 
             int input = -1;
+            if (nets.isEmpty()) nets.add(new Network(0));
             int netsSize = nets.size();
+
+
+
 
             menu.selectNets(nets);
 
@@ -122,14 +128,17 @@ public class NetworksManager {
         }
         
         private void save(String fileName) {
-            List<Network> savableNets = nets;
-            List<Network> savingNets = new ArrayList<>();
+            ArrayList<Network> savableNets = nets;
+            ArrayList<Network> savingNets = new ArrayList<>();
             //int netsSize;
             boolean stop = false;
             int input=-1;
             do {
                // netsSize = savableNets.size();
-                if(savableNets.isEmpty()) break;
+                if(savableNets.isEmpty()) {
+                    menu.noNet();
+                    break;
+                }
                menu.selectNets(savableNets);
 
                 /*do {
@@ -140,7 +149,7 @@ public class NetworksManager {
                     else if(input == -2)menu.printValue();
                 } while (input < 0 || input > netsSize);*/
                
-               input = input + select(savableNets);
+               input = select(savableNets);
                if(input == -1) {
             	   return;      		//messaggio?
                }
@@ -156,7 +165,7 @@ public class NetworksManager {
                     input = inInt();
                     if(input == 1) stop = true;
                     else if(input == -1)menu.printValue();
-                } while (input < 0 || input > 2);
+                } while (input < 1 || input > 2);
 
             } while (!stop);
 
@@ -201,6 +210,7 @@ public class NetworksManager {
                     }
                 } while (input < 0 || input > 3);
             }
+            activeNetwork.generateMatrix();
         }
 
         public void createNet() {
@@ -237,8 +247,6 @@ public class NetworksManager {
             }*/
             modifyNet();
 
-            activeNetwork.generateMatrix();
-
             nets.add(activeNetwork);
 
         }
@@ -247,7 +255,7 @@ public class NetworksManager {
             String ingoing;
             boolean ingoingbool;
             int input = -1;
-            List<Transition> transitions = activeNetwork.getTransitions();
+            ArrayList<Transition> transitions = activeNetwork.getTransitions();
             //int transSize = transitions.size();
             menu.selectTransitions(transitions);
             /*do {
@@ -297,7 +305,7 @@ public class NetworksManager {
         	String ingoing;
             boolean ingoingbool;
             int input;
-            List<Place> places = activeNetwork.getPlaces();
+            ArrayList<Place> places = activeNetwork.getPlaces();
             //int placeSize = places.size();
             menu.selectPlaces(places);
             /*do {
@@ -325,8 +333,8 @@ public class NetworksManager {
         	Link l;
         	int inputX;
         	int inputY;
-        	List<Place> places = activeNetwork.getPlaces();
-        	List<Transition> transitions = activeNetwork.getTransitions();
+        	ArrayList<Place> places = activeNetwork.getPlaces();
+        	ArrayList<Transition> transitions = activeNetwork.getTransitions();
         	menu.selezionaPoT();
         	do {
         		String s = inString();

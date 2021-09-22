@@ -8,13 +8,14 @@ import static Utils.MatrixOperation.*;
 public class Network implements Identificable{
 
     private int id;
-    private List<Place> places;
-    private List<Transition> transitions;
-    private List<Link> links;
+    private ArrayList<Place> places;
+    private ArrayList<Transition> transitions;
+    private ArrayList<Link> links;
     private int[][] matrixIn;
     private int[][] matrixOut;
 
     public Network(int id) {
+
         this.id = id;
         this.places = new ArrayList<>();
         this.transitions = new ArrayList<>();
@@ -23,6 +24,7 @@ public class Network implements Identificable{
         this.places.add(place);
         int transitionId = this.transitions.size();
         addTransition(transitionId, place, true);
+        generateMatrix();
     }
 
     public Network(int id, int[][] matrixIn, int[][] matrixOut) {
@@ -35,6 +37,8 @@ public class Network implements Identificable{
         addPlaces(matrixIn.length);
         addTransitions(matrixIn[0].length);
         interConnect();
+        generateMatrix();
+
     }
 
     private void connect(Node in, Node out) {
@@ -63,11 +67,11 @@ public class Network implements Identificable{
         }
     }
 
-    public List<Place> getPlaces() {
+    public ArrayList<Place> getPlaces() {
         return places;
     }
 
-    public List<Transition> getTransitions() {
+    public ArrayList<Transition> getTransitions() {
         return transitions;
     }
     

@@ -1,6 +1,8 @@
 package Utils;
 
 import Models.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -30,7 +32,7 @@ public class Menu {
     }
 
 
-    public void selectNets(List<Network> nets) {
+    public void selectNets(ArrayList<Network> nets) {
 
         int netsSize = nets.size();
 
@@ -60,12 +62,14 @@ public class Menu {
         }
     }*/
     
-    private void print(Iterable<? extends Identificable> id) {
-    	for (Identificable i: id)
-    		System.out.println((i.getId() + 1)  + ") " + i.toString());
+    private void print(ArrayList<? extends Identificable> id) {
+
+        for (int i = 0; i < id.size(); i++) {
+            System.out.println((i + 1)  + ") " + id.get(i).toString());
+        }
     }
 
-    public void selectPlaces(Iterable<Place> places){
+    public void selectPlaces(ArrayList<Place> places){
         System.out.println(SELEZIONA_POSTI);
         //printPlaces(places);
         print(places);
@@ -93,7 +97,7 @@ public class Menu {
         System.out.println(AGGIUNGI);
     }
 
-    public void selectTransitions(Iterable<Transition> transitions) {
+    public void selectTransitions(ArrayList<Transition> transitions) {
 
         System.out.println(SELEZINA_TRANSIIZONE);
         //printTransition(transitions);
