@@ -12,7 +12,7 @@ public class Menu {
     private final String RITORNA_AL_MAIN_MENU = "Per tornare al menù principale";
     private final String SELEZIONA_POSTI = "Seleziona il posto da collegare";
     private final String FINE = "Per terminare";
-    private final String SELEZIONE_AZIONE_NET = "Vuoi selezionare (1) o Salvare/Caricare (2) una Network?";
+    private final String SELEZIONE_AZIONE_NET = "Vuoi selezionare (1) o Salvare/Caricare (2) una Network? (0) Per chiudere.";
     private final String CARICA_O_SALVA = "Caricare le reti dal file locale (1) o salvare in esso (2)?";
     private final String INSERIMENTO_VALIDO = "Inserire un valore valido: ";
     private final String SALVA_O_CONTINUA = "(1) Per Salvare (2) Per Continuare";
@@ -24,6 +24,7 @@ public class Menu {
     private final String SELETIONA_POT = "Vuoi avere un posto(p) come origine o una transizione(t)?";
     private final String LINK_GIA_ESISTENTE = "Il link che vuoi aggiungere è già presente nella rete";
     private final String NO_RETI = "Non ci sono reti salvabili";
+    private final String NET_ALREADY_EXISTS = "La rete così ottenuta esiste già, modificarla per procedere.";
 
     Scanner in;
 
@@ -131,6 +132,12 @@ public class Menu {
 
 	public void noNet() {
 		System.out.println(NO_RETI);	
+		
+	}
+
+
+	public void netAlreadyExists() {
+		System.out.println(NET_ALREADY_EXISTS);
 		
 	}
 	

@@ -151,12 +151,13 @@ public class NetworksManager {
                
                input = select(savableNets);
                if(input == -1) {
+            	   menu.noNet();
             	   return;      		//messaggio?
                }
-               if(input == -2) {
+               /*if(input == -2) {
             	   menu.noNet();
             	   return;			//messaggio errore?
-               }
+               }*/
                
                 savingNets.add(savableNets.get(input));
                 savableNets.remove(input);
@@ -211,6 +212,10 @@ public class NetworksManager {
                 } while (input < 0 || input > 3);
             }
             activeNetwork.generateMatrix();
+            if(checkIfNetExists(activeNetwork.getId())) {
+            	menu.netAlreadyExists();
+            	modifyNet();
+            }
         }
 
         public void createNet() {
@@ -245,9 +250,8 @@ public class NetworksManager {
                     }
                 } while (input < 0 || input > 3);
             }*/
-            modifyNet();
-
             nets.add(activeNetwork);
+            modifyNet();
 
         }
 
@@ -364,6 +368,12 @@ public class NetworksManager {
         		activeNetwork.getLinks().add(l);
         	}
         	
+        }
+        
+        public boolean checkIfNetExists(int i){
+        	for(Network n: nets)
+        		if(activeNetwork.equals(n) && n.getId() != i)return true;
+        	return false;
         }
 
         
