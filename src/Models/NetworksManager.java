@@ -55,7 +55,7 @@ public class NetworksManager {
         }
 
         private void mainMenu() {
-
+        	
             int input = -1;
             boolean blocker = true;
 
@@ -71,7 +71,7 @@ public class NetworksManager {
                             selectNet();
                             break;
                         case 2:
-                            saveLoad();
+                            save(fileName);
                             break;
                         default:
                         	menu.printValue();
@@ -82,7 +82,7 @@ public class NetworksManager {
 
         }
 
-        public void saveLoad() {
+        /*public void saveLoad() {
 
             int input = -1;
             boolean blocker = true;
@@ -107,7 +107,7 @@ public class NetworksManager {
                 } while (input < 0 || input > 2);
             }
 
-        }
+        }*/
 
         private static void load() {
 
@@ -139,7 +139,7 @@ public class NetworksManager {
                     menu.noNet();
                     break;
                 }
-               menu.selectNets(savableNets);
+               menu.selectNetsToSave(savableNets);
 
                 /*do {
                     input = -1;

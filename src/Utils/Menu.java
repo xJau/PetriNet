@@ -12,10 +12,10 @@ public class Menu {
     private final String RITORNA_AL_MAIN_MENU = "Per tornare al menù principale";
     private final String SELEZIONA_POSTI = "Seleziona il posto da collegare";
     private final String FINE = "Per terminare";
-    private final String SELEZIONE_AZIONE_NET = "Vuoi selezionare (1) o Salvare/Caricare (2) una Network? (0) Per chiudere.";
-    private final String CARICA_O_SALVA = "Caricare le reti dal file locale (1) o salvare in esso (2)?";
+    private final String SELEZIONE_AZIONE_NET = "Vuoi selezionare (1) o Salvare (2) una Network? (0) Per chiudere.";
+    //private final String CARICA_O_SALVA = "Caricare le reti dal file locale (1) o salvare in esso (2)?";
     private final String INSERIMENTO_VALIDO = "Inserire un valore valido: ";
-    private final String SALVA_O_CONTINUA = "(1) Per Salvare (2) Per Continuare";
+    private final String SALVA_O_CONTINUA = "(1) Per Salvare (2) Per selezionare un'altra Network da salvare";
     private final String AGGIUNGI = "Vuoi aggiungere un Posto (1), una Transizione (2) o un Link (3)? (0) Per uscire";
     private final String SELEZINA_TRANSIIZONE = "Seleziona la transizione da collegare";
     private final String P_INGRESSO_O_USCITA = "La transizione seleizonata è in ingresso al posto appena creato? (Y/N)";
@@ -42,6 +42,14 @@ public class Menu {
         System.out.println((netsSize + 1) + NUOVO_VALORE );
         System.out.println("\n0) "+RITORNA_AL_MAIN_MENU);
 
+    }
+    public void selectNetsToSave(ArrayList<Network> nets) {
+
+        int netsSize = nets.size();
+
+        //printNetwork(nets);
+        print(nets);
+        System.out.println("\n0) "+RITORNA_AL_MAIN_MENU);
     }
     /*
     private void printNetwork(Iterable<Network> nets) {
@@ -82,9 +90,9 @@ public class Menu {
         System.out.println(SELEZIONE_AZIONE_NET);
     }
 
-    public void saveLoad() {
+    /*public void saveLoad() {
         System.out.println(CARICA_O_SALVA);
-    }
+    }*/
 
     public void printValue() {
         System.out.print(INSERIMENTO_VALIDO);

@@ -1,1 +1,13 @@
-Available Networks: 0
+Available Networks: 2	Network name: 0
+			Dimension: 1 : 1
+				Matrix in:
+					1 
+				Matrix out:
+					0 	Network name: 1
+			Dimension: 2 : 2
+				Matrix in:
+					1 1 
+					1 0 
+				Matrix out:
+					0 0 
+					1 1 
