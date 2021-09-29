@@ -39,9 +39,6 @@ public class NetworksManager {
             if (nets.isEmpty()) nets.add(new Network(0));
             int netsSize = nets.size();
 
-
-
-
             menu.selectNets(nets);
 
             do {
@@ -117,13 +114,12 @@ public class NetworksManager {
         
         public int select(List<?extends Identificable> id) {
         	int input;
+        	if(id.size() == 0) return -2;
         	do {
                 input = -1;
-                if(id.size() == 0) break;
                 input = input + inInt();
-                //if (input == -1) break;
                 if(input == -2)menu.printValue();
-            } while (input < 0 || input > id.size());
+            } while (input < -1 || input > id.size());
         	return input;
         }
         
@@ -140,7 +136,7 @@ public class NetworksManager {
                     break;
                 }
                menu.selectNetsToSave(savableNets);
-
+               if(inInt()==0)return;
                 /*do {
                     input = -1;
                     if(netsSize == 0) break;
@@ -150,15 +146,11 @@ public class NetworksManager {
                 } while (input < 0 || input > netsSize);*/
                
                input = select(savableNets);
-               if(input == -1) {
+               if(input == -2) {
             	   menu.noNet();
             	   return;      		//messaggio?
                }
-               /*if(input == -2) {
-            	   menu.noNet();
-            	   return;			//messaggio errore?
-               }*/
-               
+               if(input == -1)return;
                 savingNets.add(savableNets.get(input));
                 savableNets.remove(input);
                 menu.save();
@@ -187,7 +179,7 @@ public class NetworksManager {
         	int input = -1;
         	boolean blocker = true;
 
-            while (blocker) { //perché questo while?
+            while (blocker) { 
                 activeNetwork.printNet();
                 menu.doToNet();
                 do {
@@ -268,6 +260,7 @@ public class NetworksManager {
                 else if(input == -2)menu.printValue();
             } while (input < 0 || input > transSize);*/
             input = select(transitions);
+            if(input == -1)return;
             menu.placeInGoing();
             do {
                 ingoing = inString();
@@ -317,6 +310,7 @@ public class NetworksManager {
                 if (input == -1) return;
             } while (input < 0 || input > placeSize);*/
             input = select(places);
+            if(input == -1)return;
             menu.transitionInGoing();
             do {
                 ingoing = inString();
@@ -345,16 +339,20 @@ public class NetworksManager {
         		if(s.equals("p")) {
         			menu.selectPlaces(places);
         			inputX = select(places);
+        			if(inputX == -1)return;
         			menu.selectTransitions(transitions);
         			inputY = select(transitions);
+        			if(inputY == -1)return;
         			l = new Link(places.get(inputX), transitions.get(inputY));
         			break;
         		}
         		else if(s.equals("t")) {
         			menu.selectTransitions(transitions);
         			inputX = select(transitions);
+        			if(inputX == -1)return;
         			menu.selectPlaces(places);
         			inputY = select(places);
+        			if(inputY == -1)return;
         			l = new Link(transitions.get(inputX), places.get(inputY));
         			break;
         		}
