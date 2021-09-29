@@ -8,14 +8,20 @@ import static Utils.MatrixOperation.*;
 public class Network implements Identificable{
 
     private int id;
+    private String name;
     private ArrayList<Place> places;
     private ArrayList<Transition> transitions;
     private ArrayList<Link> links;
     private int[][] matrixIn;
     private int[][] matrixOut;
 
+    /**
+     * Costruttore Network da metodo create network
+     * genera rete di base con un posto collegato ad una transizione e genera le
+     * metrici di adiacenza in ingresso ed in uscita
+     * @param id
+     */
     public Network(int id) {
-
         this.id = id;
         this.places = new ArrayList<>();
         this.transitions = new ArrayList<>();
@@ -27,6 +33,13 @@ public class Network implements Identificable{
         generateMatrix();
     }
 
+    /**
+     * Costruttore Network da file: prende in ingresso l'id e le due matrici di adiacenza al fine di creare i
+     * posti, transizioni e collegamenti.
+     * @param id
+     * @param matrixIn
+     * @param matrixOut
+     */
     public Network(int id, int[][] matrixIn, int[][] matrixOut) {
         this.id = id;
         this.matrixIn = matrixIn;
@@ -38,14 +51,21 @@ public class Network implements Identificable{
         addTransitions(matrixIn[0].length);
         interConnect();
         generateMatrix();
-
     }
 
+    /**
+     * Crea collegamento tra i due nodi indicati
+     * @param in
+     * @param out
+     */
     private void connect(Node in, Node out) {
         Link link = new Link(in, out);
         links.add(link);
     }
 
+    /**
+     * Date le matrici di ingresso e di uscita genera i link della rete
+     */
     private void interConnect() {
         for (int i = 0; i < matrixIn.length; i++) {
             Place place = places.get(i);
@@ -67,28 +87,35 @@ public class Network implements Identificable{
         }
     }
 
-    public ArrayList<Place> getPlaces() {
-        return places;
-    }
-
-    public ArrayList<Transition> getTransitions() {
-        return transitions;
-    }
-    
-    public List<Link> getLinks(){
-    	return links;
-    }
-
+    /**
+     * metodo per controllare la connettivita' della rete;
+     * non usato perche' la creazione dei nodi previene questo problema
+     * @return TRUE se la rete e' connessa, FALSE in caso contrario
+     */
     private boolean checkConnectivity() {
         int[][] m = matrixSum(matrixIn, matrixOut);
         if (checkColumns(m, 0) || checkRows(m, 0)) return false;
         return true;
     }
+
+    /**
+     * Verifica l'esistenza del Link l nella rete
+     * @param l
+     * @return TRUE l nella rete, FALSE in caso contrario
+     */
     
     public boolean checkLinkExist(Link l){
     	for(Link a: links)if(a.equals(l))return true;
     	return false;
     }
+
+    /**
+     * Genera le matrici di adiacenza della rete
+     * Le righe delle matrici corrispondono ai Posti e le colonne alle transizioni
+     * La Matrice MatrixIn contiene tutti i nodi ENTRANTI alle transizioni
+     * La Matrice MatrixOut contiene tutti i nodi USCENTI dalle transizioni
+     * Per la popolazione delle due matrici vengono passati tutti i link salvati nella rete
+     */
 
     public void generateMatrix() {
         int tSize = transitions.size();
@@ -104,6 +131,13 @@ public class Network implements Identificable{
         }
     }
 
+    /**
+     * Metodo per la creazione di un posto
+     * @param id indica l'identificativo del posto
+     * @param transition indica la transizione a cui e' collegato
+     * @param ingoing se TRUE transition in ingresso al posto creato, FALSE viceversa
+     */
+
     public void addPlace(int id, Transition transition, boolean ingoing) {
         Place place = new Place(id);
         places.add(place);
@@ -114,6 +148,11 @@ public class Network implements Identificable{
         }
     }
 
+    /**
+     * Metodo usato per la creazione dei posti
+     * usato nel costruttore da File
+     * @param numNodes indica quanti posti verranno creati con id crescente l'uno rispetto al precedente
+     */
     private void addPlaces(int numNodes) {
         for (int i = 0; i < numNodes; i++) {
             Place place = new Place(i);
@@ -121,12 +160,25 @@ public class Network implements Identificable{
         }
     }
 
+    /**
+     * Metodo usato per la creazione delle transizioni
+     * usato nel costruttore da File
+     * @param numNodes indica quante transizioni verranno creati con id crescente l'uno rispetto al precedente
+     */
+
     private void addTransitions(int numNodes) {
         for (int i = 0; i < numNodes; i++) {
             Transition transition = new Transition(i);
             transitions.add(transition);
         }
     }
+
+    /**
+     * Metodo per la creazione di una transizione
+     * @param id indica l'identificativo della transizione
+     * @param place indica il posto a cui e' collegata
+     * @param ingoing se TRUE place in ingresso alla transizione creata, FALSE viceversa
+     */
 
     public void addTransition(int id, Place place, boolean ingoing) {
         Transition transition = new Transition(id);
@@ -138,13 +190,9 @@ public class Network implements Identificable{
         }
     }
 
-    public void addTransition(int id, Place in, Place out) {
-        Transition transition = new Transition(id);
-        transitions.add(transition);
-        connect(in, transition);
-        connect(transition, out);
-    }
-
+    /**
+     * metodo per lo stampaggio a video di una transizione
+     */
     public void printNet() {
         for (Link link : links) {
             String in = link.getInGoingNode().toString();
@@ -152,14 +200,6 @@ public class Network implements Identificable{
             System.out.println(in + " --> " + out);
 
         }
-    }
-
-    public void setMatrixIn(int[][] matrixIn) {
-        this.matrixIn = matrixIn;
-    }
-
-    public void setMatrixOut(int[][] matrixOut) {
-        this.matrixOut = matrixOut;
     }
 
     public int[][] getMatrixIn() {
@@ -174,6 +214,18 @@ public class Network implements Identificable{
         return id;
     }
 
+    public ArrayList<Place> getPlaces() {
+        return places;
+    }
+
+    public ArrayList<Transition> getTransitions() {
+        return transitions;
+    }
+
+    public List<Link> getLinks(){
+        return links;
+    }
+
     public boolean equals(Object net) {
         if (this == net) return true;
         if (net == null || getClass() != net.getClass()) return false;
@@ -186,7 +238,4 @@ public class Network implements Identificable{
     public String toString() {
         return "Network n." + id;
     }
-    
-
-    
 }

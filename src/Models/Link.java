@@ -24,7 +24,4 @@ public class Link {
         if (l == null || getClass() != l.getClass()) return false;
 		return this.inGoingNode.equals(((Link)l).getInGoingNode()) && this.outGoingNode.equals(((Link)l).getOutGoingNode());
 	}
-    
-    
-    
 }
