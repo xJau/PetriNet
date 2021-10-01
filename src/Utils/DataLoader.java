@@ -115,14 +115,17 @@ public class DataLoader {
         int column = 0;
         int rows = 0;
         int netNumber = -1;
+        String netName = "error";
         int[][] matrixIn = null;
         int[][] matrixOut;
 
         while (scanner.hasNext()) {
             String data = scanner.nextLine();
-            if (data.contains("Network name")) {
+            if (data.contains("id")) {
                 netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
-                System.out.println("Network n." + Integer.toString(netNumber) + " caricata");
+            } else if (data.contains("Name")) {
+            	netName = data.replaceAll("Name: ", "");
+            	System.out.println("Network n." + Integer.toString(netNumber)+"  "+netName+ " caricata");
             } else if (data.contains("Dimension")) {
                 String dimScannerValue = data.replaceAll("[^0-9:]", "");
                 Scanner dimensioneScanner = new Scanner(dimScannerValue);
@@ -137,7 +140,7 @@ public class DataLoader {
                 matrixIn = loadMatrix(rows, column, scanner);
             } else if (data.contains("Matrix out")) {
                 matrixOut = loadMatrix(rows, column, scanner);
-                net = new Network(netNumber,matrixIn,matrixOut);
+                net = new Network(netNumber, netName, matrixIn, matrixOut);
                 return net;
             }
 

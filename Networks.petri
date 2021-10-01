@@ -1,4 +1,15 @@
-Available Networks: 1	Network name: 0
+Available Networks: 2
+id: 0
+Name: pippo
+			Dimension: 2 : 1
+				Matrix in:
+					1 
+					0 
+				Matrix out:
+					0 
+					1 
+id: 1
+Name: topolino
 			Dimension: 1 : 1
 				Matrix in:
 					1 

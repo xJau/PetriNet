@@ -20,9 +20,11 @@ public class Network implements Identificable{
      * genera rete di base con un posto collegato ad una transizione e genera le
      * metrici di adiacenza in ingresso ed in uscita
      * @param id
+     * @param name
      */
-    public Network(int id) {
+    public Network(int id, String name) {
         this.id = id;
+        this.name = name;
         this.places = new ArrayList<>();
         this.transitions = new ArrayList<>();
         this.links = new ArrayList<>();
@@ -34,14 +36,16 @@ public class Network implements Identificable{
     }
 
     /**
-     * Costruttore Network da file: prende in ingresso l'id e le due matrici di adiacenza al fine di creare i
+     * Costruttore Network da file: prende in ingresso l'id, il nome e le due matrici di adiacenza al fine di creare i
      * posti, transizioni e collegamenti.
      * @param id
+     * @param name
      * @param matrixIn
      * @param matrixOut
      */
-    public Network(int id, int[][] matrixIn, int[][] matrixOut) {
+    public Network(int id, String name, int[][] matrixIn, int[][] matrixOut) {
         this.id = id;
+        this.name = name;
         this.matrixIn = matrixIn;
         this.matrixOut = matrixOut;
         this.places = new ArrayList<>();
@@ -213,6 +217,10 @@ public class Network implements Identificable{
     public int getId() {
         return id;
     }
+    
+    public String getName() {
+    	return name;
+    }
 
     public ArrayList<Place> getPlaces() {
         return places;
@@ -225,6 +233,14 @@ public class Network implements Identificable{
     public List<Link> getLinks(){
         return links;
     }
+    
+    public void setId(int id) {
+    	this.id = id;
+    }
+    
+    public void setName(String name) {
+    	this.name = name;
+    }
 
     public boolean equals(Object net) {
         if (this == net) return true;
@@ -236,6 +252,6 @@ public class Network implements Identificable{
 
     @Override
     public String toString() {
-        return "Network n." + id;
+        return "Network n." + id + " " + name;
     }
 }

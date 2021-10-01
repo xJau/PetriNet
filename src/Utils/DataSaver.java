@@ -66,7 +66,11 @@ public class DataSaver {
 
         StringBuilder stringBuilder = new StringBuilder();
         String netId =String.valueOf(activeNet.getId());
-        stringBuilder.append("\r\tNetwork name: " + netId);
+        String netName =String.valueOf(activeNet.getName());
+        stringBuilder.append("\n");
+        stringBuilder.append("id: " + netId );
+        stringBuilder.append("\n");
+        stringBuilder.append("Name: " + netName);
         stringBuilder.append("\n");
         stringBuilder.append("\t\t\tDimension: " + row + " : " + column);
         stringBuilder.append("\n");

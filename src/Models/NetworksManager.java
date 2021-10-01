@@ -13,6 +13,7 @@ public class NetworksManager {
 
     public static class NetworkManager {
 
+    	static DataLoader loader;
         static ArrayList<Network> nets = new ArrayList<>();
         static ArrayList<Network> savedNets = new ArrayList<>();
         static Network activeNetwork;
@@ -22,6 +23,7 @@ public class NetworksManager {
 
         private NetworkManager() {
             this.menu = new Menu();
+            loader = new DataLoader(fileName);
             load();
         }
 
@@ -60,7 +62,7 @@ public class NetworksManager {
         public void selectNet() {
 
             int input = -1;
-            if (nets.isEmpty()) nets.add(new Network(0));
+            if (nets.isEmpty()) nets.add(new Network(0, "Rete zero"));
             int netsSize = nets.size();
 
             menu.selectNets(nets);
@@ -75,8 +77,7 @@ public class NetworksManager {
         }
 
         private static void load() {
-
-            DataLoader loader = new DataLoader(fileName);
+        	
             nets = loader.readFile();
         }
 
@@ -98,13 +99,14 @@ public class NetworksManager {
             //int netsSize;
             boolean stop = false;
             int input = -1;
+            menu.avvisoPerditaDati();
             do {
                 if (savableNets.isEmpty()) {
                     menu.noNet();
                     break;
                 }
                 menu.selectNetsToSave(savableNets);
-                if (inInt() == 0) return;
+                if (input == 0) return;
                 input = select(savableNets);
                 if (input == -2) {
                     menu.noNet();
@@ -121,10 +123,26 @@ public class NetworksManager {
                 } while (input < 1 || input > 2);
 
             } while (!stop);
-
+            
+            //POSSIBILE SOLUZIONE...
             savedNets = savingNets;
+            sortNetId(savedNets);
             DataSaver saver = new DataSaver(savedNets, fileName);
             saver.writeFile();
+            load();
+            
+            /**
+             * savedNets = savingNets;
+             * DataSaver saver = new DataSaver(savedNets, fileName);
+             * saver.writeFile();
+             */
+        }
+        
+        
+        public void sortNetId(List <Network> n) {
+        	for(int i = 0; i<n.size(); i++) {
+        		n.get(i).setId(i);
+        	}
         }
 
         public void modifyNet(Network network) {
@@ -138,9 +156,9 @@ public class NetworksManager {
             int input = -1;
             boolean blocker = true;
             while (blocker) {
-                activeNetwork.printNet();
-                menu.doToNet();
                 do {
+                    activeNetwork.printNet();
+                    menu.doToNet();
                     input = inInt();
                     switch (input) {
                         case 0:
@@ -155,6 +173,9 @@ public class NetworksManager {
                         case 3:
                             addLink();
                             break;
+                        case 4:
+                        	setNetName();
+                        	break;
                         default:
                             menu.printValue();
                             break;
@@ -170,9 +191,10 @@ public class NetworksManager {
 
         public void createNet() {
 
-            Network network = new Network(nets.size());
+            Network network = new Network(nets.size(), "default");
             activeNetwork = network;
             nets.add(activeNetwork);
+            setNetName();
             modifyNet();
 
         }
@@ -268,5 +290,17 @@ public class NetworksManager {
                 if (activeNetwork.equals(n) && n.getId() != i) return true;
             return false;
         }
+        
+        public void setNetName() {
+        	String nuovoNome;
+        	menu.insNuovoNome();
+        	do {
+        		nuovoNome = inString();
+        		if(!nuovoNome.toLowerCase().equals("name"))break;
+        		menu.printValue();
+        	}while(true);
+        	activeNetwork.setName(nuovoNome);
+        }
+        
     }
 }

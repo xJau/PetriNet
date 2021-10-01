@@ -16,7 +16,7 @@ public class Menu {
     //private final String CARICA_O_SALVA = "Caricare le reti dal file locale (1) o salvare in esso (2)?";
     private final String INSERIMENTO_VALIDO = "Inserire un valore valido: ";
     private final String SALVA_O_CONTINUA = "(1) Per Salvare (2) Per selezionare un'altra Network da salvare";
-    private final String AGGIUNGI = "Vuoi aggiungere un Posto (1), una Transizione (2) o un Link (3)? (0) Per uscire";
+    private final String AGGIUNGI = "Vuoi aggiungere un Posto (1), una Transizione (2), un Link (3) o cambiare nome (4) alla Network? (0) Per uscire";
     private final String SELEZINA_TRANSIIZONE = "Seleziona la transizione da collegare";
     private final String P_INGRESSO_O_USCITA = "La transizione seleizonata è in ingresso al posto appena creato? (Y/N)";
     private final String T_INGRESSO_O_USCITA = "Il posto selezionato è in ingresso alla transizione appena creata? (Y/N)";
@@ -25,7 +25,9 @@ public class Menu {
     private final String LINK_GIA_ESISTENTE = "Il link che vuoi aggiungere è già presente nella rete";
     private final String NO_RETI = "Non ci sono reti salvabili";
     private final String NET_ALREADY_EXISTS = "La rete così ottenuta esiste già, modificarla per procedere.";
-
+    private final String ASSEGNA_NOME_NET = "Inserire il nome che si desidera assegnare alla rete";
+    private final String AVVISO_PERDITA_DATI = "ATTENZIONE: le reti che non verranno selezionate in questa fase andranno perse";
+    		
     Scanner in;
 
     public Menu(){
@@ -146,6 +148,18 @@ public class Menu {
 
 	public void netAlreadyExists() {
 		System.out.println(NET_ALREADY_EXISTS);
+		
+	}
+
+
+	public void insNuovoNome() {
+		System.out.println(ASSEGNA_NOME_NET);
+		
+	}
+
+
+	public void avvisoPerditaDati() {
+		System.out.println(AVVISO_PERDITA_DATI);
 		
 	}
 	

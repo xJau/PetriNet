@@ -18,29 +18,19 @@ public class InputManager {
 
 	public static String inString() {
 		String a;
+		boolean error;
 		Scanner s = new Scanner(System.in);
-		try {
-			a = s.next();
-		}
-		catch(Exception e) {
-			a = "e";
-		}
-		return a;
-	}
-	
-	public static String inYorN() {
-		String a;
-		boolean check;
 		do {
-			a = inString();
-			a.toLowerCase();
-			if(a.equals("y") || a.equals("n"))check = true;
-			else {
-				System.out.println("Inserisci (y) o (n)");
-				check = false;
+			error = false;
+			try {
+				a = s.next();
 			}
-		}while(!check);
+			catch(Exception e) {
+				error = true;
+				System.out.println("Input non valido, riprovare:");
+				a = "e";
+			}
+		}while(error == true);
 		return a;
 	}
-	
 }
