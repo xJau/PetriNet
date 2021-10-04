@@ -1,4 +1,4 @@
-Available Networks: 2
+Available Networks: 1
 id: 0
 Name: pippo
 			Dimension: 2 : 1
@@ -8,10 +8,3 @@ Name: pippo
 				Matrix out:
 					0 
 					1 
-id: 1
-Name: topolino
-			Dimension: 1 : 1
-				Matrix in:
-					1 
-				Matrix out:
-					0 

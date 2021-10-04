@@ -26,21 +26,20 @@ public class DataSaver {
             FileWriter myWriter = new FileWriter(filePath);
             myWriter.write(writeNets());
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
+//            System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
     }
 
     private void createFile(){
         this.file = new File(filePath);
         try {
             if (file.createNewFile()) {
-                System.out.println("File created: " + file.getName());
+//                System.out.println("File created: " + file.getName());
             } else {
-                System.out.println("File already exists.");
+//                System.out.println("File already exists.");
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
@@ -87,7 +86,6 @@ public class DataSaver {
         stringBuilder.append("\n");
         stringBuilder.append("\t\t\t\tMatrix out:");
 
-
         for(int i = 0; i < row; i++){
             stringBuilder.append("\n\t\t\t\t\t");
             for (int j = 0; j < column; j++) {
@@ -95,8 +93,6 @@ public class DataSaver {
                 stringBuilder.append(" ");
             }
         }
-
         return stringBuilder.toString();
     }
-
 }

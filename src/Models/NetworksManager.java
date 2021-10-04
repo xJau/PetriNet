@@ -94,12 +94,12 @@ public class NetworksManager {
         }
 
         private void save(String fileName) {
-            ArrayList<Network> savableNets = nets;
+            ArrayList<Network> savableNets = new ArrayList<>();
             ArrayList<Network> savingNets = new ArrayList<>();
-            //int netsSize;
+            savableNets.addAll(nets);
             boolean stop = false;
             int input = -1;
-            menu.avvisoPerditaDati();
+//            menu.avvisoPerditaDati();
             do {
                 if (savableNets.isEmpty()) {
                     menu.noNet();
@@ -124,12 +124,11 @@ public class NetworksManager {
 
             } while (!stop);
             
-            //POSSIBILE SOLUZIONE...
             savedNets = savingNets;
             sortNetId(savedNets);
             DataSaver saver = new DataSaver(savedNets, fileName);
             saver.writeFile();
-            load();
+//            load();
             
             /**
              * savedNets = savingNets;
