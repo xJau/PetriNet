@@ -13,7 +13,6 @@ public class Menu {
     private final String SELEZIONA_POSTI = "Seleziona il posto da collegare";
     private final String FINE = "Per terminare";
     private final String SELEZIONE_AZIONE_NET = "Vuoi selezionare (1) o Salvare (2) una Network? (0) Per chiudere.";
-    //private final String CARICA_O_SALVA = "Caricare le reti dal file locale (1) o salvare in esso (2)?";
     private final String INSERIMENTO_VALIDO = "Inserire un valore valido: ";
     private final String SALVA_O_CONTINUA = "(1) Per Salvare (2) Per selezionare un'altra Network da salvare";
     private final String AGGIUNGI = "Vuoi aggiungere un Posto (1), una Transizione (2), un Link (3) o cambiare nome (4) alla Network? (0) Per uscire";
@@ -26,7 +25,8 @@ public class Menu {
     private final String NO_RETI = "Non ci sono reti salvabili";
     private final String NET_ALREADY_EXISTS = "La rete così ottenuta esiste già, modificarla per procedere.";
     private final String ASSEGNA_NOME_NET = "Inserire il nome che si desidera assegnare alla rete";
-    private final String AVVISO_PERDITA_DATI = "ATTENZIONE: le reti che non verranno selezionate in questa fase andranno perse";
+    private final String AVVISO_PERDITA_DATI = "ATTENZIONE: in caso di chiusura del programma "
+    		+ "le reti che non sono state selezionate durante la fase di\nsalvataggio andranno perse";
     		
     Scanner in;
 
@@ -39,7 +39,6 @@ public class Menu {
 
         int netsSize = nets.size();
 
-        //printNetwork(nets);
         print(nets);
         System.out.println((netsSize + 1) + NUOVO_VALORE );
         System.out.println("\n0) "+RITORNA_AL_MAIN_MENU);
@@ -47,31 +46,10 @@ public class Menu {
     }
     public void selectNetsToSave(ArrayList<Network> nets) {
 
-        int netsSize = nets.size();
 
-        //printNetwork(nets);
         print(nets);
         System.out.println("\n0) "+RITORNA_AL_MAIN_MENU);
     }
-    /*
-    private void printNetwork(Iterable<Network> nets) {
-
-        for (Network net: nets) {
-            System.out.println((net.getId() + 1)  + ") " + net.toString());
-        }
-    }
-    private void printTransition(Iterable<Transition> transitions) {
-
-        for (Transition transition: transitions) {
-            System.out.println((transition.getId() + 1)  + ") " + transition.toString());
-        }
-    }
-    private void printPlaces(Iterable<Place> places) {
-
-        for (Place place: places) {
-            System.out.println((place.getId() + 1)  + ") " + place.toString());
-        }
-    }*/
     
     private void print(ArrayList<? extends Identificable> id) {
 
@@ -82,7 +60,6 @@ public class Menu {
 
     public void selectPlaces(ArrayList<Place> places){
         System.out.println(SELEZIONA_POSTI);
-        //printPlaces(places);
         print(places);
         System.out.println("\n0) "+FINE);
     }
@@ -90,11 +67,8 @@ public class Menu {
 
     public void mainMenu() {
         System.out.println(SELEZIONE_AZIONE_NET);
+        avvisoPerditaDati();
     }
-
-    /*public void saveLoad() {
-        System.out.println(CARICA_O_SALVA);
-    }*/
 
     public void printValue() {
         System.out.print(INSERIMENTO_VALIDO);
@@ -111,7 +85,6 @@ public class Menu {
     public void selectTransitions(ArrayList<Transition> transitions) {
 
         System.out.println(SELEZINA_TRANSIIZONE);
-        //printTransition(transitions);
         print(transitions);
         System.out.println("\n0) "+FINE);
     }

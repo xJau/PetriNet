@@ -99,7 +99,6 @@ public class NetworksManager {
             savableNets.addAll(nets);
             boolean stop = false;
             int input = -1;
-//            menu.avvisoPerditaDati();
             do {
                 if (savableNets.isEmpty()) {
                     menu.noNet();
@@ -128,13 +127,6 @@ public class NetworksManager {
             sortNetId(savedNets);
             DataSaver saver = new DataSaver(savedNets, fileName);
             saver.writeFile();
-//            load();
-            
-            /**
-             * savedNets = savingNets;
-             * DataSaver saver = new DataSaver(savedNets, fileName);
-             * saver.writeFile();
-             */
         }
         
         
