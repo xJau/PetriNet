@@ -287,7 +287,7 @@ public class NetworksManager {
         	menu.insNuovoNome();
         	do {
         		nuovoNome = inString();
-        		if(!nuovoNome.toLowerCase().equals("name"))break;
+        		if(!nuovoNome.toLowerCase().replaceAll("[^a-z]", "").equals("name"))break;
         		menu.printValue();
         	}while(true);
         	activeNetwork.setName(nuovoNome);
