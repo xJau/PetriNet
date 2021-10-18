@@ -1,6 +1,9 @@
 package Utils;
 
 import Models.Network;
+import Models.PetrisNetwork;
+
+import static Utils.NetFabric.*;
 
 
 import java.io.File;
@@ -31,7 +34,7 @@ public class DataLoader {
             System.out.println(filePath + " è stata caricata");
         } else createFile();
     }
-
+  
     private void createFile(){
         this.file = new File(filePath);
         try {
@@ -61,8 +64,9 @@ public class DataLoader {
         }
     }
 
+
     public ArrayList<Network> readFile() {
-        ArrayList<Network> networks = new ArrayList<>();
+        ArrayList<Network> networks;
         try {
             Scanner scanner = new Scanner(file);
 //            scanner.useDelimiter(":");
@@ -84,6 +88,32 @@ public class DataLoader {
         }
         return new ArrayList<>();
     }
+    
+    public ArrayList<PetrisNetwork> readPetrisFile() {
+        ArrayList<PetrisNetwork> pNetworks;
+        try {
+            Scanner scanner = new Scanner(file);
+//            scanner.useDelimiter(":");
+
+            while (scanner.hasNext()) {
+                String data = scanner.nextLine();
+
+
+                if (data.contains("Available Petri's Networks")) {
+                	pNetworks = loadPetrisNetworks(scanner, data);
+                    scanner.close();
+                    return pNetworks;
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Errore Rilevato.");
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
+
 
     private ArrayList<Network> loadNetworks(Scanner scanner, String data) {
         ArrayList<Network> networks = new ArrayList<>();
@@ -97,6 +127,21 @@ public class DataLoader {
         }
         return networks;
     }
+    
+    private ArrayList<PetrisNetwork> loadPetrisNetworks(Scanner scanner, String data) {
+        ArrayList<PetrisNetwork> pNetworks = new ArrayList<>();
+        int netNumber;
+        netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
+        System.out.println(Integer.toString(netNumber) + " petri's networks caricate");
+
+        for (int i = 0; i < netNumber; i++) {
+            PetrisNetwork net = loadPetrisNetwork(scanner);
+            pNetworks.add(net);
+        }
+        return pNetworks;
+    }
+
+    
 
     private int[][] loadMatrix(int rows, int columns, Scanner scanner) {
         int[][] matrix = new int[rows][columns];
@@ -109,7 +154,14 @@ public class DataLoader {
 
         return matrix;
     }
-
+    
+    private int[] loadVector(int lenght, Scanner scanner) {
+    	int[] vector = new int[lenght];
+    	for(int i = 0; i<lenght; i++)vector[i] = scanner.nextInt();
+    	return vector;
+    }
+    
+  //Da terminare.... Cosi non va bene, per ora puo prendere i dati necessari anche per una petri ma non permette di crearla
     public Network loadNetwork(Scanner scanner) {
         Network net = null;
         int column = 0;
@@ -126,7 +178,7 @@ public class DataLoader {
             } else if (data.contains("Name")) {
             	netName = data.replaceAll("Name: ", "");
             	System.out.println("Network n." + Integer.toString(netNumber)+"  "+netName+ " caricata");
-            } else if (data.contains("Dimension")) {
+            }  else if (data.contains("Dimension")) {
                 String dimScannerValue = data.replaceAll("[^0-9:]", "");
                 Scanner dimensioneScanner = new Scanner(dimScannerValue);
                 dimensioneScanner.useDelimiter(":");
@@ -148,4 +200,24 @@ public class DataLoader {
 
         return net;
     }
+    
+    public void loadPetrisMarking(Scanner scanner, int[] m) {
+    	int mDim = 0;
+    	String data = scanner.nextLine();
+    	if(data.contains("Marking Dimension: ")) {
+        	String dimScannerValue = data.replaceAll("[^0-9]", "");
+        	mDim = Integer.valueOf(dimScannerValue);
+        } else if(data.contains("Marking")) {
+        	m = loadVector(mDim, scanner);
+        }
+    }
+    
+    public PetrisNetwork loadPetrisNetwork(Scanner scanner) {
+    	int[] marking = null;
+    	Network net = loadNetwork(scanner);
+    	loadPetrisMarking(scanner, marking);
+    	
+    	return new PetrisNetwork(net, net.getId(), net.getName(), marking);
+    }
+    
 }

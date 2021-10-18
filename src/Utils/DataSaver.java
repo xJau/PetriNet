@@ -1,6 +1,7 @@
 package Utils;
 
 import Models.Network;
+import Models.PetrisNetwork;
 
 import java.io.*;
 import java.util.List;
@@ -11,7 +12,7 @@ public class DataSaver {
     private final String fileName;
     private final String path = "./";
     private final String extension = ".petri";
-    private final String filePath;
+    protected final String filePath;
     private File file;
 
     public DataSaver(List<Network> nets,String fileName){
@@ -51,21 +52,21 @@ public class DataSaver {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Available Networks: " + nets.size());
         for(Network activeNet: nets){
-            stringBuilder.append(writeNet(activeNet));
+            stringBuilder.append(writeNet(activeNet, new StringBuilder()));
         }
         return stringBuilder.toString();
     }
 
-    private String writeNet(Network activeNet){
+    protected String writeNet(Network activeNet, StringBuilder stringBuilder){
 
         int[][] matrixIn = activeNet.getMatrixIn();
         int[][] matrixOut = activeNet.getMatrixOut();
         int row = matrixIn.length;
         int column = matrixIn[0].length;
 
-        StringBuilder stringBuilder = new StringBuilder();
-        String netId =String.valueOf(activeNet.getId());
-        String netName =String.valueOf(activeNet.getName());
+//        StringBuilder stringBuilder = new StringBuilder();
+        String netId = String.valueOf(activeNet.getId());
+        String netName = String.valueOf(activeNet.getName());
         stringBuilder.append("\n");
         stringBuilder.append("id: " + netId );
         stringBuilder.append("\n");

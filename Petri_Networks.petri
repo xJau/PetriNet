@@ -1,0 +1,12 @@
+Available Petri's Networks: 1
+id: 0
+Name: ciaone
+			Dimension: 2 : 1
+				Matrix in:
+					1 
+					0 
+				Matrix out:
+					0 
+					1 
+Marking Dimension: 2
+Marking: 4 3 

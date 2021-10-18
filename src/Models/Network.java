@@ -57,7 +57,11 @@ public class Network implements Identificable{
         generateMatrix();
     }
 
-    /**
+    public Network() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
      * Crea collegamento tra i due nodi indicati
      * @param in
      * @param out
@@ -230,7 +234,7 @@ public class Network implements Identificable{
         return transitions;
     }
 
-    public List<Link> getLinks(){
+    public ArrayList<Link> getLinks(){
         return links;
     }
     

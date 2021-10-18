@@ -17,6 +17,10 @@ public class Link {
     public Node getOutGoingNode() {
         return outGoingNode;
     }
+    
+    public String toString() {
+    	return inGoingNode.toString()+" --> "+outGoingNode.toString();
+    }
 
 	@Override
 	public boolean equals(Object l) {

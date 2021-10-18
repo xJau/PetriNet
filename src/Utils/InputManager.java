@@ -33,4 +33,5 @@ public class InputManager {
 		}while(error == true);
 		return a;
 	}
+	
 }
