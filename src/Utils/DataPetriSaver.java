@@ -17,17 +17,6 @@ public class DataPetriSaver extends DataSaver{
 		this.pnets = pnets;
 	}
 	
-	public void writeFile(){
-        try {
-            FileWriter myWriter = new FileWriter(filePath);
-            myWriter.write(writeNets());
-            myWriter.close();
-//            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
 	
 	protected String writeNets(){
         StringBuilder stringBuilder = new StringBuilder();
@@ -46,6 +35,7 @@ public class DataPetriSaver extends DataSaver{
     	stringBuilder.append("Marking Dimension: "+l);
     	stringBuilder.append("\n");
     	stringBuilder.append("Marking: ");
+    	stringBuilder.append("\n");
     	for(int i = 0; i<l; i++) {
     		stringBuilder.append(m[i]);
     		stringBuilder.append(" ");

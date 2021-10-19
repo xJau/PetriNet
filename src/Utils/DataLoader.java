@@ -161,7 +161,7 @@ public class DataLoader {
     	return vector;
     }
     
-  //Da terminare.... Cosi non va bene, per ora puo prendere i dati necessari anche per una petri ma non permette di crearla
+    
     public Network loadNetwork(Scanner scanner) {
         Network net = null;
         int column = 0;
@@ -201,22 +201,27 @@ public class DataLoader {
         return net;
     }
     
-    public void loadPetrisMarking(Scanner scanner, int[] m) {
+    public int[] loadPetrisMarking(Scanner scanner) {
     	int mDim = 0;
-    	String data = scanner.nextLine();
-    	if(data.contains("Marking Dimension: ")) {
-        	String dimScannerValue = data.replaceAll("[^0-9]", "");
-        	mDim = Integer.valueOf(dimScannerValue);
-        } else if(data.contains("Marking")) {
-        	m = loadVector(mDim, scanner);
-        }
+    	int m[] = null;
+    	
+    	while(scanner.hasNext()) {
+    		String data = scanner.nextLine();
+    		if(data.contains("Marking Dimension: ")) {
+        		String dimScannerValue = data.replaceAll("[^0-9]", "");
+        		mDim = Integer.valueOf(dimScannerValue);
+        	} else if(data.contains("Marking")) {
+        		m = loadVector(mDim, scanner);
+        		return m;
+        	}
+    	}
+    	return m;
     }
     
     public PetrisNetwork loadPetrisNetwork(Scanner scanner) {
-    	int[] marking = null;
+    	int[] marking;
     	Network net = loadNetwork(scanner);
-    	loadPetrisMarking(scanner, marking);
-    	
+    	marking = loadPetrisMarking(scanner);
     	return new PetrisNetwork(net, net.getId(), net.getName(), marking);
     }
     

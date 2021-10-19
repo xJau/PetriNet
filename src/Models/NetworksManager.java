@@ -16,7 +16,7 @@ public class NetworksManager {
     	static DataLoader loader;
         static ArrayList<Network> nets = new ArrayList<>();
         static ArrayList<PetrisNetwork> pnets = new ArrayList<>();
-        static ArrayList<Network> savedNets = new ArrayList<>();
+        static ArrayList<Network> savedNets;
         static ArrayList<PetrisNetwork> savedpNets = new ArrayList<>();
         static Network activeNetwork;
         static String fileName = "Networks";
@@ -26,6 +26,7 @@ public class NetworksManager {
         private NetworkManager() {
             this.menu = new Menu();
             load();
+            savedNets = new ArrayList<>(nets); 
         }
 
 
@@ -53,7 +54,7 @@ public class NetworksManager {
                             save(fileName);
                             break;
                         case 3:
-                        	selectPNet(pnets);
+                        	pNetsMenu(pnets, savedNets);
                         	break;
                         case 4:
                         	savePnets(pfileName, pnets, savedpNets);
@@ -98,8 +99,8 @@ public class NetworksManager {
             do {
                 input = -1;
                 input = input + inInt();
-                if (input == -2) menu.printValue();
-            } while (input < -1 || input > id.size());
+                if (input == -2 || input > id.size()-1) menu.printValue();
+            } while (input < -1 || input > id.size()-1);
             return input;
         }
 
@@ -128,7 +129,7 @@ public class NetworksManager {
                 do {
                     input = inInt();
                     if (input == 1) stop = true;
-                    else if (input == -1) menu.printValue();
+                    else if (input < 1 || input > 2) menu.printValue();
                 } while (input < 1 || input > 2);
 
             } while (!stop);
@@ -177,13 +178,11 @@ public class NetworksManager {
                         case 4:
                         	setNetName();
                         	break;
-                        case 5: 
-                        	createPetrisNet();
                         default:
                             menu.printValue();
                             break;
                     }
-                } while (input < 0 || input > 3);
+                } while (input < 0 || input > 4);
             }
             activeNetwork.generateMatrix();
             if (checkIfNetExists(activeNetwork.getId(), activeNetwork, nets)) {
@@ -287,18 +286,7 @@ public class NetworksManager {
                 activeNetwork.getLinks().add(l);
             }
         }
-
-        public void createPetrisNet(){
-        	int pnSize = pnets.size();
-        	PetrisNetwork pn = createPNet(pnets, activeNetwork);
-        	if(checkIfNetExists(pnSize, pn, pnets)) {
-        		menu.netAlreadyExists();
-        		menu.print("cancellazione");
-        		return;
-        	}
-        	pnets.add(pn);
-        }
-        
+       
         public boolean checkIfNetExists(int i, Network net, ArrayList<? extends Network> nets) {
             for (Network n : nets)
                 if (net.equals(n) && n.getId() != i) return true;

@@ -48,7 +48,7 @@ public class DataSaver {
         }
     }
 
-    private String writeNets(){
+    protected String writeNets(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Available Networks: " + nets.size());
         for(Network activeNet: nets){

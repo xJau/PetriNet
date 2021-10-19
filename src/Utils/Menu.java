@@ -12,8 +12,8 @@ public class Menu {
     private final String RITORNA_AL_MAIN_MENU = "Per tornare al menù principale";
     private final String SELEZIONA_POSTI = "Seleziona il posto da collegare";
     private final String FINE = "Per terminare";
-    private final String SELEZIONE_AZIONE_NET = "Vuoi selezionare (1), Salvare (2) una Network o selezionare (3), salvare (4) una "
-    		+ "Petri's Network? (0) Per chiudere.";
+    private final String SELEZIONE_AZIONE_NET = "(1)Selezionare, (2)Salvare una Network, (3)Gestione reti di petri, (4)Salvare una o più "
+    		+ "Petri's Network, (0) Per chiudere.";
     private final String INSERIMENTO_VALIDO = "Inserire un valore valido: ";
     private final String SALVA_O_CONTINUA = "(1) Per Salvare (2) Per selezionare un'altra Network da salvare";
     private final String AGGIUNGI = "Vuoi aggiungere un Posto (1), una Transizione (2), un Link (3) o cambiare nome (4) alla Network? (0) Per uscire";
@@ -29,10 +29,13 @@ public class Menu {
     private final String AVVISO_PERDITA_DATI = "ATTENZIONE: in caso di chiusura del programma "
     		+ "le reti che non sono state selezionate durante la fase di\nsalvataggio andranno perse";
     private final String INSERIRE_MARCATURA_INIZIALE = "Inserire una marcatura iniziale ai posti elencati di seguito: ";
-    private final String PN_MENU = "(1)Per visualizzare la struttura di una rete di petri specidica, (2) per visualizzare l'elenco"
-    		+ "delle reti di petri esistenti (0)per chiudere.";
+    private final String PN_MENU = "(1)Per visualizzare la struttura di una rete di petri specifica\n(2)Visualizzare l'elenco "
+    		+ "delle reti di petri esistenti\n(3)Creare una rete di petri\n(0)per chiudere.";
     private final String INSERIRE_PESI_LINK = "Inserire il peso desiderato ai seguenti link: ";
-    		
+    private final String NO_NETS_PER_PETRI = "Non ci sono reti da usare come base per una reti di petri, per continuare creane una.";
+    private final String NO_PETRIS_NETS = "Non ci sono reti di petri selezionabili, creane una per poter accedere a questa voce.";
+    private final String SELEZIONA_RETE_PER_PETRI = "Selezionare la rete che si desidera utilizzare come base per la creazione della rete di petri";		
+    
     Scanner in;
 
     public Menu(){
@@ -190,6 +193,23 @@ public class Menu {
 
 	public void inserisciPesi() {
 		System.out.println(INSERIRE_PESI_LINK);
+		
+	}
+
+
+	public void noNetForPetris() {
+		System.out.println(NO_NETS_PER_PETRI);
+		
+	}
+
+
+	public void noPetrisNets() {
+		System.out.println(NO_PETRIS_NETS);
+		
+	}
+	
+	public void selecNEtforPetris() {
+		System.out.println(SELEZIONA_RETE_PER_PETRI);
 		
 	}
 	

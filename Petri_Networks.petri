@@ -1,6 +1,6 @@
-Available Petri's Networks: 1
+Available Petri's Networks: 2
 id: 0
-Name: ciaone
+Name: cppooda
 			Dimension: 2 : 1
 				Matrix in:
 					1 
@@ -9,4 +9,17 @@ Name: ciaone
 					0 
 					1 
 Marking Dimension: 2
-Marking: 4 3 
+Marking: 
+1 1 
+id: 1
+Name: pippon
+			Dimension: 2 : 2
+				Matrix in:
+					1 0 
+					0 0 
+				Matrix out:
+					0 1 
+					1 0 
+Marking Dimension: 2
+Marking: 
+2 3 
