@@ -54,7 +54,7 @@ public class Network implements Identificable{
         addPlaces(matrixIn.length);
         addTransitions(matrixIn[0].length);
         interConnect();
-        generateMatrix();
+        generateMatrix(matrixIn, matrixOut);
     }
 
     public Network() {
@@ -136,6 +136,20 @@ public class Network implements Identificable{
                 matrixIn[link.getInGoingNode().getId()][link.getOutGoingNode().getId()] = 1;
             else if (link.getInGoingNode() instanceof Transition)
                 matrixOut[link.getOutGoingNode().getId()][link.getInGoingNode().getId()] = 1;
+        }
+    }
+    
+    public void generateMatrix(int[][] mIn, int[][] mOut) {
+        int tSize = transitions.size();
+        int pSize = places.size();
+        this.matrixIn = new int[pSize][tSize];
+        this.matrixOut = new int[pSize][tSize];
+
+        for (Link link : links) {
+            if (link.getOutGoingNode() instanceof Transition)
+                matrixIn[link.getInGoingNode().getId()][link.getOutGoingNode().getId()] = mIn[link.getInGoingNode().getId()][link.getOutGoingNode().getId()];
+            else if (link.getInGoingNode() instanceof Transition)
+                matrixOut[link.getOutGoingNode().getId()][link.getInGoingNode().getId()] = mOut[link.getOutGoingNode().getId()][link.getInGoingNode().getId()];
         }
     }
 

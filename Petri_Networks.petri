@@ -1,25 +1,13 @@
-Available Petri's Networks: 2
+Available Petri's Networks: 1
 id: 0
-Name: cppooda
-			Dimension: 2 : 1
-				Matrix in:
-					1 
-					0 
-				Matrix out:
-					0 
-					1 
-Marking Dimension: 2
-Marking: 
-1 1 
-id: 1
-Name: pippon
+Name: altraprova
 			Dimension: 2 : 2
 				Matrix in:
-					1 0 
+					3 4 
 					0 0 
 				Matrix out:
-					0 1 
-					1 0 
+					5 0 
+					6 7 
 Marking Dimension: 2
 Marking: 
-2 3 
+4 5 

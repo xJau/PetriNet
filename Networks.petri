@@ -1,21 +1,14 @@
-Available Networks: 3
+Available Networks: 4
 id: 0
-Name: salve
-			Dimension: 2 : 1
-				Matrix in:
-					1 
-					0 
-				Matrix out:
-					0 
-					1 
-id: 1
-Name: rea
-			Dimension: 1 : 2
+Name: nome
+			Dimension: 2 : 2
 				Matrix in:
 					1 1 
-				Matrix out:
 					0 0 
-id: 2
+				Matrix out:
+					1 0 
+					1 1 
+id: 1
 Name: sad
 			Dimension: 2 : 2
 				Matrix in:
@@ -24,3 +17,19 @@ Name: sad
 				Matrix out:
 					0 1 
 					1 0 
+id: 2
+Name: rea
+			Dimension: 1 : 2
+				Matrix in:
+					1 1 
+				Matrix out:
+					0 0 
+id: 3
+Name: salve
+			Dimension: 2 : 1
+				Matrix in:
+					1 
+					0 
+				Matrix out:
+					0 
+					1 

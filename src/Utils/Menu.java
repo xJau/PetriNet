@@ -12,11 +12,11 @@ public class Menu {
     private final String RITORNA_AL_MAIN_MENU = "Per tornare al menù principale";
     private final String SELEZIONA_POSTI = "Seleziona il posto da collegare";
     private final String FINE = "Per terminare";
-    private final String SELEZIONE_AZIONE_NET = "(1)Selezionare, (2)Salvare una Network, (3)Gestione reti di petri, (4)Salvare una o più "
-    		+ "Petri's Network, (0) Per chiudere.";
+    private final String SELEZIONE_AZIONE_NET = "(1)Selezionare una rete, (2)Salvare una o più reti, (3)Gestione reti di petri, (4)Salvare una o più "
+    		+ "reti di petri, (0) Per chiudere.";
     private final String INSERIMENTO_VALIDO = "Inserire un valore valido: ";
-    private final String SALVA_O_CONTINUA = "(1) Per Salvare (2) Per selezionare un'altra Network da salvare";
-    private final String AGGIUNGI = "Vuoi aggiungere un Posto (1), una Transizione (2), un Link (3) o cambiare nome (4) alla Network? (0) Per uscire";
+    private final String SALVA_O_CONTINUA = "(1) Per Salvare (2) Per selezionare un'altra rete da salvare";
+    private final String AGGIUNGI = "Vuoi aggiungere un Posto (1), una Transizione (2), un Link (3) o cambiare nome (4) alla rete? (0) Per uscire";
     private final String SELEZINA_TRANSIIZONE = "Seleziona la transizione da collegare";
     private final String P_INGRESSO_O_USCITA = "La transizione seleizonata è in ingresso al posto appena creato? (Y/N)";
     private final String T_INGRESSO_O_USCITA = "Il posto selezionato è in ingresso alla transizione appena creata? (Y/N)";
