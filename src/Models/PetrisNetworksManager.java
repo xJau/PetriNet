@@ -112,8 +112,7 @@ public class PetrisNetworksManager {
         do {
         	input = -1;
             input = input + inInt();
-            if (input == -1) return;
-            else if (input == -2 || input == pnSize) menu.printValue();
+            if (input < 0 || input > pnSize-1) menu.printValue();
             else use(pn.get(input));
         } while (input < 0 || input > pnSize-1);
 		
