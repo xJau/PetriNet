@@ -31,7 +31,7 @@ public class DataLoader {
     private void loadFile() {
         this.file = new File(filePath);
         if (file.exists()) {
-            System.out.println(filePath + " è stata caricata");
+//            System.out.println(filePath + " è stata caricata");
         } else createFile();
     }
   
@@ -119,7 +119,7 @@ public class DataLoader {
         ArrayList<Network> networks = new ArrayList<>();
         int netNumber;
         netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
-        System.out.println(Integer.toString(netNumber) + " networks caricate");
+//        System.out.println(Integer.toString(netNumber) + " networks caricate");
 
         for (int i = 0; i < netNumber; i++) {
             Network net = loadNetwork(scanner);
@@ -132,7 +132,7 @@ public class DataLoader {
         ArrayList<PetrisNetwork> pNetworks = new ArrayList<>();
         int netNumber;
         netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
-        System.out.println(Integer.toString(netNumber) + " petri's networks caricate");
+//        System.out.println(Integer.toString(netNumber) + " petri's networks caricate");
 
         for (int i = 0; i < netNumber; i++) {
             PetrisNetwork net = loadPetrisNetwork(scanner);
@@ -176,8 +176,7 @@ public class DataLoader {
             if (data.contains("id")) {
                 netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
             } else if (data.contains("Name")) {
-            	netName = data.replaceAll("Name: ", "");
-            	System.out.println("Network n." + Integer.toString(netNumber)+"  "+netName+ " caricata");
+            	netName = data.replaceAll("Name: ", "").trim();
             }  else if (data.contains("Dimension")) {
                 String dimScannerValue = data.replaceAll("[^0-9:]", "");
                 Scanner dimensioneScanner = new Scanner(dimScannerValue);

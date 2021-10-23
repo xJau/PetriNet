@@ -1,25 +1,37 @@
-Available Petri's Networks: 2
-id: 0
-Name: pippo
-			Dimension: 2 : 2
-				Matrix in:
-					4 5 
-					0 0 
-				Matrix out:
-					6 0 
-					7 8 
-Marking Dimension: 2
-Marking: 
-2 3 
-id: 1
-Name: altraprova
-			Dimension: 2 : 2
-				Matrix in:
-					3 4 
-					0 0 
-				Matrix out:
-					5 0 
-					6 7 
-Marking Dimension: 2
-Marking: 
-4 5 
+Available Petri's Networks: 3
+	id: 0
+	Name: pippo
+		Dimension: 2 : 2
+			Matrix in:
+				4 5 
+				0 0 
+			Matrix out:
+				6 0 
+				7 8 
+	Marking Dimension: 2
+	Marking: 
+		2 3 
+	id: 1
+	Name: altraprova
+		Dimension: 2 : 2
+			Matrix in:
+				3 4 
+				0 0 
+			Matrix out:
+				5 0 
+				6 7 
+	Marking Dimension: 2
+	Marking: 
+		4 5 
+	id: 2
+	Name: 4
+		Dimension: 2 : 1
+			Matrix in:
+				4 
+				0 
+			Matrix out:
+				0 
+				4 
+	Marking Dimension: 2
+	Marking: 
+		5 5 

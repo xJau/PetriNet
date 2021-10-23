@@ -32,10 +32,10 @@ public class DataPetriSaver extends DataSaver{
     	int[] m = activeNet.getMarking();
     	super.writeNet(activeNet, stringBuilder);
     	stringBuilder.append("\n");
-    	stringBuilder.append("Marking Dimension: "+l);
+    	stringBuilder.append("\tMarking Dimension: "+l);
     	stringBuilder.append("\n");
-    	stringBuilder.append("Marking: ");
-    	stringBuilder.append("\n");
+    	stringBuilder.append("\tMarking: ");
+    	stringBuilder.append("\n\t\t");
     	for(int i = 0; i<l; i++) {
     		stringBuilder.append(m[i]);
     		stringBuilder.append(" ");
