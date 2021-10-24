@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private final String NUOVO_VALORE = ") Per crearne una nuova";
+	private final String NUOVO_VALORE = ") Per crearne una nuova";
     private final String RITORNA_AL_MAIN_MENU = "Per tornare al menù principale";
     private final String SELEZIONA_POSTI = "Seleziona il posto da collegare";
     private final String FINE = "Per terminare";
@@ -17,7 +17,7 @@ public class Menu {
     private final String INSERIMENTO_VALIDO = "Inserire un valore valido: ";
     private final String SALVA_O_CONTINUA = "(1) Per Salvare\n(2) Per selezionare un'altra rete da salvare";
     private final String AGGIUNGI = "Vuoi aggiungere un Posto (1), una Transizione (2), un Link (3) o cambiare nome (4) alla rete? (0) Per uscire";
-    private final String SELEZINA_TRANSIIZONE = "Seleziona la transizione da collegare";
+    private final String SELEZIONA_TRANSIZIONE = "Seleziona la transizione da collegare";
     private final String P_INGRESSO_O_USCITA = "La transizione seleizonata è in ingresso al posto appena creato? (Y/N)";
     private final String T_INGRESSO_O_USCITA = "Il posto selezionato è in ingresso alla transizione appena creata? (Y/N)";
     private final String S_N = "Inserisci (y) o (n) per continuare";
@@ -29,12 +29,16 @@ public class Menu {
     private final String AVVISO_PERDITA_DATI = "ATTENZIONE: in caso di chiusura del programma "
     		+ "le reti che non sono state selezionate durante la fase di\nsalvataggio andranno perse";
     private final String INSERIRE_MARCATURA_INIZIALE = "Inserire una marcatura iniziale ai posti elencati di seguito: ";
-    private final String PN_MENU = "(1)Per visualizzare la struttura di una rete di petri specifica\n(2)Visualizzare l'elenco "
+    private final String PN_MENU = "(1)Per visualizzare ed eventualmente simulare una rete di petri specifica\n(2)Visualizzare l'elenco "
     		+ "delle reti di petri esistenti\n(3)Creare una rete di petri\n(0)per chiudere.";
     private final String INSERIRE_PESI_LINK = "Inserire il peso desiderato ai seguenti link: ";
     private final String NO_NETS_PER_PETRI = "Non ci sono reti da usare come base per una reti di petri, per continuare creane una.";
     private final String NO_PETRIS_NETS = "Non ci sono reti di petri selezionabili, creane una per poter accedere a questa voce.";
     private final String SELEZIONA_RETE_PER_PETRI = "Selezionare la rete che si desidera utilizzare come base per la creazione della rete di petri";		
+    private final String SELEZIONA_TRANSIZIONE_PER_SCATTO = "Selezionare la trasizione che si desidera far scattare";
+    private final String UNA_SOLA_TRANSIZIONE_ABILITATA = "Unica transizione abilitata, esecuzione iterazione";
+    private final String SIMULATORE_MENU = "(1)Per eseguire un'iterazione\n(0)Per chiudere.";
+    private final String NESSUNA_TRANSIZIONE_ABILITATA = "Nessuna transizione è abilitata allo scatto";
     
     Scanner in;
 
@@ -79,11 +83,16 @@ public class Menu {
             else if (link.getInGoingNode() instanceof Transition)
             	System.out.println(in + " --> " + out +" peso = "+ mOut[link.getOutGoingNode().getId()][link.getInGoingNode().getId()]);
         }
-        printPetriNetMarking(n);
     }
     
     public void printPetriNetMarking(PetrisNetwork n) {
     	int[] m = n.getMarking();
+    	for(int i = 0; i < m.length; i++) {
+    		System.out.println(n.getPlaces().get(i).toString()+ " marcatura = "+ m[i]);
+    	}
+    }
+    
+    public void printPetriNetMarking(PetrisNetwork n, int[] m) {
     	for(int i = 0; i < m.length; i++) {
     		System.out.println(n.getPlaces().get(i).toString()+ " marcatura = "+ m[i]);
     	}
@@ -126,7 +135,7 @@ public class Menu {
 
     public void selectTransitions(ArrayList<Transition> transitions) {
 
-        System.out.println(SELEZINA_TRANSIIZONE);
+        System.out.println(SELEZIONA_TRANSIZIONE);
         print(transitions);
         System.out.println("\n0) "+FINE);
     }
@@ -210,6 +219,30 @@ public class Menu {
 	
 	public void selecNEtforPetris() {
 		System.out.println(SELEZIONA_RETE_PER_PETRI);
+		
+	}
+
+
+	public void selTrantionForFire() {
+		System.out.println(SELEZIONA_TRANSIZIONE_PER_SCATTO);
+		
+	}
+
+
+	public void onlyOneEnableTransition() {
+		System.out.println(UNA_SOLA_TRANSIZIONE_ABILITATA);
+		
+	}
+
+
+	public void simulatorMenu() {
+		System.out.println(SIMULATORE_MENU);
+		
+	}
+
+
+	public void noEnableTransitions() {
+		System.out.println(NESSUNA_TRANSIZIONE_ABILITATA);
 		
 	}
 	

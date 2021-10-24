@@ -13,7 +13,7 @@ public class PetrisNetworksManager {
 	    
 	static Menu menu = new Menu();
 	
-	public static void pNetsMenu(ArrayList<PetrisNetwork> pn, ArrayList<Network> n) {
+	public static void pNetsMenu(ArrayList<PetrisNetwork> pn, ArrayList<Network> n, ArrayList<PetrisNetwork> savedpNets) {
 		int input;
 		boolean blocker = true;
         while (blocker) {
@@ -25,7 +25,7 @@ public class PetrisNetworksManager {
                         blocker = false;
                         break;
                     case 1:
-                        selectPNet(pn);
+                        selectPNet(savedpNets);
                         break;
                     case 2:
                         menu.print(pn);
@@ -120,7 +120,12 @@ public class PetrisNetworksManager {
 	}
 	
 	public static void use(PetrisNetwork pn) {
+		PetrisNetSimulator pns = new PetrisNetSimulator(); 
 		menu.printNetStructure(pn);
+		menu.printPetriNetMarking(pn);
+		
+		pns.simulate(pn);
+		
 	}
 	
 	public static void savePnets(String fileName , ArrayList<PetrisNetwork> pnets, ArrayList<PetrisNetwork> savedpNets) {
@@ -153,7 +158,7 @@ public class PetrisNetworksManager {
 
         } while (!stop);
         
-        savedpNets = savingNets;
+        savedpNets = new ArrayList<>(savingNets);
         sortNetId(savedpNets);
         DataPetriSaver saver = new DataPetriSaver(savedpNets, fileName);
         saver.writeFile();

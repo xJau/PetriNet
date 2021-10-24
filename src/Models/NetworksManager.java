@@ -17,7 +17,7 @@ public class NetworksManager {
         static ArrayList<Network> nets = new ArrayList<>();
         static ArrayList<PetrisNetwork> pnets = new ArrayList<>();
         static ArrayList<Network> savedNets;
-        static ArrayList<PetrisNetwork> savedpNets = new ArrayList<>();
+        static ArrayList<PetrisNetwork> savedpNets;
         static Network activeNetwork;
         static String fileName = "Networks";
         static String pfileName = "Petri_Networks";
@@ -26,7 +26,8 @@ public class NetworksManager {
         private NetworkManager() {
             this.menu = new Menu();
             load();
-            savedNets = new ArrayList<>(nets); 
+            savedNets = new ArrayList<>(nets);
+            savedpNets = new ArrayList<>(pnets);
         }
 
 
@@ -54,7 +55,7 @@ public class NetworksManager {
                             save(fileName);
                             break;
                         case 3:
-                        	pNetsMenu(pnets, savedNets);
+                        	pNetsMenu(pnets, savedNets, savedpNets);
                         	break;
                         case 4:
                         	savePnets(pfileName, pnets, savedpNets);
