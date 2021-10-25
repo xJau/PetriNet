@@ -128,7 +128,7 @@ public class PetrisNetworksManager {
 		
 	}
 	
-	public static void savePnets(String fileName , ArrayList<PetrisNetwork> pnets, ArrayList<PetrisNetwork> savedpNets) {
+	public static ArrayList<PetrisNetwork> savePnets(String fileName , ArrayList<PetrisNetwork> pnets, ArrayList<PetrisNetwork> savedpNets) {
         ArrayList<PetrisNetwork> savableNets = new ArrayList<>();
         ArrayList<PetrisNetwork> savingNets = new ArrayList<>();
         savableNets.addAll(pnets);
@@ -140,13 +140,13 @@ public class PetrisNetworksManager {
                 break;
             }
             menu.selectNetsToSave(savableNets);
-            if (input == 0) return;
+            if (input == 0) return null;
             input = select(savableNets);
             if (input == -2) {
                 menu.noNet();
-                return;
+                return null;
             }
-            if (input == -1) return;
+            if (input == -1) return null;
             savingNets.add(savableNets.get(input));
             savableNets.remove(input);
             menu.save();
@@ -158,10 +158,11 @@ public class PetrisNetworksManager {
 
         } while (!stop);
         
-        savedpNets = new ArrayList<>(savingNets);
+        savedpNets = savingNets;
         sortNetId(savedpNets);
         DataPetriSaver saver = new DataPetriSaver(savedpNets, fileName);
         saver.writeFile();
+        return savedpNets;
     }
 
 	private static int select(List<? extends Identificable> id) {

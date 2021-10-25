@@ -32,6 +32,7 @@ public class NetworksManager {
 
 
         public static void main(String[] args) {
+        	
             NetworkManager manager = new NetworkManager();
             manager.mainMenu();
         }
@@ -58,7 +59,7 @@ public class NetworksManager {
                         	pNetsMenu(pnets, savedNets, savedpNets);
                         	break;
                         case 4:
-                        	savePnets(pfileName, pnets, savedpNets);
+                        	savePetrisNetworks();
                         	break;
                         default:
                             menu.printValue();
@@ -305,5 +306,11 @@ public class NetworksManager {
         	activeNetwork.setName(nuovoNome);
         }
         
+        public void savePetrisNetworks(){
+        	savedpNets = savePnets(pfileName, pnets, savedpNets);
+        	if(savedpNets == null)savedpNets = new ArrayList<>(pnets);
+        }
+        
     }
+
 }
