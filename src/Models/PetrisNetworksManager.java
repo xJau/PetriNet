@@ -49,6 +49,7 @@ public class PetrisNetworksManager {
 		menu.selecNEtforPetris();
 		menu.print(n);
 		int input = select(n);
+		if(input == -1)return;
 		System.out.println(input);
 		createPNet(pn, n.get(input));
 		

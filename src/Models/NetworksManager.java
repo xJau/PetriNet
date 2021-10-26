@@ -71,19 +71,20 @@ public class NetworksManager {
 
         public void selectNet() {
 
-            int input = -1;
+            int input;
             if (nets.isEmpty()) nets.add(new Network(0, "Rete zero"));
             int netsSize = nets.size();
 
             menu.selectNets(nets);
 
             do {
+            	input = -1;
                 input = input + inInt();
                 if (input == -1) return;
-                else if (input == -2) menu.printValue();
+                else if (input < 0 || input > netsSize) menu.printValue();
                 else if (input == netsSize) createNet();
                 else modifyNet(nets.get(input));
-            } while (input < 0 || input > netsSize + 1);
+            } while (input < 0 || input > netsSize);
         }
 
         private static void load() {
