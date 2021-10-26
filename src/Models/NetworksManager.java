@@ -308,8 +308,9 @@ public class NetworksManager {
         }
         
         public void savePetrisNetworks(){
-        	savedpNets = savePnets(pfileName, pnets, savedpNets);
-        	if(savedpNets == null)savedpNets = new ArrayList<>(pnets);
+        	ArrayList<PetrisNetwork> sv = savePnets(pfileName, pnets, savedpNets);
+        	if(sv == null)return;
+        	savedpNets = sv;
         }
         
     }

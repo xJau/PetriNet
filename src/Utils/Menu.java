@@ -36,9 +36,9 @@ public class Menu {
     private final String NO_PETRIS_NETS = "Non ci sono reti di petri selezionabili, creane una per poter accedere a questa voce.";
     private final String SELEZIONA_RETE_PER_PETRI = "\nSelezionare la rete che si desidera utilizzare come base per la creazione della rete di petri, (0) per uscire\n";		
     private final String SELEZIONA_TRANSIZIONE_PER_SCATTO = "Selezionare la trasizione che si desidera far scattare";
-    private final String UNA_SOLA_TRANSIZIONE_ABILITATA = "Unica transizione abilitata, esecuzione iterazione";
+    private final String UNA_SOLA_TRANSIZIONE_ABILITATA = "\nUnica transizione abilitata, esecuzione iterazione\n";
     private final String SIMULATORE_MENU = "\n(1)Per eseguire un'iterazione\n(0)Per chiudere.\n";
-    private final String NESSUNA_TRANSIZIONE_ABILITATA = "Nessuna transizione è abilitata allo scatto";
+    private final String NESSUNA_TRANSIZIONE_ABILITATA = "\nNessuna transizione abilitata allo scatto\n";
     
     Scanner in;
 
