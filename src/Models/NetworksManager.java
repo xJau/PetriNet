@@ -5,6 +5,7 @@ import Utils.Menu;
 
 import static Utils.InputManager.*;
 import static Models.PetrisNetworksManager.*;
+import static Models.PriorityPetrisNetworkManager.*;
 
 import java.util.*;
 
@@ -16,11 +17,15 @@ public class NetworksManager {
     	static DataLoader loader;
         static ArrayList<Network> nets = new ArrayList<>();
         static ArrayList<PetrisNetwork> pnets = new ArrayList<>();
+        static ArrayList<PriorityPetrisNetwork> pnpnets = new ArrayList<>();
         static ArrayList<Network> savedNets;
         static ArrayList<PetrisNetwork> savedpNets;
+        static ArrayList<PriorityPetrisNetwork> savedpnpNets;
         static Network activeNetwork;
         static String fileName = "Networks";
         static String pfileName = "Petri_Networks";
+        static String pnpfileName = "Priority_Petri_Networks";
+        
         Menu menu;
 
         private NetworkManager() {
@@ -28,6 +33,8 @@ public class NetworksManager {
             load();
             savedNets = new ArrayList<>(nets);
             savedpNets = new ArrayList<>(pnets);
+            savedpnpNets = new ArrayList<>(pnpnets);
+            
         }
 
 
@@ -61,15 +68,22 @@ public class NetworksManager {
                         case 4:
                         	savePetrisNetworks();
                         	break;
+                        case 5:
+                        	pnpMenu(pnpnets, savedpNets, savedpnpNets);
+                        	break;
+                        case 6:
+                        	savePriorityPetrisNetwork();
+                        	break;
                         default:
                             menu.printValue();
                             break;
                     }
-                } while (input < 0 || input > 4);
+                } while (input < 0 || input > 6);
             }
         }
 
-        public void selectNet() {
+
+		public void selectNet() {
 
             int input;
             if (nets.isEmpty()) nets.add(new Network(0, "Rete zero"));
@@ -93,6 +107,9 @@ public class NetworksManager {
             nets = loader.readFile();
             loader = new DataLoader(pfileName);
             pnets = loader.readPetrisFile();
+            loader = new DataLoader(pnpfileName);
+            pnpnets = loader.readPriorityPetrisFile();
+            
         }
 
         public int select(List<? extends Identificable> id) {
@@ -312,6 +329,13 @@ public class NetworksManager {
         	if(sv == null)return;
         	savedpNets = sv;
         }
+        
+        private void savePriorityPetrisNetwork() {
+        	ArrayList<PriorityPetrisNetwork> sv = savePnpnets(pnpfileName, pnpnets, savedpnpNets);
+        	if(sv == null)return;
+        	savedpnpNets = sv;
+			
+		}
         
     }
 

@@ -2,6 +2,7 @@ package Utils;
 
 import Models.Network;
 import Models.PetrisNetwork;
+import Models.PriorityPetrisNetwork;
 
 import static Utils.NetFabric.*;
 
@@ -112,6 +113,30 @@ public class DataLoader {
         }
         return new ArrayList<>();
     }
+    
+    public ArrayList<PriorityPetrisNetwork> readPriorityPetrisFile() {
+        ArrayList<PriorityPetrisNetwork> pnpNetworks;
+        try {
+            Scanner scanner = new Scanner(file);
+//            scanner.useDelimiter(":");
+
+            while (scanner.hasNext()) {
+                String data = scanner.nextLine();
+
+
+                if (data.contains("Available Priority Petri's Networks")) {
+                	pnpNetworks = loadPriorityPetrisNetworks(scanner, data);
+                    scanner.close();
+                    return pnpNetworks;
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Errore Rilevato.");
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
 
 
 
@@ -136,6 +161,19 @@ public class DataLoader {
 
         for (int i = 0; i < netNumber; i++) {
             PetrisNetwork net = loadPetrisNetwork(scanner);
+            pNetworks.add(net);
+        }
+        return pNetworks;
+    }
+    
+    private ArrayList<PriorityPetrisNetwork> loadPriorityPetrisNetworks(Scanner scanner, String data) {
+        ArrayList<PriorityPetrisNetwork> pNetworks = new ArrayList<>();
+        int netNumber;
+        netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
+//        System.out.println(Integer.toString(netNumber) + " petri's networks caricate");
+
+        for (int i = 0; i < netNumber; i++) {
+            PriorityPetrisNetwork net = loadPriorityPetrisNetwork(scanner);
             pNetworks.add(net);
         }
         return pNetworks;
@@ -222,6 +260,31 @@ public class DataLoader {
     	Network net = loadNetwork(scanner);
     	marking = loadPetrisMarking(scanner);
     	return new PetrisNetwork(net, net.getId(), net.getName(), marking);
+    }
+    
+
+    public int[] loadPetrisTransitionsPriority(Scanner scanner) {
+    	int prDim = 0;
+    	int pr[] = null;
+    	
+    	while(scanner.hasNext()) {
+    		String data = scanner.nextLine();
+    		if(data.contains("Priority Dimension: ")) {
+        		String dimScannerValue = data.replaceAll("[^0-9]", "");
+        		prDim = Integer.valueOf(dimScannerValue);
+        	} else if(data.contains("Priority")) {
+        		pr = loadVector(prDim, scanner);
+        		return pr;
+        	}
+    	}
+    	return pr;
+    }
+    
+    public PriorityPetrisNetwork loadPriorityPetrisNetwork(Scanner scanner) {
+    	int[] priority;
+    	PetrisNetwork net = loadPetrisNetwork(scanner);
+    	priority = loadPetrisTransitionsPriority(scanner);
+    	return new PriorityPetrisNetwork(net, net.getId(), net.getName(), priority);
     }
     
 }

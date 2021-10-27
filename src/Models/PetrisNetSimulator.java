@@ -90,5 +90,68 @@ public class PetrisNetSimulator {
 		return enableTransitions;
 	}
 	
+	public ArrayList<Transition> findEnableTransitions(PriorityPetrisNetwork pnp, int[] marking){
+		ArrayList<Transition> enableTransitions = findEnableTransitions((PetrisNetwork) pnp, marking);
+		ArrayList<Transition> temp = new ArrayList<>();
+		int[] priority = pnp.getPriority();
+		int max = enableTransitions.get(0).getId();
+		for(int i = 0; i<enableTransitions.size(); i++) {
+			if(priority[enableTransitions.get(i).getId()] > priority[max])max = enableTransitions.get(i).getId();
+		}
+		max = priority[max];
+		for(int i = 0; i<enableTransitions.size(); i++)
+			if(priority[enableTransitions.get(i).getId()] == max)temp.add(enableTransitions.get(i));
+		enableTransitions = temp;
+		
+		return enableTransitions;
+	}
+	
+	public void simulate(PriorityPetrisNetwork pnp) {
+		int[] marking = Arrays.copyOf(pnp.getMarking(), pnp.getMarking().length);
+		int input;
+		boolean stop = false;
+		
+		do {
+			menu.simulatorMenu();
+			input = inInt();
+			if(input == 1) {
+				int idT = selectTransition(pnp, marking);
+				if(idT == -1) {
+					menu.noEnableTransitions();
+					return;
+				}
+				iteration(pnp, idT, marking);
+				menu.printNetStructure(pnp);
+				menu.printPetriNetMarking(pnp, marking);
+				menu.printTransitionPriority(pnp, pnp.getPriority());
+			}
+			else if(input == 0)stop = true;
+			else menu.printValue();
+		}while(!stop);
+	}
+	
+	public int selectTransition(PriorityPetrisNetwork pnp, int[] marking) {
+		ArrayList<Transition> enableTransitions = findEnableTransitions(pnp, marking);
+		int input;
+		
+		if(enableTransitions.size() == 1) {
+			menu.print(enableTransitions);
+			menu.onlyOneEnableTransition();
+			return enableTransitions.get(0).getId();
+		}
+		else if(enableTransitions.isEmpty())return -1;
+		else {
+			menu.selTrantionForFire();
+			menu.print(enableTransitions);
+			do {
+				input = -1;
+                input = input + inInt();
+                if (input < 0 || input > enableTransitions.size()-1) menu.printValue();
+            } while (input < 0 || input > enableTransitions.size()-1);
+			return enableTransitions.get(input).getId();
+		}
+		
+	}
+	
 	
 }

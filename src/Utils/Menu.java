@@ -13,7 +13,7 @@ public class Menu {
     private final String SELEZIONA_POSTI = "Seleziona il posto da collegare";
     private final String FINE = "Per terminare";
     private final String SELEZIONE_AZIONE_NET = "1) Selezionare una rete\n2) Salvare una o più reti\n3) Gestione reti di petri\n4) Salvare una o più "
-    		+ "reti di petri\n0) Per chiudere.\n";
+    		+ "reti di petri\n5) Gestione reti di petri con priorità\n6) Salvare una o più reti di petri con priorità\n0) Per chiudere.\n";
     private final String INSERIMENTO_VALIDO = "Inserire un valore valido:\n";
     private final String SALVA_O_CONTINUA = "(1) Per Salvare\n(2) Per selezionare un'altra rete da salvare";
     private final String AGGIUNGI = "Vuoi aggiungere un Posto (1), una Transizione (2), un Link (3) o cambiare nome (4) alla rete? (0) Per uscire\n";
@@ -39,6 +39,14 @@ public class Menu {
     private final String UNA_SOLA_TRANSIZIONE_ABILITATA = "\nUnica transizione abilitata, esecuzione iterazione\n";
     private final String SIMULATORE_MENU = "\n(1)Per eseguire un'iterazione\n(0)Per chiudere.\n";
     private final String NESSUNA_TRANSIZIONE_ABILITATA = "\nNessuna transizione abilitata allo scatto\n";
+    private final String PNP_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri con priorità specifica\n(2)Visualizzare l'elenco "
+    		+ "delle reti di petri con priorità esistenti\n(3)Creare una rete di petri con priorità\n(0)per chiudere.\n";
+    private final String NO_PRIORITY_NETS_PER_PETRI = "Non ci sono reti di petri da usare come base per una reti di petri con priorita, per continuare creane una.";
+    private final String SELEZIONA_RETE_DI_PETRI_PER_PETRI_CON_PRIORITA= "\nSelezionare la rete che si desidera utilizzare come base per la creazione"
+    		+ " della rete di petri, (0) per uscire\n";
+    private final String INSERIRE_PRIORITA_TRANSIZIONI = "Inserire la priorità desiderata alle transizioni elencate di seguito";
+    private final String NO_PRIORITY_PETRIS_NETS = "Non ci sono reti di petri con priorità selezionabili, creane una per poter accedere a questa voce.";
+    
     
     Scanner in;
 
@@ -243,6 +251,44 @@ public class Menu {
 
 	public void noEnableTransitions() {
 		System.out.println(NESSUNA_TRANSIZIONE_ABILITATA);
+		
+	}
+
+
+	public void pnpMenu() {
+		System.out.println(PNP_MENU);
+		
+	}
+
+
+	public void noPNetForPPetris() {
+		System.out.println(NO_PRIORITY_NETS_PER_PETRI);
+		
+	}
+
+
+	public void selecPNEtforPPetris() {
+		System.out.println(SELEZIONA_RETE_DI_PETRI_PER_PETRI_CON_PRIORITA);
+		
+	}
+
+
+	public void inserisciPriorità() {
+		System.out.println(INSERIRE_PRIORITA_TRANSIZIONI);
+		
+	}
+
+
+	public void noPriorityPetrisNets() {
+		System.out.println(NO_PRIORITY_PETRIS_NETS);
+		
+	}
+
+
+	public void printTransitionPriority(PriorityPetrisNetwork pnp, int[] priority) {
+		for(int i = 0; i < priority.length; i++) {
+    		System.out.println(pnp.getTransitions().get(i).toString()+ " priorità = "+ priority[i]);
+    	}
 		
 	}
 	
