@@ -19,7 +19,7 @@ public class DataLoader {
     private final String fileName;
     private final String path = "./";
     private final String extension = ".petri";
-    private final String filePath;
+    private String filePath; //ho tolto "final"... :/
     private File file;
 
     public DataLoader(String fileName) {
@@ -28,7 +28,22 @@ public class DataLoader {
         this.file = new File(filePath);
         loadFile();
     }
+    public DataLoader(String directoryName, String filePath) {
+    	fileName = directoryName;
+    	this.filePath = path + filePath + directoryName;
+    	file = new File(this.filePath);
+    }
+    
+    public String[] directoryInspection() {
+    	String[] pathnames = file.list();
+    	return pathnames;
+    }
 
+    public void selectFile(String fileName) {
+    	filePath = filePath + "/" + fileName;
+    	file = new File(this.filePath);
+    }
+    
     private void loadFile() {
         this.file = new File(filePath);
         if (file.exists()) {
@@ -286,5 +301,6 @@ public class DataLoader {
     	priority = loadPetrisTransitionsPriority(scanner);
     	return new PriorityPetrisNetwork(net, net.getId(), net.getName(), priority);
     }
+    
     
 }

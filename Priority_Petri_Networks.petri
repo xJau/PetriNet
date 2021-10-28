@@ -1,24 +1,5 @@
 Available Priority Petri's Networks: 2
 	id: 0
-	Name: provaaaa
-		Dimension: 4 : 4
-			Matrix in:
-				1 0 0 0 
-				0 1 1 0 
-				0 1 0 0 
-				0 0 0 1 
-			Matrix out:
-				0 1 0 0 
-				1 0 0 1 
-				1 0 0 0 
-				0 0 1 0 
-	Marking Dimension: 4
-	Marking: 
-		2 0 0 0 
-	Priority Dimension: 4
-	Priority: 
-		4 6 5 7 
-	id: 1
 	Name: pippo
 		Dimension: 4 : 4
 			Matrix in:
@@ -37,3 +18,22 @@ Available Priority Petri's Networks: 2
 	Priority Dimension: 4
 	Priority: 
 		5 3 5 2 
+	id: 1
+	Name: provaaaa
+		Dimension: 4 : 4
+			Matrix in:
+				1 0 0 0 
+				0 1 1 0 
+				0 1 0 0 
+				0 0 0 1 
+			Matrix out:
+				0 1 0 0 
+				1 0 0 1 
+				1 0 0 0 
+				0 0 1 0 
+	Marking Dimension: 4
+	Marking: 
+		2 0 0 0 
+	Priority Dimension: 4
+	Priority: 
+		4 6 5 7 

@@ -1,0 +1,11 @@
+Available Petri's Networks: 1
+	id: 0
+	Name: rwrwe
+		Dimension: 1 : 2
+			Matrix in:
+				2 3 
+			Matrix out:
+				0 0 
+	Marking Dimension: 1
+	Marking: 
+		1 

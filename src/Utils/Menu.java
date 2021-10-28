@@ -13,7 +13,7 @@ public class Menu {
     private final String SELEZIONA_POSTI = "Seleziona il posto da collegare";
     private final String FINE = "Per terminare";
     private final String SELEZIONE_AZIONE_NET = "1) Selezionare una rete\n2) Salvare una o più reti\n3) Gestione reti di petri\n4) Salvare una o più "
-    		+ "reti di petri\n5) Gestione reti di petri con priorità\n6) Salvare una o più reti di petri con priorità\n0) Per chiudere.\n";
+    		+ "reti di petri\n5) Gestione reti di petri con priorità\n6) Salvare una o più reti di petri con priorità\n7) Importa rete da file\n0) Per chiudere.\n";
     private final String INSERIMENTO_VALIDO = "Inserire un valore valido:\n";
     private final String SALVA_O_CONTINUA = "(1) Per Salvare\n(2) Per selezionare un'altra rete da salvare";
     private final String AGGIUNGI = "Vuoi aggiungere un Posto (1), una Transizione (2), un Link (3) o cambiare nome (4) alla rete? (0) Per uscire\n";
@@ -46,6 +46,7 @@ public class Menu {
     		+ " della rete di petri, (0) per uscire\n";
     private final String INSERIRE_PRIORITA_TRANSIZIONI = "Inserire la priorità desiderata alle transizioni elencate di seguito";
     private final String NO_PRIORITY_PETRIS_NETS = "Non ci sono reti di petri con priorità selezionabili, creane una per poter accedere a questa voce.";
+    private final String IMPORT_MENU = "\n(1)Per importare una rete\n(2)Per importare una rete di petri\n(3)Per importare una rete con priorità\n(0)Per chiudere\n";
     
     
     Scanner in;
@@ -289,6 +290,12 @@ public class Menu {
 		for(int i = 0; i < priority.length; i++) {
     		System.out.println(pnp.getTransitions().get(i).toString()+ " priorità = "+ priority[i]);
     	}
+		
+	}
+
+
+	public void importMenu() {
+		System.out.println(IMPORT_MENU);
 		
 	}
 	

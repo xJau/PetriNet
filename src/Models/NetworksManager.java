@@ -34,7 +34,6 @@ public class NetworksManager {
             savedNets = new ArrayList<>(nets);
             savedpNets = new ArrayList<>(pnets);
             savedpnpNets = new ArrayList<>(pnpnets);
-            
         }
 
 
@@ -74,11 +73,14 @@ public class NetworksManager {
                         case 6:
                         	savePriorityPetrisNetwork();
                         	break;
+                        case 7:
+                        	importFile();
+                        	break;
                         default:
                             menu.printValue();
                             break;
                     }
-                } while (input < 0 || input > 6);
+                } while (input < 0 || input > 7);
             }
         }
 
@@ -336,6 +338,94 @@ public class NetworksManager {
         	savedpnpNets = sv;
 			
 		}
+        
+        public void importFile() {
+        	int input = -1;
+            boolean blocker = true;
+            while (blocker) {
+            	menu.importMenu();
+                do {
+                    input = inInt();
+                    switch (input) {
+                        case 0:
+                            blocker = false;
+                            break;
+                        case 1:
+                        	importNet();
+                            break;
+                        case 2:
+                        	importPetrisNet();
+                            break;
+                        case 3:
+                        	importPriorityPetrisNet();
+                        	break;
+                        default:
+                            menu.printValue();
+                            break;
+                    }
+                } while (input < 0 || input > 3);
+            }
+        }
+        
+        public void importNet() {
+        	DataLoader d = new DataLoader("/Networks", "Importare");
+        	String s = selectFile(d);
+        	d.selectFile(s);
+        	menu.print(s);
+        	Network net = d.readFile().get(0);
+        	if(checkIfNetExists(nets.size(), net, nets)) {
+        		menu.netAlreadyExists();
+        		return;
+        	}
+        	nets.add(net);
+        }
+        
+        public void importPetrisNet() {
+        	DataLoader d = new DataLoader("/PetrisNetworks", "Importare");
+        	String s = selectFile(d);
+        	d.selectFile(s);
+        	menu.print(s);
+        	PetrisNetwork net = d.readPetrisFile().get(0);
+        	if(checkIfNetExists(pnets.size(), net, pnets)) {
+        		menu.netAlreadyExists();
+        		return;
+        	}
+        	pnets.add(net);
+        }
+        
+        public void importPriorityPetrisNet() {
+        	DataLoader d = new DataLoader("/PriorityPetrisNetworks", "Importare");
+        	String s = selectFile(d);
+        	d.selectFile(s);
+        	menu.print(s);
+        	PriorityPetrisNetwork net = d.readPriorityPetrisFile().get(0);
+        	if(checkIfNetExists(pnpnets.size(), net, pnpnets)) {
+        		menu.netAlreadyExists();
+        		return;
+        	}
+        	pnpnets.add(net);
+        }
+        
+        public String selectFile(DataLoader d) {
+        	boolean stop;
+        	int i = 1;
+        	String[] nameList = d.directoryInspection();
+        	
+        	for(String s: nameList) {
+        		menu.print(i + ")" + s);
+        		i++;
+        	}
+        	do{
+        		stop = true;
+        		i = inInt();
+        		if(i < 1 || i > nameList.length) {
+        			menu.printValue();
+        			stop = false;
+        		}
+        	}while(!stop);
+        	String s = nameList[i-1];
+        	return s;
+        }
         
     }
 

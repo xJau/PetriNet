@@ -1,0 +1,10 @@
+Available Networks: 1
+	id: 0
+	Name: nome
+		Dimension: 2 : 2
+			Matrix in:
+				1 1 
+				0 0 
+			Matrix out:
+				1 0 
+				1 1 
