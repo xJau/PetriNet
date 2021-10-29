@@ -1,4 +1,4 @@
-Available Petri's Networks: 5
+Available Petri's Networks: 6
 	id: 0
 	Name: rwrwe
 		Dimension: 1 : 2
@@ -65,3 +65,15 @@ Available Petri's Networks: 5
 	Marking Dimension: 4
 	Marking: 
 		2 0 0 0 
+	id: 5
+	Name: provaNuova
+		Dimension: 2 : 2
+			Matrix in:
+				3 1 
+				0 0 
+			Matrix out:
+				0 0 
+				0 2 
+	Marking Dimension: 2
+	Marking: 
+		4 3 

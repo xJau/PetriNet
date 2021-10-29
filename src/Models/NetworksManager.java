@@ -6,6 +6,7 @@ import Utils.Menu;
 import static Utils.InputManager.*;
 import static Models.PetrisNetworksManager.*;
 import static Models.PriorityPetrisNetworkManager.*;
+import static Models.NetImporter.*;
 
 import java.util.*;
 
@@ -351,13 +352,16 @@ public class NetworksManager {
                             blocker = false;
                             break;
                         case 1:
-                        	importNet();
+                        	Network n = importNet(nets);
+                        	if(n != null)nets.add(n);
                             break;
                         case 2:
-                        	importPetrisNet();
+                        	PetrisNetwork pn = importPetrisNet(pnets, savedNets);
+                        	if(pn != null)pnets.add(pn);
                             break;
                         case 3:
-                        	importPriorityPetrisNet();
+                        	PriorityPetrisNetwork pnp = importPriorityPetrisNet(pnpnets, savedpNets);
+                        	if(pnp != null)pnpnets.add(pnp);
                         	break;
                         default:
                             menu.printValue();
@@ -365,75 +369,6 @@ public class NetworksManager {
                     }
                 } while (input < 0 || input > 3);
             }
-        }
-        
-        public void importNet() {
-        	DataLoader d = new DataLoader("/Networks", "Importare");
-        	String s = selectFile(d);
-        	d.selectFile(s);
-        	menu.print(s);
-        	Network net = d.readFile().get(0);
-        	if(checkIfNetExists(nets.size(), net, nets)) {
-        		menu.netAlreadyExists();
-        		return;
-        	}
-        	nets.add(net);
-        }
-        
-        public void importPetrisNet() {
-        	DataLoader d = new DataLoader("/PetrisNetworks", "Importare");
-        	String s = selectFile(d);
-        	d.selectFile(s);
-        	menu.print(s);
-        	PetrisNetwork net = d.readPetrisFile().get(0);
-        	if(checkIfNetExists(pnets.size(), net, pnets)) {
-        		menu.netAlreadyExists();
-        		return;
-        	}
-        	if(!checkIfNetExists(savedNets.size(), convertToNet(net, savedNets.size()), savedNets)) {
-        		menu.netFatherDontExist();
-        		return;
-        	}
-        	
-        	pnets.add(net);
-        }
-        
-        public void importPriorityPetrisNet() {
-        	DataLoader d = new DataLoader("/PriorityPetrisNetworks", "Importare");
-        	String s = selectFile(d);
-        	d.selectFile(s);
-        	menu.print(s);
-        	PriorityPetrisNetwork net = d.readPriorityPetrisFile().get(0);
-        	if(checkIfNetExists(pnpnets.size(), net, pnpnets)) {
-        		menu.netAlreadyExists();
-        		return;
-        	}
-        	if(!checkIfNetExists(savedpNets.size(), convertToPetrisNet(net, savedpNets.size()), savedpNets)) {
-        		menu.netFatherDontExist();
-        		return;
-        	}
-        	pnpnets.add(net);
-        }
-        
-        public String selectFile(DataLoader d) {
-        	boolean stop;
-        	int i = 1;
-        	String[] nameList = d.directoryInspection();
-        	
-        	for(String s: nameList) {
-        		menu.print(i + ")" + s);
-        		i++;
-        	}
-        	do{
-        		stop = true;
-        		i = inInt();
-        		if(i < 1 || i > nameList.length) {
-        			menu.printValue();
-        			stop = false;
-        		}
-        	}while(!stop);
-        	String s = nameList[i-1];
-        	return s;
         }
         
     }

@@ -49,6 +49,7 @@ public class Menu {
     private final String IMPORT_MENU = "\n(1)Per importare una rete\n(2)Per importare una rete di petri\n(3)Per importare una rete con priorità\n(0)Per chiudere\n";
     private final String NET_FATHER_DONT_EXIST = "La rete padre non è presente tra quelle salvate in forma persistente, "
     		+ "quindi non è possibile importare la rete desiderata";
+    private final String FILE_VUOTO_O_NON_COMPATIBILE = "Il file selezionato è vuoto o non compatibile";
     
     
     Scanner in;
@@ -304,6 +305,12 @@ public class Menu {
 
 	public void netFatherDontExist() {
 		System.out.println(NET_FATHER_DONT_EXIST);
+		
+	}
+
+
+	public void emptyOrIncompatible() {
+		System.out.println(FILE_VUOTO_O_NON_COMPATIBILE);
 		
 	}
 	
