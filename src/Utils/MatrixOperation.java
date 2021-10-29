@@ -55,5 +55,15 @@ public class MatrixOperation {
         }
     }
 
+    public static int[][] changeNonNullMatrixEnrtriesToOne(int[][] matrix){
+    	int[][] m = new int[matrix.length][matrix[0].length];;
+    	for(int i = 0; i < m.length; i++) {
+    		for(int j = 0; j<m[i].length; j++){
+    			if(matrix[i][j] != 0)m[i][j] = 1;
+    			else m[i][j] = 0;
+    		}
+    	}
+    	return m;
+    }
 
 }

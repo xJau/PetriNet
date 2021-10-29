@@ -390,6 +390,11 @@ public class NetworksManager {
         		menu.netAlreadyExists();
         		return;
         	}
+        	if(!checkIfNetExists(savedNets.size(), convertToNet(net, savedNets.size()), savedNets)) {
+        		menu.netFatherDontExist();
+        		return;
+        	}
+        	
         	pnets.add(net);
         }
         
@@ -401,6 +406,10 @@ public class NetworksManager {
         	PriorityPetrisNetwork net = d.readPriorityPetrisFile().get(0);
         	if(checkIfNetExists(pnpnets.size(), net, pnpnets)) {
         		menu.netAlreadyExists();
+        		return;
+        	}
+        	if(!checkIfNetExists(savedpNets.size(), convertToPetrisNet(net, savedpNets.size()), savedpNets)) {
+        		menu.netFatherDontExist();
         		return;
         	}
         	pnpnets.add(net);

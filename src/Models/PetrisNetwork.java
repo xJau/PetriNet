@@ -16,6 +16,11 @@ public class PetrisNetwork extends Network {
 			
 		}
 		
+		public PetrisNetwork(int id, String name, int[][] matrixIn, int[][] matrixOut, int[] marking) {
+			super(id, name, matrixIn, matrixOut);
+			this.marking = marking;
+		}
+		
 		public int[] getMarking() {
 			return marking;
 		}

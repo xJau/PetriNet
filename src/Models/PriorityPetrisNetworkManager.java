@@ -2,6 +2,7 @@ package Models;
 
 import static Utils.InputManager.inInt;
 import static Utils.InputManager.inString;
+import static Utils.MatrixOperation.changeNonNullMatrixEnrtriesToOne;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,6 +115,10 @@ public class PriorityPetrisNetworkManager {
 		
 	}
 	
+	public static Network convertToPetrisNet(PriorityPetrisNetwork pn, int id) {
+		return new PetrisNetwork(id, pn.getName(), pn.getMatrixIn(), pn.getMatrixOut(), pn.getMarking());
+	}
+	
 	public static ArrayList<PriorityPetrisNetwork> savePnpnets(String fileName , ArrayList<PriorityPetrisNetwork> pnets, ArrayList<PriorityPetrisNetwork> savedpnpNets) {
         ArrayList<PriorityPetrisNetwork> savableNets = new ArrayList<>();
         ArrayList<PriorityPetrisNetwork> savingNets = new ArrayList<>();
@@ -175,5 +180,6 @@ public class PriorityPetrisNetworkManager {
             if (net.equals(n)) return true;
         return false;
     }
+	
 	
 }

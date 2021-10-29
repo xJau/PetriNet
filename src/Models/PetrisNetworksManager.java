@@ -8,6 +8,7 @@ import Utils.DataLoader;
 import Utils.DataPetriSaver;
 import Utils.DataSaver;
 import Utils.Menu;
+import static Utils.MatrixOperation.*;
 
 public class PetrisNetworksManager {
 	    
@@ -127,6 +128,13 @@ public class PetrisNetworksManager {
 		
 		pns.simulate(pn);
 		
+	}
+	
+	public static Network convertToNet(PetrisNetwork pn, int id) {
+		int[][] matrixIn = changeNonNullMatrixEnrtriesToOne(pn.getMatrixIn());
+		int[][] matrixOut = changeNonNullMatrixEnrtriesToOne(pn.getMatrixOut());
+		
+		return new Network(id, pn.getName(), matrixIn, matrixOut);
 	}
 	
 	public static ArrayList<PetrisNetwork> savePnets(String fileName , ArrayList<PetrisNetwork> pnets, ArrayList<PetrisNetwork> savedpNets) {

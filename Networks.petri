@@ -1,61 +1,14 @@
-Available Networks: 7
+Available Networks: 8
 	id: 0
-	Name: nome
+	Name: provaNuova
 		Dimension: 2 : 2
 			Matrix in:
 				1 1 
 				0 0 
 			Matrix out:
-				1 0 
-				1 1 
-	id: 1
-	Name: salve
-		Dimension: 2 : 1
-			Matrix in:
-				1 
-				0 
-			Matrix out:
-				0 
-				1 
-	id: 2
-	Name: rea
-		Dimension: 1 : 2
-			Matrix in:
-				1 1 
-			Matrix out:
 				0 0 
-	id: 3
-	Name: dada
-		Dimension: 3 : 1
-			Matrix in:
-				1 
-				0 
-				0 
-			Matrix out:
-				0 
-				1 
-				1 
-	id: 4
-	Name: sad
-		Dimension: 2 : 2
-			Matrix in:
-				1 0 
-				0 0 
-			Matrix out:
 				0 1 
-				1 0 
-	id: 5
-	Name: prova
-		Dimension: 3 : 1
-			Matrix in:
-				1 
-				1 
-				0 
-			Matrix out:
-				0 
-				0 
-				1 
-	id: 6
+	id: 1
 	Name: provaDaIngeSW
 		Dimension: 4 : 4
 			Matrix in:
@@ -68,3 +21,59 @@ Available Networks: 7
 				1 0 0 1 
 				1 0 0 0 
 				0 0 1 0 
+	id: 2
+	Name: rea
+		Dimension: 1 : 2
+			Matrix in:
+				1 1 
+			Matrix out:
+				0 0 
+	id: 3
+	Name: nome
+		Dimension: 2 : 2
+			Matrix in:
+				1 1 
+				0 0 
+			Matrix out:
+				1 0 
+				1 1 
+	id: 4
+	Name: salve
+		Dimension: 2 : 1
+			Matrix in:
+				1 
+				0 
+			Matrix out:
+				0 
+				1 
+	id: 5
+	Name: dada
+		Dimension: 3 : 1
+			Matrix in:
+				1 
+				0 
+				0 
+			Matrix out:
+				0 
+				1 
+				1 
+	id: 6
+	Name: sad
+		Dimension: 2 : 2
+			Matrix in:
+				1 0 
+				0 0 
+			Matrix out:
+				0 1 
+				1 0 
+	id: 7
+	Name: prova
+		Dimension: 3 : 1
+			Matrix in:
+				1 
+				1 
+				0 
+			Matrix out:
+				0 
+				0 
+				1 

@@ -47,6 +47,8 @@ public class Menu {
     private final String INSERIRE_PRIORITA_TRANSIZIONI = "Inserire la priorità desiderata alle transizioni elencate di seguito";
     private final String NO_PRIORITY_PETRIS_NETS = "Non ci sono reti di petri con priorità selezionabili, creane una per poter accedere a questa voce.";
     private final String IMPORT_MENU = "\n(1)Per importare una rete\n(2)Per importare una rete di petri\n(3)Per importare una rete con priorità\n(0)Per chiudere\n";
+    private final String NET_FATHER_DONT_EXIST = "La rete padre non è presente tra quelle salvate in forma persistente, "
+    		+ "quindi non è possibile importare la rete desiderata";
     
     
     Scanner in;
@@ -296,6 +298,12 @@ public class Menu {
 
 	public void importMenu() {
 		System.out.println(IMPORT_MENU);
+		
+	}
+
+
+	public void netFatherDontExist() {
+		System.out.println(NET_FATHER_DONT_EXIST);
 		
 	}
 	

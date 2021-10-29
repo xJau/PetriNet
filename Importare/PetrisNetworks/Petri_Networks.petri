@@ -1,6 +1,6 @@
 Available Petri's Networks: 1
 	id: 0
-	Name: rwrwe
+	Name: provaTestprova
 		Dimension: 1 : 2
 			Matrix in:
 				2 3 
@@ -8,4 +8,4 @@ Available Petri's Networks: 1
 				0 0 
 	Marking Dimension: 1
 	Marking: 
-		1 
+		4 
