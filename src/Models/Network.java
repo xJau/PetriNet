@@ -113,7 +113,7 @@ public class Network implements Identificable{
      */
     
     public boolean checkLinkExist(Link l){
-    	for(Link a: links)if(a.equals(l))return true;
+    	for(Link link: links)if(link.equals(l))return true;
     	return false;
     }
 

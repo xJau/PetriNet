@@ -19,7 +19,14 @@ public class NetImporter {
     	String s = selectFile(d);
     	d.selectFile(s);
     	menu.print(s);
-    	ArrayList<Network> output = d.readFile();
+    	ArrayList<Network> output;
+    	try{
+    		output = d.readFile();
+    	}
+    	catch(Exception e){
+    		menu.emptyOrIncompatible();
+    		return null;
+    	}
     	if(output.isEmpty()) {
     		menu.emptyOrIncompatible();
     		return null;
@@ -33,6 +40,7 @@ public class NetImporter {
     		menu.netAlreadyExists();
     		return null;
     	}
+    	//CONTROLLI SUFFICIENTI? --> sicuramente va aggiunto il checkconnectivity
     	return net;
     }
     
@@ -41,7 +49,14 @@ public class NetImporter {
     	String s = selectFile(d);
     	d.selectFile(s);
     	menu.print(s);
-    	ArrayList<PetrisNetwork> output = d.readPetrisFile();
+    	ArrayList<PetrisNetwork> output;
+    	try{
+    		output = d.readPetrisFile();
+    	}
+    	catch(Exception e){
+    		menu.emptyOrIncompatible();
+    		return null;
+    	}
     	if(output.isEmpty()) {
     		menu.emptyOrIncompatible();
     		return null;
@@ -60,6 +75,7 @@ public class NetImporter {
     		return null;
     	}
     	
+    	
     	return net;
     }
     
@@ -68,7 +84,14 @@ public class NetImporter {
     	String s = selectFile(d);
     	d.selectFile(s);
     	menu.print(s);
-    	ArrayList<PriorityPetrisNetwork> output = d.readPriorityPetrisFile();
+    	ArrayList<PriorityPetrisNetwork> output;
+    	try{
+    		output = d.readPriorityPetrisFile();
+    	}
+    	catch(Exception e){
+    		menu.emptyOrIncompatible();
+    		return null;
+    	}
     	if(output.isEmpty()) {
     		menu.emptyOrIncompatible();
     		return null;
