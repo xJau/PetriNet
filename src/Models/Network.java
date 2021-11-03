@@ -100,7 +100,7 @@ public class Network implements Identificable{
      * non usato perche' la creazione dei nodi previene questo problema
      * @return TRUE se la rete e' connessa, FALSE in caso contrario
      */
-    private boolean checkConnectivity() {
+    public boolean checkConnectivity() {
         int[][] m = matrixSum(matrixIn, matrixOut);
         if (checkColumns(m, 0) || checkRows(m, 0)) return false;
         return true;

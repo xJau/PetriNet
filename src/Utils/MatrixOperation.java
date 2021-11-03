@@ -17,7 +17,6 @@ public class MatrixOperation {
         for (int i = 0, counter = 0; i < x[0].length; i++, counter = 0) {
             for (int j = 0; j < x.length; j++) {
                 if (x[j][i] == n) counter++;
-                System.out.println(counter + " ");
             }
             if (counter == x.length) return true;
         }

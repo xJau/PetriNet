@@ -4,7 +4,7 @@ Available Networks: 1
 		Dimensione 3 : 3
 		Matrix in:
 			1 1 0
-			1 0 1
+			0 1 1
 			0 1 0
 		Matrix out:
 			0 1 0

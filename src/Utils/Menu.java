@@ -50,6 +50,7 @@ public class Menu {
     private final String NET_FATHER_DONT_EXIST = "La rete padre non è presente tra quelle salvate in forma persistente, "
     		+ "quindi non è possibile importare la rete desiderata";
     private final String FILE_VUOTO_O_NON_COMPATIBILE = "Il file selezionato è vuoto o non compatibile";
+    private final String RETE_NON_CONNESSA = "La rete selezionata non è connessa";
     
     
     Scanner in;
@@ -311,6 +312,12 @@ public class Menu {
 
 	public void emptyOrIncompatible() {
 		System.out.println(FILE_VUOTO_O_NON_COMPATIBILE);
+		
+	}
+
+
+	public void netNotConnected() {
+		System.out.println(RETE_NON_CONNESSA);
 		
 	}
 	

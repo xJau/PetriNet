@@ -40,7 +40,10 @@ public class NetImporter {
     		menu.netAlreadyExists();
     		return null;
     	}
-    	//CONTROLLI SUFFICIENTI? --> sicuramente va aggiunto il checkconnectivity
+    	if(!net.checkConnectivity()) {
+    		menu.netNotConnected();
+    		return null;
+    	}
     	return net;
     }
     
@@ -72,6 +75,10 @@ public class NetImporter {
     	}
     	if(!checkIfNetExists(savedNets.size(), convertToNet(net, savedNets.size()), savedNets)) {
     		menu.netFatherDontExist();
+    		return null;
+    	}
+    	if(!net.checkConnectivity()) {
+    		menu.netNotConnected();
     		return null;
     	}
     	
@@ -107,6 +114,10 @@ public class NetImporter {
     	}
     	if(!checkIfNetExists(savedpNets.size(), convertToPetrisNet(net, savedpNets.size()), savedpNets)) {
     		menu.netFatherDontExist();
+    		return null;
+    	}
+    	if(!net.checkConnectivity()) {
+    		menu.netNotConnected();
     		return null;
     	}
     	return net;
