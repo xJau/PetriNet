@@ -4,7 +4,6 @@ import Models.Network;
 import Models.PetrisNetwork;
 import Models.PriorityPetrisNetwork;
 
-import static Utils.NetFabric.*;
 
 
 import java.io.File;
