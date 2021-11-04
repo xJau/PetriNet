@@ -44,8 +44,13 @@ public class NetImporter {
     		menu.netNotConnected();
     		return null;
     	}
+    	if(!net.checkIfEntriesAreCorrect()) {
+    		menu.emptyOrIncompatible();
+    		return null;
+    	}
     	return net;
     }
+	
     
     public static PetrisNetwork importPetrisNet(ArrayList<PetrisNetwork> pnets, ArrayList<Network> savedNets) {
     	DataLoader d = new DataLoader("/PetrisNetworks", "Importare");
@@ -81,7 +86,14 @@ public class NetImporter {
     		menu.netNotConnected();
     		return null;
     	}
-    	
+    	if(!net.checkMarking()) {
+    		menu.emptyOrIncompatible();
+    		return null;
+    	}
+    	if(!net.checkIfEntriesAreCorrect()) {
+    		menu.emptyOrIncompatible();
+    		return null;
+    	}
     	
     	return net;
     }
@@ -118,6 +130,18 @@ public class NetImporter {
     	}
     	if(!net.checkConnectivity()) {
     		menu.netNotConnected();
+    		return null;
+    	}
+    	if(!net.checkMarking()) {
+    		menu.emptyOrIncompatible();
+    		return null;
+    	}
+    	if(!net.checkPriority()) {
+    		menu.emptyOrIncompatible();
+    		return null;
+    	}
+    	if(!net.checkIfEntriesAreCorrect()) {
+    		menu.emptyOrIncompatible();
     		return null;
     	}
     	return net;

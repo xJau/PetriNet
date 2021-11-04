@@ -1,7 +1,7 @@
 Available Networks: 1
 	id: 0
 	Name: seeeeeeeeeee
-		Dimensione 3 : 3
+	Dimensione 3 : 3
 		Matrix in:
 			1 1 0
 			0 1 1

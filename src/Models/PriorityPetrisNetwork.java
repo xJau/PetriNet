@@ -23,4 +23,10 @@ public class PriorityPetrisNetwork extends PetrisNetwork {
 		return true;
 	}
 	
+	public boolean checkPriority() {
+		for(int i = 0; i < priority.length; i++)
+			if(priority[i] < 1)return false;
+		return true;
+	}
+	
 }

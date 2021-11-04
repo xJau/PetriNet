@@ -116,6 +116,12 @@ public class Network implements Identificable{
     	for(Link link: links)if(link.equals(l))return true;
     	return false;
     }
+    
+    public boolean checkIfEntriesAreCorrect(){
+    	if(!checkEntriesValues(matrixIn, 0))return false;
+    	if(!checkEntriesValues(matrixOut, 0))return false;
+    	return true;
+    }
 
     /**
      * Genera le matrici di adiacenza della rete

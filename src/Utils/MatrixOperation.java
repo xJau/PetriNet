@@ -64,5 +64,13 @@ public class MatrixOperation {
     	}
     	return m;
     }
+    
+    public static boolean checkEntriesValues(int[][] m, int n) {
+    	for(int i = 0; i<m.length; i++) {
+    		for(int j = 0; j<m.length; j++)
+    			if(m[i][j] < n)return false;
+    	}
+    	return true;
+    }
 
 }

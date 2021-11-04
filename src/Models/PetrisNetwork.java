@@ -52,5 +52,11 @@ public class PetrisNetwork extends Network {
 			return true;
 		}
 		
+		public boolean checkMarking() {
+			for(int i = 0; i < marking.length; i++)
+				if(marking[i] < 0)return false;
+			return true;
+		}
+		
 
 }
