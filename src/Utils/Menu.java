@@ -112,7 +112,10 @@ public class Menu {
     }
     
     public void print(ArrayList<? extends Identificable> id) {
-
+    	if(id.isEmpty()) {
+    		print("Lista vuota");
+    		return;
+    	}
         for (int i = 0; i < id.size(); i++) {
             System.out.println((i + 1)  + ") " + id.get(i).toString());
         }
