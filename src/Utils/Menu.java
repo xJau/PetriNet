@@ -56,6 +56,7 @@ public class Menu {
     private final String USER_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri specifica\n(2)Per visualizzare ed eventualmente simulare"
     		+ " una rete di petri con priorità specifica\n(0)Per chiudere";
     private final String IDENTIFICATION = "(1)Configuratore\n(2)Fruitore";
+    private final String NESSUN_FILE = "Non ci sono reti importabili";
     
     Scanner in;
 
@@ -349,6 +350,12 @@ public class Menu {
 
 	public void identification() {
 		System.out.println(IDENTIFICATION);
+		
+	}
+
+
+	public void noFileToImport() {
+		System.out.println(NESSUN_FILE);
 		
 	}
 	

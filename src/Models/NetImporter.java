@@ -17,6 +17,10 @@ public class NetImporter {
 	public static Network importNet(ArrayList<Network> nets) {
     	DataLoader d = new DataLoader("/Networks", "Importare");
     	String s = selectFile(d);
+    	if(s == null) {
+    		menu.noFileToImport();
+    		return null;
+    	}
     	d.selectFile(s);
     	menu.print(s);
     	ArrayList<Network> output;
@@ -55,6 +59,10 @@ public class NetImporter {
     public static PetrisNetwork importPetrisNet(ArrayList<PetrisNetwork> pnets, ArrayList<Network> savedNets) {
     	DataLoader d = new DataLoader("/PetrisNetworks", "Importare");
     	String s = selectFile(d);
+    	if(s == null) {
+    		menu.noFileToImport();
+    		return null;
+    	}
     	d.selectFile(s);
     	menu.print(s);
     	ArrayList<PetrisNetwork> output;
@@ -101,6 +109,10 @@ public class NetImporter {
     public static PriorityPetrisNetwork importPriorityPetrisNet(ArrayList<PriorityPetrisNetwork> pnpnets, ArrayList<PetrisNetwork> savedpNets) {
     	DataLoader d = new DataLoader("/PriorityPetrisNetworks", "Importare");
     	String s = selectFile(d);
+    	if(s == null) {
+    		menu.noFileToImport();
+    		return null;
+    	}
     	d.selectFile(s);
     	menu.print(s);
     	ArrayList<PriorityPetrisNetwork> output;
@@ -151,6 +163,11 @@ public class NetImporter {
     	boolean stop;
     	int i = 1;
     	String[] nameList = d.directoryInspection();
+    	
+    	if(nameList.length == 0) {
+    		
+    		return null;
+    	}
     	
     	for(String s: nameList) {
     		menu.print(i + ")" + s);
