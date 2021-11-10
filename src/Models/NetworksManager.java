@@ -116,10 +116,10 @@ public class NetworksManager {
                         blocker = false;
                         break;
                     case 1:
-                    	pNetsUserMenu(savedpNets);
+                    	selectPNet(savedpNets);
                         break;
                     case 2:
-                    	pnpUserMenu(savedpnpNets);
+                    	selectPPNet(savedpnpNets);
                         break;
                     default:
                         menu.printValue();

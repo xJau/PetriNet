@@ -42,29 +42,6 @@ public class PetrisNetworksManager {
         }
 	}
 	
-	public static void pNetsUserMenu(ArrayList<PetrisNetwork> savedpNets) {
-		int input;
-		boolean blocker = true;
-        while (blocker) {
-            menu.pnUserMenu();
-            do {
-                input = inInt();
-                switch (input) {
-                    case 0:
-                        blocker = false;
-                        break;
-                    case 1:
-                        selectPNet(savedpNets);
-                        break;
-                    default:
-                        menu.printValue();
-                        break;
-                }
-            } while (input < 0 || input > 1);
-        }
-	}
-	
-	
 	public static void createPNet(ArrayList<PetrisNetwork> pn, ArrayList<Network> n) {
 		if(n.isEmpty()) {
 			menu.noNetForPetris();

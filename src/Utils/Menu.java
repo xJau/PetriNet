@@ -53,7 +53,8 @@ public class Menu {
     private final String RETE_NON_CONNESSA = "La rete selezionata non è connessa";
     private final String USER_PN_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri specifica\n(0)Per chiudere";
     private final String USER_PNP_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri con priorità specifica\n(0)Per chiudere";
-    private final String USER_MENU = "\n(1)Gestione reti di petri\n(2)Gestione reti di petri con priorità\n(0)Per chiudere";
+    private final String USER_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri specifica\n(2)Per visualizzare ed eventualmente simulare"
+    		+ " una rete di petri con priorità specifica\n(0)Per chiudere";
     private final String IDENTIFICATION = "(1)Configuratore\n(2)Fruitore";
     
     Scanner in;

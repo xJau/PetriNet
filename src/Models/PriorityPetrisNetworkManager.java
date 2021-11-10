@@ -42,28 +42,6 @@ public class PriorityPetrisNetworkManager {
             } while (input < 0 || input > 3);
         }
 	}
-
-	public static void pnpUserMenu(ArrayList<PriorityPetrisNetwork> savedpnpNets) {
-		int input;
-		boolean blocker = true;
-        while (blocker) {
-            menu.pnpUserMenu();
-            do {
-                input = inInt();
-                switch (input) {
-                    case 0:
-                        blocker = false;
-                        break;
-                    case 1:
-                        selectPPNet(savedpnpNets);
-                        break;
-                    default:
-                        menu.printValue();
-                        break;
-                }
-            } while (input < 0 || input > 1);
-        }
-	}
 	
 	private static void createPPNet(ArrayList<PriorityPetrisNetwork> pnp, ArrayList<PetrisNetwork> pn) {
 		if(pn.isEmpty()) {
@@ -109,7 +87,7 @@ public class PriorityPetrisNetworkManager {
 		
 	}
 
-	private static void selectPPNet(ArrayList<PriorityPetrisNetwork> pnp) {
+	public static void selectPPNet(ArrayList<PriorityPetrisNetwork> pnp) {
 		int input;
 		if(pnp.isEmpty()) {
 			menu.noPriorityPetrisNets();
