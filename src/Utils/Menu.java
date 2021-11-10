@@ -30,7 +30,7 @@ public class Menu {
     		+ "le reti che non sono state selezionate durante la fase di\nsalvataggio andranno perse";
     private final String INSERIRE_MARCATURA_INIZIALE = "Inserire una marcatura iniziale ai posti elencati di seguito: ";
     private final String PN_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri specifica\n(2)Visualizzare l'elenco "
-    		+ "delle reti di petri esistenti\n(3)Creare una rete di petri\n(0)per chiudere.\n";
+    		+ "delle reti di petri esistenti\n(3)Creare una rete di petri\n(0)Per chiudere.\n";
     private final String INSERIRE_PESI_LINK = "Inserire il peso desiderato ai seguenti link: ";
     private final String NO_NETS_PER_PETRI = "Non ci sono reti da usare come base per una reti di petri, per continuare creane una.";
     private final String NO_PETRIS_NETS = "Non ci sono reti di petri selezionabili, creane una per poter accedere a questa voce.";
@@ -51,7 +51,10 @@ public class Menu {
     		+ "quindi non è possibile importare la rete desiderata";
     private final String FILE_VUOTO_O_NON_COMPATIBILE = "Il file selezionato è vuoto o non compatibile";
     private final String RETE_NON_CONNESSA = "La rete selezionata non è connessa";
-    
+    private final String USER_PN_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri specifica\n(0)Per chiudere";
+    private final String USER_PNP_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri con priorità specifica\n(0)Per chiudere";
+    private final String USER_MENU = "\n(1)Gestione reti di petri\n(2)Gestione reti di petri con priorità\n(0)Per chiudere";
+    private final String IDENTIFICATION = "(1)Configuratore\n(2)Fruitore";
     
     Scanner in;
 
@@ -321,6 +324,30 @@ public class Menu {
 
 	public void netNotConnected() {
 		System.out.println(RETE_NON_CONNESSA);
+		
+	}
+
+
+	public void pnUserMenu() {
+		System.out.println(USER_PN_MENU);
+		
+	}
+
+
+	public void pnpUserMenu() {
+		System.out.println(USER_PNP_MENU);
+		
+	}
+
+
+	public void userMenu() {
+		System.out.println(USER_MENU);
+		
+	}
+
+
+	public void identification() {
+		System.out.println(IDENTIFICATION);
 		
 	}
 	
