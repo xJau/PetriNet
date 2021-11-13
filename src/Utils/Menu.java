@@ -9,22 +9,22 @@ import java.util.Scanner;
 public class Menu {
 
 	private final String NUOVO_VALORE = ") Per crearne una nuova";
-    private final String RITORNA_AL_MAIN_MENU = "Per tornare al menù principale";
+    private final String RITORNA_AL_MAIN_MENU = "Per tornare al menï¿½ principale";
     private final String SELEZIONA_POSTI = "Seleziona il posto da collegare";
     private final String FINE = "Per terminare";
-    private final String SELEZIONE_AZIONE_NET = "1) Selezionare una rete\n2) Salvare una o più reti\n3) Gestione reti di petri\n4) Salvare una o più "
-    		+ "reti di petri\n5) Gestione reti di petri con priorità\n6) Salvare una o più reti di petri con priorità\n7) Importa rete da file\n0) Per chiudere.\n";
+    private final String SELEZIONE_AZIONE_NET = "1) Selezionare una rete\n2) Salvare una o piï¿½ reti\n3) Gestione reti di petri\n4) Salvare una o piï¿½ "
+    		+ "reti di petri\n5) Gestione reti di petri con prioritï¿½\n6) Salvare una o piï¿½ reti di petri con prioritï¿½\n7) Importa rete da file\n0) Per chiudere.\n";
     private final String INSERIMENTO_VALIDO = "Inserire un valore valido:\n";
     private final String SALVA_O_CONTINUA = "(1) Per Salvare\n(2) Per selezionare un'altra rete da salvare";
     private final String AGGIUNGI = "Vuoi aggiungere un Posto (1), una Transizione (2), un Link (3) o cambiare nome (4) alla rete? (0) Per uscire\n";
     private final String SELEZIONA_TRANSIZIONE = "Seleziona la transizione da collegare";
-    private final String P_INGRESSO_O_USCITA = "La transizione selezionata è in ingresso al posto appena creato? (Y/N)";
-    private final String T_INGRESSO_O_USCITA = "Il posto selezionato è in ingresso alla transizione appena creata? (Y/N)";
+    private final String P_INGRESSO_O_USCITA = "La transizione selezionata ï¿½ in ingresso al posto appena creato? (Y/N)";
+    private final String T_INGRESSO_O_USCITA = "Il posto selezionato ï¿½ in ingresso alla transizione appena creata? (Y/N)";
     private final String S_N = "Inserisci (y) o (n) per continuare";
     private final String SELETIONA_POT = "Vuoi avere un posto(p) come origine o una transizione(t)?";
-    private final String LINK_GIA_ESISTENTE = "\nIl link che vuoi aggiungere è già presente nella rete\n";
+    private final String LINK_GIA_ESISTENTE = "\nIl link che vuoi aggiungere ï¿½ giï¿½ presente nella rete\n";
     private final String NO_RETI = "Non ci sono reti salvabili";
-    private final String NET_ALREADY_EXISTS = "La rete così ottenuta esiste già\n";
+    private final String NET_ALREADY_EXISTS = "La rete cosï¿½ ottenuta esiste giï¿½\n";
     private final String ASSEGNA_NOME_NET = "Inserire il nome che si desidera assegnare alla rete";
     private final String AVVISO_PERDITA_DATI = "ATTENZIONE: in caso di chiusura del programma "
     		+ "le reti che non sono state selezionate durante la fase di\nsalvataggio andranno perse";
@@ -39,22 +39,22 @@ public class Menu {
     private final String UNA_SOLA_TRANSIZIONE_ABILITATA = "\nUnica transizione abilitata, esecuzione iterazione\n";
     private final String SIMULATORE_MENU = "\n(1)Per eseguire un'iterazione\n(0)Per chiudere.\n";
     private final String NESSUNA_TRANSIZIONE_ABILITATA = "\nNessuna transizione abilitata allo scatto\n";
-    private final String PNP_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri con priorità specifica\n(2)Visualizzare l'elenco "
-    		+ "delle reti di petri con priorità esistenti\n(3)Creare una rete di petri con priorità\n(0)per chiudere.\n";
+    private final String PNP_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri con prioritï¿½ specifica\n(2)Visualizzare l'elenco "
+    		+ "delle reti di petri con prioritï¿½ esistenti\n(3)Creare una rete di petri con prioritï¿½\n(0)per chiudere.\n";
     private final String NO_PRIORITY_NETS_PER_PETRI = "Non ci sono reti di petri da usare come base per una reti di petri con priorita, per continuare creane una.";
     private final String SELEZIONA_RETE_DI_PETRI_PER_PETRI_CON_PRIORITA= "\nSelezionare la rete che si desidera utilizzare come base per la creazione"
     		+ " della rete di petri, (0) per uscire\n";
-    private final String INSERIRE_PRIORITA_TRANSIZIONI = "Inserire la priorità desiderata alle transizioni elencate di seguito";
-    private final String NO_PRIORITY_PETRIS_NETS = "Non ci sono reti di petri con priorità selezionabili, creane una per poter accedere a questa voce.";
-    private final String IMPORT_MENU = "\n(1)Per importare una rete\n(2)Per importare una rete di petri\n(3)Per importare una rete con priorità\n(0)Per chiudere\n";
-    private final String NET_FATHER_DONT_EXIST = "La rete padre non è presente tra quelle salvate in forma persistente, "
-    		+ "quindi non è possibile importare la rete desiderata";
-    private final String FILE_VUOTO_O_NON_COMPATIBILE = "Il file selezionato è vuoto o non compatibile";
-    private final String RETE_NON_CONNESSA = "La rete selezionata non è connessa";
+    private final String INSERIRE_PRIORITA_TRANSIZIONI = "Inserire la prioritï¿½ desiderata alle transizioni elencate di seguito";
+    private final String NO_PRIORITY_PETRIS_NETS = "Non ci sono reti di petri con prioritï¿½ selezionabili, creane una per poter accedere a questa voce.";
+    private final String IMPORT_MENU = "\n(1)Per importare una rete\n(2)Per importare una rete di petri\n(3)Per importare una rete con prioritï¿½\n(0)Per chiudere\n";
+    private final String NET_FATHER_DONT_EXIST = "La rete padre non ï¿½ presente tra quelle salvate in forma persistente, "
+    		+ "quindi non ï¿½ possibile importare la rete desiderata";
+    private final String FILE_VUOTO_O_NON_COMPATIBILE = "Il file selezionato ï¿½ vuoto o non compatibile";
+    private final String RETE_NON_CONNESSA = "La rete selezionata non ï¿½ connessa";
     private final String USER_PN_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri specifica\n(0)Per chiudere";
-    private final String USER_PNP_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri con priorità specifica\n(0)Per chiudere";
+    private final String USER_PNP_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri con prioritï¿½ specifica\n(0)Per chiudere";
     private final String USER_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri specifica\n(2)Per visualizzare ed eventualmente simulare"
-    		+ " una rete di petri con priorità specifica\n(0)Per chiudere";
+    		+ " una rete di petri con prioritï¿½ specifica\n(0)Per chiudere";
     private final String IDENTIFICATION = "(1)Configuratore\n(2)Fruitore";
     private final String NESSUN_FILE = "Non ci sono reti importabili";
     
@@ -286,7 +286,7 @@ public class Menu {
 	}
 
 
-	public void inserisciPriorità() {
+	public void inserisciPriorita() {
 		System.out.println(INSERIRE_PRIORITA_TRANSIZIONI);
 		
 	}
@@ -300,7 +300,7 @@ public class Menu {
 
 	public void printTransitionPriority(PriorityPetrisNetwork pnp, int[] priority) {
 		for(int i = 0; i < priority.length; i++) {
-    		System.out.println(pnp.getTransitions().get(i).toString()+ " priorità = "+ priority[i]);
+    		System.out.println(pnp.getTransitions().get(i).toString()+ " prioritï¿½ = "+ priority[i]);
     	}
 		
 	}

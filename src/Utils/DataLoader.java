@@ -4,21 +4,26 @@ import Models.Network;
 import Models.PetrisNetwork;
 import Models.PriorityPetrisNetwork;
 
-
-
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOError;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.imageio.IIOException;
+import javax.xml.catalog.Catalog;
+
 public class DataLoader {
 
-    private final String fileName;
+    private String fileName;
     private final String path = "./";
     private final String extension = ".petri";
-    private String filePath; //ho tolto "final"... :/
+    private String filePath; // ho tolto "final"... :/
     private File file;
 
     public DataLoader(String fileName) {
@@ -27,30 +32,39 @@ public class DataLoader {
         this.file = new File(filePath);
         loadFile();
     }
+
     public DataLoader(String directoryName, String filePath) {
-    	fileName = directoryName;
-    	this.filePath = path + filePath + directoryName;
-    	file = new File(this.filePath);
+        try {
+            fileName = directoryName;
+            this.filePath = path + filePath + directoryName;
+            Path path = Paths.get(this.filePath);
+            Files.createDirectories(path);
+            file = new File(this.filePath);
+        } catch (IOException e) {
+
+        }
+
     }
-    
+
     public String[] directoryInspection() {
-    	String[] pathnames = file.list();
-    	return pathnames;
+        String[] pathnames = file.list();
+        return pathnames;
     }
 
     public void selectFile(String fileName) {
-    	filePath = filePath + "/" + fileName;
-    	file = new File(this.filePath);
+        filePath = filePath + "/" + fileName;
+        file = new File(this.filePath);
     }
-    
+
     private void loadFile() {
         this.file = new File(filePath);
         if (file.exists()) {
-//            System.out.println(filePath + " è stata caricata");
-        } else createFile();
+            // System.out.println(filePath + " ï¿½ stata caricata");
+        } else
+            createFile();
     }
-  
-    private void createFile(){
+
+    private void createFile() {
         this.file = new File(filePath);
         try {
             if (file.createNewFile()) {
@@ -72,23 +86,20 @@ public class DataLoader {
                 System.out.println(data);
             }
             myReader.close();
-        } catch (
-                FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("Errore Rilevato.");
             e.printStackTrace();
         }
     }
 
-
     public ArrayList<Network> readFile() {
         ArrayList<Network> networks;
         try {
             Scanner scanner = new Scanner(file);
-//            scanner.useDelimiter(":");
+            // scanner.useDelimiter(":");
 
             while (scanner.hasNext()) {
                 String data = scanner.nextLine();
-
 
                 if (data.contains("Available Networks")) {
                     networks = loadNetworks(scanner, data);
@@ -103,19 +114,18 @@ public class DataLoader {
         }
         return new ArrayList<>();
     }
-    
+
     public ArrayList<PetrisNetwork> readPetrisFile() {
         ArrayList<PetrisNetwork> pNetworks;
         try {
             Scanner scanner = new Scanner(file);
-//            scanner.useDelimiter(":");
+            // scanner.useDelimiter(":");
 
             while (scanner.hasNext()) {
                 String data = scanner.nextLine();
 
-
                 if (data.contains("Available Petri's Networks")) {
-                	pNetworks = loadPetrisNetworks(scanner, data);
+                    pNetworks = loadPetrisNetworks(scanner, data);
                     scanner.close();
                     return pNetworks;
                 }
@@ -127,19 +137,18 @@ public class DataLoader {
         }
         return new ArrayList<>();
     }
-    
+
     public ArrayList<PriorityPetrisNetwork> readPriorityPetrisFile() {
         ArrayList<PriorityPetrisNetwork> pnpNetworks;
         try {
             Scanner scanner = new Scanner(file);
-//            scanner.useDelimiter(":");
+            // scanner.useDelimiter(":");
 
             while (scanner.hasNext()) {
                 String data = scanner.nextLine();
 
-
                 if (data.contains("Available Priority Petri's Networks")) {
-                	pnpNetworks = loadPriorityPetrisNetworks(scanner, data);
+                    pnpNetworks = loadPriorityPetrisNetworks(scanner, data);
                     scanner.close();
                     return pnpNetworks;
                 }
@@ -152,13 +161,11 @@ public class DataLoader {
         return new ArrayList<>();
     }
 
-
-
     private ArrayList<Network> loadNetworks(Scanner scanner, String data) {
         ArrayList<Network> networks = new ArrayList<>();
         int netNumber;
         netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
-//        System.out.println(Integer.toString(netNumber) + " networks caricate");
+        // System.out.println(Integer.toString(netNumber) + " networks caricate");
 
         for (int i = 0; i < netNumber; i++) {
             Network net = loadNetwork(scanner);
@@ -166,12 +173,13 @@ public class DataLoader {
         }
         return networks;
     }
-    
+
     private ArrayList<PetrisNetwork> loadPetrisNetworks(Scanner scanner, String data) {
         ArrayList<PetrisNetwork> pNetworks = new ArrayList<>();
         int netNumber;
         netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
-//        System.out.println(Integer.toString(netNumber) + " petri's networks caricate");
+        // System.out.println(Integer.toString(netNumber) + " petri's networks
+        // caricate");
 
         for (int i = 0; i < netNumber; i++) {
             PetrisNetwork net = loadPetrisNetwork(scanner);
@@ -179,12 +187,13 @@ public class DataLoader {
         }
         return pNetworks;
     }
-    
+
     private ArrayList<PriorityPetrisNetwork> loadPriorityPetrisNetworks(Scanner scanner, String data) {
         ArrayList<PriorityPetrisNetwork> pNetworks = new ArrayList<>();
         int netNumber;
         netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
-//        System.out.println(Integer.toString(netNumber) + " petri's networks caricate");
+        // System.out.println(Integer.toString(netNumber) + " petri's networks
+        // caricate");
 
         for (int i = 0; i < netNumber; i++) {
             PriorityPetrisNetwork net = loadPriorityPetrisNetwork(scanner);
@@ -192,8 +201,6 @@ public class DataLoader {
         }
         return pNetworks;
     }
-
-    
 
     private int[][] loadMatrix(int rows, int columns, Scanner scanner) {
         int[][] matrix = new int[rows][columns];
@@ -206,14 +213,14 @@ public class DataLoader {
 
         return matrix;
     }
-    
+
     private int[] loadVector(int lenght, Scanner scanner) {
-    	int[] vector = new int[lenght];
-    	for(int i = 0; i<lenght; i++)vector[i] = scanner.nextInt();
-    	return vector;
+        int[] vector = new int[lenght];
+        for (int i = 0; i < lenght; i++)
+            vector[i] = scanner.nextInt();
+        return vector;
     }
-    
-    
+
     public Network loadNetwork(Scanner scanner) {
         Network net = null;
         int column = 0;
@@ -228,8 +235,8 @@ public class DataLoader {
             if (data.contains("id")) {
                 netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
             } else if (data.contains("Name")) {
-            	netName = data.replaceAll("Name: ", "").trim();
-            }  else if (data.contains("Dimension")) {
+                netName = data.replaceAll("Name: ", "").trim();
+            } else if (data.contains("Dimension")) {
                 String dimScannerValue = data.replaceAll("[^0-9:]", "");
                 Scanner dimensioneScanner = new Scanner(dimScannerValue);
                 dimensioneScanner.useDelimiter(":");
@@ -251,55 +258,53 @@ public class DataLoader {
 
         return net;
     }
-    
+
     public int[] loadPetrisMarking(Scanner scanner) {
-    	int mDim = 0;
-    	int m[] = null;
-    	
-    	while(scanner.hasNext()) {
-    		String data = scanner.nextLine();
-    		if(data.contains("Marking Dimension: ")) {
-        		String dimScannerValue = data.replaceAll("[^0-9]", "");
-        		mDim = Integer.valueOf(dimScannerValue);
-        	} else if(data.contains("Marking")) {
-        		m = loadVector(mDim, scanner);
-        		return m;
-        	}
-    	}
-    	return m;
+        int mDim = 0;
+        int m[] = null;
+
+        while (scanner.hasNext()) {
+            String data = scanner.nextLine();
+            if (data.contains("Marking Dimension: ")) {
+                String dimScannerValue = data.replaceAll("[^0-9]", "");
+                mDim = Integer.valueOf(dimScannerValue);
+            } else if (data.contains("Marking")) {
+                m = loadVector(mDim, scanner);
+                return m;
+            }
+        }
+        return m;
     }
-    
+
     public PetrisNetwork loadPetrisNetwork(Scanner scanner) {
-    	int[] marking;
-    	Network net = loadNetwork(scanner);
-    	marking = loadPetrisMarking(scanner);
-    	return new PetrisNetwork(net, net.getId(), net.getName(), marking);
+        int[] marking;
+        Network net = loadNetwork(scanner);
+        marking = loadPetrisMarking(scanner);
+        return new PetrisNetwork(net, net.getId(), net.getName(), marking);
     }
-    
 
     public int[] loadPetrisTransitionsPriority(Scanner scanner) {
-    	int prDim = 0;
-    	int pr[] = null;
-    	
-    	while(scanner.hasNext()) {
-    		String data = scanner.nextLine();
-    		if(data.contains("Priority Dimension: ")) {
-        		String dimScannerValue = data.replaceAll("[^0-9]", "");
-        		prDim = Integer.valueOf(dimScannerValue);
-        	} else if(data.contains("Priority")) {
-        		pr = loadVector(prDim, scanner);
-        		return pr;
-        	}
-    	}
-    	return pr;
+        int prDim = 0;
+        int pr[] = null;
+
+        while (scanner.hasNext()) {
+            String data = scanner.nextLine();
+            if (data.contains("Priority Dimension: ")) {
+                String dimScannerValue = data.replaceAll("[^0-9]", "");
+                prDim = Integer.valueOf(dimScannerValue);
+            } else if (data.contains("Priority")) {
+                pr = loadVector(prDim, scanner);
+                return pr;
+            }
+        }
+        return pr;
     }
-    
+
     public PriorityPetrisNetwork loadPriorityPetrisNetwork(Scanner scanner) {
-    	int[] priority;
-    	PetrisNetwork net = loadPetrisNetwork(scanner);
-    	priority = loadPetrisTransitionsPriority(scanner);
-    	return new PriorityPetrisNetwork(net, net.getId(), net.getName(), priority);
+        int[] priority;
+        PetrisNetwork net = loadPetrisNetwork(scanner);
+        priority = loadPetrisTransitionsPriority(scanner);
+        return new PriorityPetrisNetwork(net, net.getId(), net.getName(), priority);
     }
-    
-    
+
 }

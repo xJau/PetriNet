@@ -61,7 +61,7 @@ public class PriorityPetrisNetworkManager {
 		int id = pnp.size();
 		int[] priority = new int[pn.getTransitions().size()];
 		
-		menu.inserisciPriorità();
+		menu.inserisciPriorita();
 		for(int i = 0; i < priority.length; i++) {
 			menu.print(pn.getTransitions().get(i).toString());
 			priority[i] = inInt();
