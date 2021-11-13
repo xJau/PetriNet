@@ -1,0 +1,67 @@
+Available Petri's Networks: 5
+	id: 0
+	Name: rwrwe
+		Dimension: 1 : 2
+			Matrix in:
+				2 3 
+			Matrix out:
+				0 0 
+	Marking Dimension: 1
+	Marking: 
+		1 
+	id: 1
+	Name: provaPetriSimulatore
+		Dimension: 3 : 1
+			Matrix in:
+				4 
+				4 
+				0 
+			Matrix out:
+				0 
+				0 
+				3 
+	Marking Dimension: 3
+	Marking: 
+		5 5 0 
+	id: 2
+	Name: altraprova
+		Dimension: 3 : 1
+			Matrix in:
+				1 
+				1 
+				0 
+			Matrix out:
+				0 
+				0 
+				1 
+	Marking Dimension: 3
+	Marking: 
+		0 0 0 
+	id: 3
+	Name: rboooooooooooooooooo
+		Dimension: 2 : 2
+			Matrix in:
+				1 1 
+				0 0 
+			Matrix out:
+				1 0 
+				1 1 
+	Marking Dimension: 2
+	Marking: 
+		6 4 
+	id: 4
+	Name: provaDaIngeSoftware
+		Dimension: 4 : 4
+			Matrix in:
+				1 0 0 0 
+				0 1 1 0 
+				0 1 0 0 
+				0 0 0 1 
+			Matrix out:
+				0 1 0 0 
+				1 0 0 1 
+				1 0 0 0 
+				0 0 1 0 
+	Marking Dimension: 4
+	Marking: 
+		2 0 0 0 
