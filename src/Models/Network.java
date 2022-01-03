@@ -1,7 +1,6 @@
 package Models;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static Utils.MatrixOperation.*;
 
@@ -14,6 +13,10 @@ public class Network implements Identifiable{
     private ArrayList<Link> links;
     private int[][] matrixIn;
     private int[][] matrixOut;
+
+    public Network() {
+        
+    }
 
     /**
      * Costruttore Network da metodo create network

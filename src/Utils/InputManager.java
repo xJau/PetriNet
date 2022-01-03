@@ -13,6 +13,7 @@ public class InputManager {
 		catch(Exception e) {
 			i = -1;
 		}
+		s.close();
 		return i;
 	}
 
@@ -31,6 +32,7 @@ public class InputManager {
 				a = "e";
 			}
 		}while(error == true);
+		s.close();
 		return a;
 	}
 	

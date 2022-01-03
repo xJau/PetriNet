@@ -26,125 +26,64 @@ public class NetworksManager {
         static String fileName = "Networks";
         static String pfileName = "Petri_Networks";
         static String pnpfileName = "Priority_Petri_Networks";
-        
-        Menu menu;
+
 
         private NetworkManager() {
-            this.menu = new Menu();
             load();
             savedNets = new ArrayList<>(nets);
             savedpNets = new ArrayList<>(pnets);
             savedpnpNets = new ArrayList<>(pnpnets);
         }
 
-
         public static void main(String[] args) {
-        	
             NetworkManager manager = new NetworkManager();
             manager.identification();
         }
         
         private void identification() {
-        	int input = -1;
-        	menu.identification();
-            do {
-            	input = readInt();
-            	switch(input) {
-            		case 1:
-            			mainMenu();
-            			break;
-            		case 2:
-            			userMenu();
-            			break;
-            		default:
-            			menu.printValue();
-            			break;
-            	}
-            } while (input < 1 || input > 2);
+            ArrayList<Runnable> actions = new ArrayList<>(Arrays.asList(
+                () -> mainMenu(),
+                () -> userMenu()    
+            ));
+            Menu.selectMenu(Menu.IDENTIFICATION, actions);
         }
 
         private void mainMenu() {
-
-            int input = -1;
-            boolean blocker = true;
-            while (blocker) {
-                menu.mainMenu();
-                do {
-                    input = readInt();
-                    switch (input) {
-                        case 0:
-                            blocker = false;
-                            break;
-                        case 1:
-                            selectNet();
-                            break;
-                        case 2:
-                            save(fileName);
-                            break;
-                        case 3:
-                        	pNetsMenu(pnets, savedNets, savedpNets);
-                        	break;
-                        case 4:
-                        	savePetrisNetworks();
-                        	break;
-                        case 5:
-                        	pnpMenu(pnpnets, savedpNets, savedpnpNets);
-                        	break;
-                        case 6:
-                        	savePriorityPetrisNetwork();
-                        	break;
-                        case 7:
-                        	importFile();
-                        	break;
-                        default:
-                            menu.printValue();
-                            break;
-                    }
-                } while (input < 0 || input > 7);
-            }
+            ArrayList<Runnable> actions = new ArrayList<>(Arrays.asList(
+                () -> selectNet(),
+                () -> save(fileName),
+                () -> pNetsMenu(pnets, savedNets, savedpNets),
+                () -> savePetrisNetworks(),
+                () -> pnpMenu(pnpnets, savedpNets, savedpnpNets),
+                () -> savePriorityPetrisNetwork(),
+                () -> importFile()                
+            ));
+            Menu.selectMenu(Menu.SELEZIONE_AZIONE_NET, actions);
         }
         
         private void userMenu() {
-        	int input = -1;
-            boolean blocker = true;
-            while (blocker) {
-                menu.userMenu();
-                do {
-                    input = readInt();
-                    switch (input) {
-                    case 0:
-                        blocker = false;
-                        break;
-                    case 1:
-                    	selectPNet(savedpNets);
-                        break;
-                    case 2:
-                    	selectPPNet(savedpnpNets);
-                        break;
-                    default:
-                        menu.printValue();
-                        break;
-                    }
-                } while (input < 0 || input > 2);
-            }
+            Menu.print(Menu.USER_MENU);
+            ArrayList<Runnable> actions = new ArrayList<>(Arrays.asList(
+                () -> selectPNet(savedpNets),
+                () -> selectPPNet(savedpnpNets)
+            ));
+            Menu.selectMenu(Menu.USER_MENU, actions);
         }
             
        
-
-
 		public void selectNet() {
 
             int input;
             if (nets.isEmpty()) nets.add(new Network(0, "Rete zero"));
             int netsSize = nets.size();
 
-            menu.selectNets(nets);
+            Menu.selectNets(nets);
 
             do {
             	input = -1;
                 input = input + readInt();
                 if (input == -1) return;
-                else if (input < 0 || input > netsSize) menu.printValue();
+                else if (input < 0 || input > netsSize) Menu.print(Menu.INSERIMENTO_VALIDO);
                 else if (input == netsSize) createNet();
                 else modifyNet(nets.get(input));
             } while (input < 0 || input > netsSize);
