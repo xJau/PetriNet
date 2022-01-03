@@ -48,7 +48,7 @@ public class NetworksManager {
         	int input = -1;
         	menu.identification();
             do {
-            	input = inInt();
+            	input = readInt();
             	switch(input) {
             		case 1:
             			mainMenu();
@@ -70,7 +70,7 @@ public class NetworksManager {
             while (blocker) {
                 menu.mainMenu();
                 do {
-                    input = inInt();
+                    input = readInt();
                     switch (input) {
                         case 0:
                             blocker = false;
@@ -110,7 +110,7 @@ public class NetworksManager {
             while (blocker) {
                 menu.userMenu();
                 do {
-                    input = inInt();
+                    input = readInt();
                     switch (input) {
                     case 0:
                         blocker = false;
@@ -142,7 +142,7 @@ public class NetworksManager {
 
             do {
             	input = -1;
-                input = input + inInt();
+                input = input + readInt();
                 if (input == -1) return;
                 else if (input < 0 || input > netsSize) menu.printValue();
                 else if (input == netsSize) createNet();
@@ -161,13 +161,13 @@ public class NetworksManager {
             
         }
 
-        public int select(List<? extends Identificable> id) {
+        public int select(List<? extends Identifiable> id) {
 
             int input;
             if (id.size() == 0) return -2;
             do {
                 input = -1;
-                input = input + inInt();
+                input = input + readInt();
                 if (input == -2 || input > id.size()-1) menu.printValue();
             } while (input < -1 || input > id.size()-1);
             return input;
@@ -196,7 +196,7 @@ public class NetworksManager {
                 savableNets.remove(input);
                 menu.save();
                 do {
-                    input = inInt();
+                    input = readInt();
                     if (input == 1) stop = true;
                     else if (input < 1 || input > 2) menu.printValue();
                 } while (input < 1 || input > 2);
@@ -230,7 +230,7 @@ public class NetworksManager {
                 do {
                     menu.printNetStructure(activeNetwork);
                     menu.doToNet();
-                    input = inInt();
+                    input = readInt();
                     switch (input) {
                         case 0:
                             blocker = false;
@@ -392,7 +392,7 @@ public class NetworksManager {
             while (blocker) {
             	menu.importMenu();
                 do {
-                    input = inInt();
+                    input = readInt();
                     switch (input) {
                         case 0:
                             blocker = false;

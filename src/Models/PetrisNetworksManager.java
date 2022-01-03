@@ -20,7 +20,7 @@ public class PetrisNetworksManager {
         while (blocker) {
             menu.pnMenu();
             do {
-                input = inInt();
+                input = readInt();
                 switch (input) {
                     case 0:
                         blocker = false;
@@ -50,7 +50,7 @@ public class PetrisNetworksManager {
 		menu.selecNEtforPetris();
 		menu.print(n);
 		int input = select(n);
-		if(input == -1)return;
+		if(input == -1) return;
 		System.out.println(input);
 		createPNet(pn, n.get(input));
 		
@@ -65,7 +65,7 @@ public class PetrisNetworksManager {
 		menu.inserisciMarcatura();
 		for(int i = 0; i < marking.length; i++) {
 			menu.print(n.getPlaces().get(i).toString());
-			marking[i] = inInt();
+			marking[i] = readInt();
 			if(marking[i]<0) {
 				menu.printValue();
 				i--;
@@ -75,7 +75,7 @@ public class PetrisNetworksManager {
 		menu.inserisciPesi();
 		for(int i = 0; i < linksWeight.length; i++) {
 			menu.print(n.getLinks().get(i).toString());
-			linksWeight[i] = inInt();
+			linksWeight[i] = readInt();
 			if(linksWeight[i]<1) {
 				menu.printValue();
 				i--;
@@ -86,7 +86,7 @@ public class PetrisNetworksManager {
 		menu.insNuovoNome();
 		do {
 			name = inString();
-			if(!name.toLowerCase().replaceAll("[^a-z]", "").equals("name"))break;
+			if(!name.toLowerCase().replaceAll("[^a-z]", "").equals("name")) break;
 			menu.printValue();
 		}while(true);
 		
@@ -113,7 +113,7 @@ public class PetrisNetworksManager {
 
         do {
         	input = -1;
-            input = input + inInt();
+            input = input + readInt();
             if (input < 0 || input > pnSize-1) menu.printValue();
             else use(pn.get(input));
         } while (input < 0 || input > pnSize-1);
@@ -160,7 +160,7 @@ public class PetrisNetworksManager {
             savableNets.remove(input);
             menu.save();
             do {
-                input = inInt();
+                input = readInt();
                 if (input == 1) stop = true;
                 else if (input < 1 || input > 2) menu.printValue();
             } while (input < 1 || input > 2);
@@ -174,13 +174,13 @@ public class PetrisNetworksManager {
         return savedpNets;
     }
 
-	private static int select(List<? extends Identificable> id) {
+	private static int select(List<? extends Identifiable> id) {
 
         int input;
         if (id.size() == 0) return -2;
         do {
             input = -1;
-            input = input + inInt();
+            input = input + readInt();
             if (input == -2 || input > id.size()-1) menu.printValue();
         } while (input < -1 || input > id.size()-1);
         return input;

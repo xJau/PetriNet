@@ -5,7 +5,7 @@ import java.util.List;
 
 import static Utils.MatrixOperation.*;
 
-public class Network implements Identificable{
+public class Network implements Identifiable{
 
     private int id;
     private String name;
@@ -57,10 +57,6 @@ public class Network implements Identificable{
         generateMatrix(matrixIn, matrixOut);
     }
 
-    public Network() {
-		// TODO Auto-generated constructor stub
-	}
-
 	/**
      * Crea collegamento tra i due nodi indicati
      * @param in
@@ -102,8 +98,7 @@ public class Network implements Identificable{
      */
     public boolean checkConnectivity() {
         int[][] m = matrixSum(matrixIn, matrixOut);
-        if (checkColumns(m, 0) || checkRows(m, 0)) return false;
-        return true;
+        return !(checkColumns(m, 0) || checkRows(m, 0));
     }
 
     /**
@@ -111,9 +106,10 @@ public class Network implements Identificable{
      * @param l
      * @return TRUE l nella rete, FALSE in caso contrario
      */
-    
     public boolean checkLinkExist(Link l){
-    	for(Link link: links)if(link.equals(l))return true;
+    	for(Link link: links) {
+            if(link.equals(l)) return true;
+        }
     	return false;
     }
     
@@ -138,10 +134,12 @@ public class Network implements Identificable{
         this.matrixOut = new int[pSize][tSize];
 
         for (Link link : links) {
+            int ingoingId = link.getInGoingNode().getId();
+            int outgoingId = link.getOutGoingNode().getId();
             if (link.getOutGoingNode() instanceof Transition)
-                matrixIn[link.getInGoingNode().getId()][link.getOutGoingNode().getId()] = 1;
+                matrixIn[ingoingId][outgoingId] = 1;
             else if (link.getInGoingNode() instanceof Transition)
-                matrixOut[link.getOutGoingNode().getId()][link.getInGoingNode().getId()] = 1;
+                matrixOut[outgoingId][ingoingId] = 1;
         }
     }
     
@@ -152,10 +150,12 @@ public class Network implements Identificable{
         this.matrixOut = new int[pSize][tSize];
 
         for (Link link : links) {
+            int ingoingId = link.getInGoingNode().getId();
+            int outgoingId = link.getOutGoingNode().getId();
             if (link.getOutGoingNode() instanceof Transition)
-                matrixIn[link.getInGoingNode().getId()][link.getOutGoingNode().getId()] = mIn[link.getInGoingNode().getId()][link.getOutGoingNode().getId()];
+                matrixIn[ingoingId][outgoingId] = mIn[ingoingId][outgoingId];
             else if (link.getInGoingNode() instanceof Transition)
-                matrixOut[link.getOutGoingNode().getId()][link.getInGoingNode().getId()] = mOut[link.getOutGoingNode().getId()][link.getInGoingNode().getId()];
+                matrixOut[outgoingId][ingoingId] = mOut[outgoingId][ingoingId];
         }
     }
 
@@ -169,11 +169,8 @@ public class Network implements Identificable{
     public void addPlace(int id, Transition transition, boolean ingoing) {
         Place place = new Place(id);
         places.add(place);
-        if (ingoing) {
-            connect(transition, place);
-        } else {
-            connect(place, transition);
-        }
+        if (ingoing) connect(transition, place);
+        else connect(place, transition);
     }
 
     /**
@@ -183,8 +180,7 @@ public class Network implements Identificable{
      */
     private void addPlaces(int numNodes) {
         for (int i = 0; i < numNodes; i++) {
-            Place place = new Place(i);
-            places.add(place);
+            places.add(new Place(i));
         }
     }
 
@@ -196,8 +192,7 @@ public class Network implements Identificable{
 
     private void addTransitions(int numNodes) {
         for (int i = 0; i < numNodes; i++) {
-            Transition transition = new Transition(i);
-            transitions.add(transition);
+            transitions.add(new Transition(i));
         }
     }
 
@@ -211,11 +206,8 @@ public class Network implements Identificable{
     public void addTransition(int id, Place place, boolean ingoing) {
         Transition transition = new Transition(id);
         transitions.add(transition);
-        if (ingoing) {
-            connect(place, transition);
-        } else {
-            connect(transition, place);
-        }
+        if (ingoing) connect(place, transition);
+        else connect(transition, place);
     }
 
     /**

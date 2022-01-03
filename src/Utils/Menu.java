@@ -116,7 +116,7 @@ public class Menu {
     	}
     }
     
-    public void print(ArrayList<? extends Identificable> id) {
+    public void print(ArrayList<? extends Identifiable> id) {
     	if(id.isEmpty()) {
     		print("Lista vuota");
     		return;

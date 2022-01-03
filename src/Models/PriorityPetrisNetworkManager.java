@@ -1,6 +1,6 @@
 package Models;
 
-import static Utils.InputManager.inInt;
+import static Utils.InputManager.readInt;
 import static Utils.InputManager.inString;
 import static Utils.MatrixOperation.changeNonNullMatrixEnrtriesToOne;
 
@@ -21,7 +21,7 @@ public class PriorityPetrisNetworkManager {
         while (blocker) {
             menu.pnpMenu();
             do {
-                input = inInt();
+                input = readInt();
                 switch (input) {
                     case 0:
                         blocker = false;
@@ -64,7 +64,7 @@ public class PriorityPetrisNetworkManager {
 		menu.inserisciPriorita();
 		for(int i = 0; i < priority.length; i++) {
 			menu.print(pn.getTransitions().get(i).toString());
-			priority[i] = inInt();
+			priority[i] = readInt();
 			if(priority[i]<1) {
 				menu.printValue();
 				i--;
@@ -99,7 +99,7 @@ public class PriorityPetrisNetworkManager {
 
         do {
         	input = -1;
-            input = input + inInt();
+            input = input + readInt();
             if (input < 0 || input > pnSize-1) menu.printValue();
             else use(pnp.get(input));
         } while (input < 0 || input > pnSize-1);
@@ -142,7 +142,7 @@ public class PriorityPetrisNetworkManager {
             savableNets.remove(input);
             menu.save();
             do {
-                input = inInt();
+                input = readInt();
                 if (input == 1) stop = true;
                 else if (input < 1 || input > 2) menu.printValue();
             } while (input < 1 || input > 2);
@@ -157,13 +157,13 @@ public class PriorityPetrisNetworkManager {
     }
 	
 
-	private static int select(List<? extends Identificable> id) {
+	private static int select(List<? extends Identifiable> id) {
 
         int input;
         if (id.size() == 0) return -2;
         do {
             input = -1;
-            input = input + inInt();
+            input = input + readInt();
             if (input == -2 || input > id.size()-1) menu.printValue();
         } while (input < -1 || input > id.size()-1);
         return input;

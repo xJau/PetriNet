@@ -41,7 +41,8 @@ public class DataLoader {
             Files.createDirectories(path);
             file = new File(this.filePath);
         } catch (IOException e) {
-
+            e.printStackTrace();
+            //TODO: Gestire
         }
 
     }
@@ -60,8 +61,7 @@ public class DataLoader {
         this.file = new File(filePath);
         if (file.exists()) {
             // System.out.println(filePath + " � stata caricata");
-        } else
-            createFile();
+        } else createFile();
     }
 
     private void createFile() {
@@ -163,8 +163,7 @@ public class DataLoader {
 
     private ArrayList<Network> loadNetworks(Scanner scanner, String data) {
         ArrayList<Network> networks = new ArrayList<>();
-        int netNumber;
-        netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
+        int netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
         // System.out.println(Integer.toString(netNumber) + " networks caricate");
 
         for (int i = 0; i < netNumber; i++) {
@@ -176,8 +175,7 @@ public class DataLoader {
 
     private ArrayList<PetrisNetwork> loadPetrisNetworks(Scanner scanner, String data) {
         ArrayList<PetrisNetwork> pNetworks = new ArrayList<>();
-        int netNumber;
-        netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
+        int netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
         // System.out.println(Integer.toString(netNumber) + " petri's networks
         // caricate");
 
@@ -190,11 +188,9 @@ public class DataLoader {
 
     private ArrayList<PriorityPetrisNetwork> loadPriorityPetrisNetworks(Scanner scanner, String data) {
         ArrayList<PriorityPetrisNetwork> pNetworks = new ArrayList<>();
-        int netNumber;
-        netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
+        int netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
         // System.out.println(Integer.toString(netNumber) + " petri's networks
         // caricate");
-
         for (int i = 0; i < netNumber; i++) {
             PriorityPetrisNetwork net = loadPriorityPetrisNetwork(scanner);
             pNetworks.add(net);

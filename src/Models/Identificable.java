@@ -1,5 +1,5 @@
 package Models;
 
-public interface Identificable {
+public interface Identifiable {
 	public int getId();
 }

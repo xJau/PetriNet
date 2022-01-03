@@ -1,6 +1,6 @@
 package Models;
 
-public abstract class Node implements Identificable{
+public abstract class Node implements Identifiable{
 
     private int id;
 

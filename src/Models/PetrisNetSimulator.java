@@ -1,6 +1,6 @@
 package Models;
 
-import static Utils.InputManager.inInt;
+import static Utils.InputManager.readInt;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +22,7 @@ public class PetrisNetSimulator {
 		
 		do {
 			menu.simulatorMenu();
-			input = inInt();
+			input = readInt();
 			if(input == 1) {
 				int idT = selectTransition(pn, marking);
 				if(idT == -1) {
@@ -33,9 +33,8 @@ public class PetrisNetSimulator {
 				menu.printNetStructure(pn);
 				menu.printPetriNetMarking(pn, marking);
 			}
-			else if(input == 0)stop = true;
 			else menu.printValue();
-		}while(!stop);
+		}while(input != 0);
 	}
 	
 
@@ -65,7 +64,7 @@ public class PetrisNetSimulator {
 			menu.print(enableTransitions);
 			do {
 				input = -1;
-                input = input + inInt();
+                input = input + readInt();
                 if (input < 0 || input > enableTransitions.size()-1) menu.printValue();
             } while (input < 0 || input > enableTransitions.size()-1);
 			return enableTransitions.get(input).getId();
@@ -113,7 +112,7 @@ public class PetrisNetSimulator {
 		
 		do {
 			menu.simulatorMenu();
-			input = inInt();
+			input = readInt();
 			if(input == 1) {
 				int idT = selectTransition(pnp, marking);
 				if(idT == -1) {
@@ -139,13 +138,13 @@ public class PetrisNetSimulator {
 			menu.onlyOneEnableTransition();
 			return enableTransitions.get(0).getId();
 		}
-		else if(enableTransitions.isEmpty())return -1;
+		else if(enableTransitions.isEmpty()) return -1;
 		else {
 			menu.selTrantionForFire();
 			menu.print(enableTransitions);
 			do {
 				input = -1;
-                input = input + inInt();
+                input = input + readInt();
                 if (input < 0 || input > enableTransitions.size()-1) menu.printValue();
             } while (input < 0 || input > enableTransitions.size()-1);
 			return enableTransitions.get(input).getId();

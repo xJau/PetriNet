@@ -2,7 +2,7 @@ package Models;
 
 import static Models.PetrisNetworksManager.convertToNet;
 import static Models.PriorityPetrisNetworkManager.convertToPetrisNet;
-import static Utils.InputManager.inInt;
+import static Utils.InputManager.readInt;
 import Utils.Menu;
 
 
@@ -164,18 +164,16 @@ public class NetImporter {
     	int i = 1;
     	String[] nameList = d.directoryInspection();
     	
-    	if(nameList.length == 0) {
-    		
-    		return null;
-    	}
+    	if(nameList.length == 0) return null;
     	
-    	for(String s: nameList) {
+    	for(String s : nameList) {
     		menu.print(i + ")" + s);
     		i++;
     	}
+
     	do{
     		stop = true;
-    		i = inInt();
+    		i = readInt();
     		if(i < 1 || i > nameList.length) {
     			menu.printValue();
     			stop = false;
@@ -186,8 +184,9 @@ public class NetImporter {
     }
     
     private static boolean checkIfNetExists(int i, Network net, ArrayList<? extends Network> nets) {
-        for (Network n : nets)
-            if (net.equals(n) && n.getId() != i) return true;
+        for (Network n : nets) {
+			if (net.equals(n) && n.getId() != i) return true;
+		}
         return false;
     }
     

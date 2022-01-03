@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class InputManager {
 	
-	public static int inInt() {
+	public static int readInt() {
 		int i;
 		Scanner s = new Scanner(System.in);
 		try {
