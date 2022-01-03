@@ -23,9 +23,9 @@ public class NetworksManager {
         static ArrayList<PetrisNetwork> savedpNets;
         static ArrayList<PriorityPetrisNetwork> savedpnpNets;
         static Network activeNetwork;
-        static String fileName = "Networks";
-        static String pfileName = "Petri_Networks";
-        static String pnpfileName = "Priority_Petri_Networks";
+        final static String fileName = "Networks";
+        final static String pfileName = "Petri_Networks";
+        final static String pnpfileName = "Priority_Petri_Networks";
         
         Menu menu;
 
