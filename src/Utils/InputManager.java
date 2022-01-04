@@ -3,17 +3,15 @@ package Utils;
 import java.util.Scanner;
 
 public class InputManager {
-	
+	static Scanner s = new Scanner(System.in);
 	public static int readInt() {
 		int i;
-		Scanner s = new Scanner(System.in);
 		try {
 			i = s.nextInt();
 		}
 		catch(Exception e) {
 			i = -1;
 		}
-		s.close();
 		return i;
 	}
 

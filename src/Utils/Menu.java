@@ -155,6 +155,6 @@ public class Menu {
 			break;
 		} while(true);
 		if(value == 0) return;
-		list.get(value).run();
+		list.get(value-1).run();
 	}
 }
