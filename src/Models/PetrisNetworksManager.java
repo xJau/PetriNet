@@ -1,54 +1,31 @@
 package Models;
-import java.util.ArrayList;
-import java.util.List;
 
 import static Utils.InputManager.*;
 
-import Utils.DataLoader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import Utils.DataPetriSaver;
-import Utils.DataSaver;
 import Utils.Menu;
 import static Utils.MatrixOperation.*;
 
-public class PetrisNetworksManager {
-	    
-	static Menu menu = new Menu();
-	
+public class PetrisNetworksManager {	
 	public static void pNetsMenu(ArrayList<PetrisNetwork> pn, ArrayList<Network> n, ArrayList<PetrisNetwork> savedpNets) {
-		int input;
-		boolean blocker = true;
-        while (blocker) {
-            menu.pnMenu();
-            do {
-                input = readInt();
-                switch (input) {
-                    case 0:
-                        blocker = false;
-                        break;
-                    case 1:
-                        selectPNet(savedpNets);
-                        break;
-                    case 2:
-                        menu.print(pn);
-                        break;
-                    case 3:
-                        createPNet(pn, n);
-                        break;
-                    default:
-                        menu.printValue();
-                        break;
-                }
-            } while (input < 0 || input > 3);
-        }
+		ArrayList<Runnable> actions = new ArrayList<>(Arrays.asList(
+			() -> selectPNet(savedpNets),
+			() -> Menu.print(pn),
+			() -> createPNet(pn, n)
+		));
+		Menu.selectMenu(Menu.PN_MENU, actions);
 	}
 	
 	public static void createPNet(ArrayList<PetrisNetwork> pn, ArrayList<Network> n) {
 		if(n.isEmpty()) {
-			menu.noNetForPetris();
+			Menu.print(Menu.NO_NETS_PER_PETRI);
 			return;
 		}
-		menu.selecNEtforPetris();
-		menu.print(n);
+		Menu.print(Menu.SELEZIONA_RETE_PER_PETRI);
+		Menu.print(n);
 		int input = select(n);
 		if(input == -1) return;
 		System.out.println(input);
@@ -62,38 +39,38 @@ public class PetrisNetworksManager {
 		int[] marking = new int[n.getPlaces().size()];
 		int[] linksWeight = new int[n.getLinks().size()];
 		
-		menu.inserisciMarcatura();
+		Menu.print(Menu.INSERIRE_MARCATURA_INIZIALE);
 		for(int i = 0; i < marking.length; i++) {
-			menu.print(n.getPlaces().get(i).toString());
+			Menu.print(n.getPlaces().get(i).toString());
 			marking[i] = readInt();
 			if(marking[i]<0) {
-				menu.printValue();
+				Menu.print(Menu.INSERIMENTO_VALIDO);
 				i--;
 			}
 		}
 		
-		menu.inserisciPesi();
+		Menu.print(Menu.INSERIRE_PESI_LINK);
 		for(int i = 0; i < linksWeight.length; i++) {
-			menu.print(n.getLinks().get(i).toString());
+			Menu.print(n.getLinks().get(i).toString());
 			linksWeight[i] = readInt();
 			if(linksWeight[i]<1) {
-				menu.printValue();
+				Menu.print(Menu.INSERIMENTO_VALIDO);
 				i--;
 			}
 		}
 		
 		
-		menu.insNuovoNome();
+		Menu.print(Menu.ASSEGNA_NOME_NET);
 		do {
 			name = inString();
 			if(!name.toLowerCase().replaceAll("[^a-z]", "").equals("name")) break;
-			menu.printValue();
+			Menu.print(Menu.INSERIMENTO_VALIDO);
 		}while(true);
 		
 		PetrisNetwork petri = new PetrisNetwork(n, id, name, marking);
 		petri.setWeight(linksWeight);
 		if(checkIfNetExists(petri, pn)) {
-			menu.netAlreadyExists();
+			Menu.print(Menu.NET_ALREADY_EXISTS);
 			return;
 		}
 		pn.add(petri);
@@ -104,30 +81,27 @@ public class PetrisNetworksManager {
 	public static void selectPNet(ArrayList<PetrisNetwork> pn) {
 		int input;
 		if(pn.isEmpty()) {
-			menu.noPetrisNets();
+			Menu.print(Menu.NO_PETRIS_NETS);
 			return;
 		}
 		
         int pnSize = pn.size();
-        menu.print(pn);
+        Menu.print(pn);
 
         do {
         	input = -1;
             input = input + readInt();
-            if (input < 0 || input > pnSize-1) menu.printValue();
+            if (input < 0 || input > pnSize-1) Menu.print(Menu.INSERIMENTO_VALIDO);
             else use(pn.get(input));
-        } while (input < 0 || input > pnSize-1);
-		
-		
+        } while (input < 0 || input > pnSize-1);	
 	}
 	
 	public static void use(PetrisNetwork pn) {
 		PetrisNetSimulator pns = new PetrisNetSimulator(); 
-		menu.printNetStructure(pn);
-		menu.printPetriNetMarking(pn);
+		Menu.printNetStructure(pn);
+		Menu.printPetriNetMarking(pn);
 		
-		pns.simulate(pn);
-		
+		pns.simulate(pn);	
 	}
 	
 	public static Network convertToNet(PetrisNetwork pn, int id) {
@@ -145,26 +119,26 @@ public class PetrisNetworksManager {
         int input = -1;
         do {
             if (savableNets.isEmpty()) {
-                menu.noNet();
+                Menu.print(Menu.NO_RETI);
                 break;
             }
-            menu.selectNetsToSave(savableNets);
             if (input == 0) return null;
+			
+			Menu.selectNetsToSave(savableNets);
             input = select(savableNets);
             if (input == -2) {
-                menu.noNet();
+                Menu.print(Menu.NO_RETI);
                 return null;
             }
             if (input == -1) return null;
             savingNets.add(savableNets.get(input));
             savableNets.remove(input);
-            menu.save();
+            Menu.print(Menu.SALVA_O_CONTINUA);
             do {
                 input = readInt();
                 if (input == 1) stop = true;
-                else if (input < 1 || input > 2) menu.printValue();
+                else if (input < 1 || input > 2) Menu.print(Menu.INSERIMENTO_VALIDO);
             } while (input < 1 || input > 2);
-
         } while (!stop);
         
         savedpNets = savingNets;
@@ -181,15 +155,14 @@ public class PetrisNetworksManager {
         do {
             input = -1;
             input = input + readInt();
-            if (input == -2 || input > id.size()-1) menu.printValue();
+            if (input == -2 || input > id.size()-1) Menu.print(Menu.INSERIMENTO_VALIDO);
         } while (input < -1 || input > id.size()-1);
         return input;
     }
 	
 	private static void sortNetId(List <? extends Network> n) {
-    	for(int i = 0; i<n.size(); i++) {
+    	for(int i = 0; i<n.size(); i++)
     		n.get(i).setId(i);
-    	}
     }
 	
 	private static boolean checkIfNetExists(Network net, ArrayList<? extends Network> nets) {

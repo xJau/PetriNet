@@ -6,17 +6,12 @@ import Models.PriorityPetrisNetwork;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOError;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-
-import javax.imageio.IIOException;
-import javax.xml.catalog.Catalog;
 
 public class DataLoader {
 
@@ -242,6 +237,7 @@ public class DataLoader {
                 dimScannerValue = dimensioneScanner.next();
                 dimensione = Integer.valueOf(dimScannerValue.replaceAll("[^0-9]", ""));
                 column = dimensione;
+                dimensioneScanner.close();
             } else if (data.contains("Matrix in")) {
                 matrixIn = loadMatrix(rows, column, scanner);
             } else if (data.contains("Matrix out")) {
@@ -249,9 +245,7 @@ public class DataLoader {
                 net = new Network(netNumber, netName, matrixIn, matrixOut);
                 return net;
             }
-
         }
-
         return net;
     }
 

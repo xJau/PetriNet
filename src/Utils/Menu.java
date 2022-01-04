@@ -2,7 +2,6 @@ package Utils;
 
 import Models.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Menu {
 
@@ -124,223 +123,21 @@ public class Menu {
         System.out.println("\n0) "+FINE);
     }
 
-
-    public void mainMenu() {
-        System.out.println(SELEZIONE_AZIONE_NET);
-//        avvisoPerditaDati();
-    }
-
 	public static void printError(String err){
 		System.out.println("ERRORE: " + err);
 	}
 
-    public void printValue() {
-        System.out.print(INSERIMENTO_VALIDO);
-    }
-
-    public void save() {
-        System.out.println(SALVA_O_CONTINUA);
-    }
-
-    public void doToNet() {
-        System.out.println(AGGIUNGI);
-    }
-
-    public void selectTransitions(ArrayList<Transition> transitions) {
+    public static void selectTransitions(ArrayList<Transition> transitions) {
 
         System.out.println(SELEZIONA_TRANSIZIONE);
         print(transitions);
         System.out.println("\n0) "+FINE);
     }
 
-    public void placeInGoing() {
-        System.out.println(P_INGRESSO_O_USCITA);
-    }
-    
-    public void transitionInGoing() {
-        System.out.println(T_INGRESSO_O_USCITA);
-    }
-
-
-    public void yesNo(){
-        System.out.println(S_N);
-    }
-
-
-	public void selezionaPoT() {
-		System.out.println(SELETIONA_POT);	
-	}
-
-
-	public void linkEsiste() {
-		System.out.println(LINK_GIA_ESISTENTE);	
-	}
-
-
-	public void noNet() {
-		System.out.println(NO_RETI);	
-		
-	}
-
-
-	public void netAlreadyExists() {
-		System.out.println(NET_ALREADY_EXISTS);
-		
-	}
-
-
-	public void insNuovoNome() {
-		System.out.println(ASSEGNA_NOME_NET);
-		
-	}
-
-
-	public void avvisoPerditaDati() {
-		System.out.println(AVVISO_PERDITA_DATI);
-		
-	}
-
-
-	public void inserisciMarcatura() {
-		System.out.println(INSERIRE_MARCATURA_INIZIALE);
-		
-	}
-
-
-	public void pnMenu() {
-		System.out.println(PN_MENU);
-		
-	}
-
-
-	public void inserisciPesi() {
-		System.out.println(INSERIRE_PESI_LINK);
-		
-	}
-
-
-	public void noNetForPetris() {
-		System.out.println(NO_NETS_PER_PETRI);
-		
-	}
-
-
-	public void noPetrisNets() {
-		System.out.println(NO_PETRIS_NETS);
-		
-	}
-	
-	public void selecNEtforPetris() {
-		System.out.println(SELEZIONA_RETE_PER_PETRI);
-		
-	}
-
-
-	public void selTrantionForFire() {
-		System.out.println(SELEZIONA_TRANSIZIONE_PER_SCATTO);
-		
-	}
-
-
-	public void onlyOneEnableTransition() {
-		System.out.println(UNA_SOLA_TRANSIZIONE_ABILITATA);
-		
-	}
-
-
-	public void simulatorMenu() {
-		System.out.println(SIMULATORE_MENU);
-		
-	}
-
-
-	public void noEnableTransitions() {
-		System.out.println(NESSUNA_TRANSIZIONE_ABILITATA);
-		
-	}
-
-
-	public void pnpMenu() {
-		System.out.println(PNP_MENU);
-		
-	}
-
-
-	public void noPNetForPPetris() {
-		System.out.println(NO_PRIORITY_NETS_PER_PETRI);
-		
-	}
-
-
-	public void selecPNEtforPPetris() {
-		System.out.println(SELEZIONA_RETE_DI_PETRI_PER_PETRI_CON_PRIORITA);
-		
-	}
-
-
-	public void inserisciPriorita() {
-		System.out.println(INSERIRE_PRIORITA_TRANSIZIONI);
-		
-	}
-
-
-	public void noPriorityPetrisNets() {
-		System.out.println(NO_PRIORITY_PETRIS_NETS);
-		
-	}
-
-
-	public void printTransitionPriority(PriorityPetrisNetwork pnp, int[] priority) {
+	public static void printTransitionPriority(PriorityPetrisNetwork pnp, int[] priority) {
 		for(int i = 0; i < priority.length; i++) {
     		System.out.println(pnp.getTransitions().get(i).toString()+ " priorit� = "+ priority[i]);
     	}
-		
-	}
-
-
-	public void importMenu() {
-		System.out.println(IMPORT_MENU);
-		
-	}
-
-
-	public void netFatherDontExist() {
-		System.out.println(NET_FATHER_DONT_EXIST);
-		
-	}
-
-
-	public void emptyOrIncompatible() {
-		System.out.println(FILE_VUOTO_O_NON_COMPATIBILE);
-		
-	}
-
-
-	public void netNotConnected() {
-		System.out.println(RETE_NON_CONNESSA);	
-	}
-
-
-	public void pnUserMenu() {
-		System.out.println(USER_PN_MENU);
-		
-	}
-
-
-	public void pnpUserMenu() {
-		System.out.println(USER_PNP_MENU);
-		
-	}
-
-
-	public void userMenu() {
-		System.out.println(USER_MENU);
-		
-	}
-
-
-	public void identification() {
-		System.out.println(IDENTIFICATION);
 		
 	}
 
@@ -360,11 +157,4 @@ public class Menu {
 		if(value == 0) return;
 		list.get(value).run();
 	}
-
-
-	public void noFileToImport() {
-		System.out.println(NESSUN_FILE);
-		
-	}
-	
 }

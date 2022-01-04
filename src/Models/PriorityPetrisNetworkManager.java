@@ -2,9 +2,9 @@ package Models;
 
 import static Utils.InputManager.readInt;
 import static Utils.InputManager.inString;
-import static Utils.MatrixOperation.changeNonNullMatrixEnrtriesToOne;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import Utils.DataPetriSaver;
@@ -13,43 +13,22 @@ import Utils.Menu;
 
 public class PriorityPetrisNetworkManager {
 	
-	static Menu menu = new Menu();
-	
 	public static void pnpMenu(ArrayList<PriorityPetrisNetwork> pnp, ArrayList<PetrisNetwork> pn, ArrayList<PriorityPetrisNetwork> savedpnpNets) {
-		int input;
-		boolean blocker = true;
-        while (blocker) {
-            menu.pnpMenu();
-            do {
-                input = readInt();
-                switch (input) {
-                    case 0:
-                        blocker = false;
-                        break;
-                    case 1:
-                        selectPPNet(savedpnpNets);
-                        break;
-                    case 2:
-                        menu.print(pnp);
-                        break;
-                    case 3:
-                        createPPNet(pnp, pn);
-                        break;
-                    default:
-                        menu.printValue();
-                        break;
-                }
-            } while (input < 0 || input > 3);
-        }
+        ArrayList<Runnable> actions = new ArrayList<>(Arrays.asList(
+			() -> selectPPNet(savedpnpNets),
+			() -> Menu.print(pnp),
+			() -> createPPNet(pnp, pn)
+		));
+		Menu.selectMenu(Menu.PNP_MENU, actions);
 	}
 	
 	private static void createPPNet(ArrayList<PriorityPetrisNetwork> pnp, ArrayList<PetrisNetwork> pn) {
 		if(pn.isEmpty()) {
-			menu.noPNetForPPetris();
+			Menu.print(Menu.NO_PRIORITY_NETS_PER_PETRI);
 			return;
 		}
-		menu.selecPNEtforPPetris();
-		menu.print(pn);
+		Menu.print(Menu.SELEZIONA_RETE_DI_PETRI_PER_PETRI_CON_PRIORITA);
+		Menu.print(pn);
 		int input = select(pn);
 		if(input == -1)return;
 		System.out.println(input);
@@ -61,26 +40,26 @@ public class PriorityPetrisNetworkManager {
 		int id = pnp.size();
 		int[] priority = new int[pn.getTransitions().size()];
 		
-		menu.inserisciPriorita();
+		Menu.print(Menu.INSERIRE_PRIORITA_TRANSIZIONI);
 		for(int i = 0; i < priority.length; i++) {
-			menu.print(pn.getTransitions().get(i).toString());
+			Menu.print(pn.getTransitions().get(i).toString());
 			priority[i] = readInt();
 			if(priority[i]<1) {
-				menu.printValue();
+				Menu.print(Menu.INSERIMENTO_VALIDO);
 				i--;
 			}
 		}
 		
-		menu.insNuovoNome();
+		Menu.print(Menu.ASSEGNA_NOME_NET);
 		do {
 			name = inString();
 			if(!name.toLowerCase().replaceAll("[^a-z]", "").equals("name"))break;
-			menu.printValue();
+			Menu.print(Menu.INSERIMENTO_VALIDO);
 		}while(true);
 		
 		PriorityPetrisNetwork pPetri = new PriorityPetrisNetwork(pn, id, name, priority);
 		if(checkIfNetExists(pPetri, pnp)) {
-			menu.netAlreadyExists();
+			Menu.print(Menu.NET_ALREADY_EXISTS);
 			return;
 		}
 		pnp.add(pPetri);
@@ -90,29 +69,27 @@ public class PriorityPetrisNetworkManager {
 	public static void selectPPNet(ArrayList<PriorityPetrisNetwork> pnp) {
 		int input;
 		if(pnp.isEmpty()) {
-			menu.noPriorityPetrisNets();
+			Menu.print(Menu.NO_PRIORITY_PETRIS_NETS);
 			return;
 		}
 		
         int pnSize = pnp.size();
-        menu.print(pnp);
+        Menu.print(pnp);
 
         do {
         	input = -1;
             input = input + readInt();
-            if (input < 0 || input > pnSize-1) menu.printValue();
+            if (input < 0 || input > pnSize-1) Menu.print(Menu.INSERIMENTO_VALIDO);
             else use(pnp.get(input));
         } while (input < 0 || input > pnSize-1);
 	}
 	
 	private static void use(PriorityPetrisNetwork pnp) {
 		PetrisNetSimulator pns = new PetrisNetSimulator(); 
-		menu.printNetStructure(pnp);
-		menu.printPetriNetMarking(pnp);
-		menu.printTransitionPriority(pnp, pnp.getPriority());
-		
+		Menu.printNetStructure(pnp);
+		Menu.printPetriNetMarking(pnp);
+		Menu.printTransitionPriority(pnp, pnp.getPriority());		
 		pns.simulate(pnp);
-		
 	}
 	
 	public static Network convertToPetrisNet(PriorityPetrisNetwork pn, int id) {
@@ -127,24 +104,24 @@ public class PriorityPetrisNetworkManager {
         int input = -1;
         do {
             if (savableNets.isEmpty()) {
-                menu.noNet();
+                Menu.print(Menu.NO_RETI);
                 break;
             }
-            menu.selectNetsToSave(savableNets);
+            Menu.selectNetsToSave(savableNets);
             if (input == 0) return null;
             input = select(savableNets);
             if (input == -2) {
-                menu.noNet();
+                Menu.print(Menu.NO_RETI);
                 return null;
             }
             if (input == -1) return null;
             savingNets.add(savableNets.get(input));
             savableNets.remove(input);
-            menu.save();
+            Menu.print(Menu.SALVA_O_CONTINUA);
             do {
                 input = readInt();
                 if (input == 1) stop = true;
-                else if (input < 1 || input > 2) menu.printValue();
+                else if (input < 1 || input > 2) Menu.print(Menu.INSERIMENTO_VALIDO);
             } while (input < 1 || input > 2);
 
         } while (!stop);
@@ -158,13 +135,12 @@ public class PriorityPetrisNetworkManager {
 	
 
 	private static int select(List<? extends Identifiable> id) {
-
         int input;
         if (id.size() == 0) return -2;
         do {
             input = -1;
             input = input + readInt();
-            if (input == -2 || input > id.size()-1) menu.printValue();
+            if (input == -2 || input > id.size()-1) Menu.print(Menu.INSERIMENTO_VALIDO);
         } while (input < -1 || input > id.size()-1);
         return input;
     }
@@ -179,7 +155,5 @@ public class PriorityPetrisNetworkManager {
         for (Network n : nets)
             if (net.equals(n)) return true;
         return false;
-    }
-	
-	
+    }	
 }
