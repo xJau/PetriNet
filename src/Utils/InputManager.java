@@ -30,7 +30,6 @@ public class InputManager {
 				a = "e";
 			}
 		}while(error == true);
-		s.close();
 		return a;
 	}
 	
