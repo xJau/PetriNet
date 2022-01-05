@@ -258,7 +258,7 @@ public class NetworksManager {
         
         public void setNetName() {
         	String nuovoNome;
-        	Menu.print(Menu.NO_PETRIS_NETS);
+        	Menu.print(Menu.ASSEGNA_NOME_NET);
         	do {
         		nuovoNome = inString();
         		if(!nuovoNome.toLowerCase().replaceAll("[^a-z]", "").equals("name")) break;
