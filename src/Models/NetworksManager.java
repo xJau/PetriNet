@@ -42,9 +42,7 @@ public class NetworksManager {
 
         public static void main(String[] args) {
             NetworkManager manager = new NetworkManager();
-            do {
-                manager.identification();
-            } while (true);
+            manager.identification();
         }
         
         private void identification() {
@@ -57,7 +55,7 @@ public class NetworksManager {
 
         private void mainMenu() {
             ArrayList<Runnable> actions = new ArrayList<>(Arrays.asList(
-                () -> { while(true) { selectNet(); }},
+                () -> selectNet(),
                 () -> saveNetworks(),
                 () -> pNetsMenu(pnets, savedNets, savedpNets, menu),
                 () -> savePetrisNetworks(),
