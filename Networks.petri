@@ -1,14 +1,5 @@
 Available Networks: 8
 	id: 0
-	Name: provaNuova
-		Dimension: 2 : 2
-			Matrix in:
-				1 1 
-				0 0 
-			Matrix out:
-				0 0 
-				0 1 
-	id: 1
 	Name: provaDaIngeSW
 		Dimension: 4 : 4
 			Matrix in:
@@ -21,6 +12,15 @@ Available Networks: 8
 				1 0 0 1 
 				1 0 0 0 
 				0 0 1 0 
+	id: 1
+	Name: provaNuova
+		Dimension: 2 : 2
+			Matrix in:
+				1 1 
+				0 0 
+			Matrix out:
+				0 0 
+				0 1 
 	id: 2
 	Name: rea
 		Dimension: 1 : 2

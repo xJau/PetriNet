@@ -3,10 +3,9 @@ package Utils;
 import java.util.Scanner;
 
 public class InputManager {
-	
-	public static int inInt() {
+	static Scanner s = new Scanner(System.in);
+	public static int readInt() {
 		int i;
-		Scanner s = new Scanner(System.in);
 		try {
 			i = s.nextInt();
 		}

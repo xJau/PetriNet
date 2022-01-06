@@ -6,17 +6,12 @@ import Models.PriorityPetrisNetwork;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOError;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-
-import javax.imageio.IIOException;
-import javax.xml.catalog.Catalog;
 
 public class DataLoader {
 
@@ -41,7 +36,8 @@ public class DataLoader {
             Files.createDirectories(path);
             file = new File(this.filePath);
         } catch (IOException e) {
-
+            e.printStackTrace();
+            //TODO: Gestire
         }
 
     }
@@ -60,8 +56,7 @@ public class DataLoader {
         this.file = new File(filePath);
         if (file.exists()) {
             // System.out.println(filePath + " � stata caricata");
-        } else
-            createFile();
+        } else createFile();
     }
 
     private void createFile() {
@@ -163,8 +158,7 @@ public class DataLoader {
 
     private ArrayList<Network> loadNetworks(Scanner scanner, String data) {
         ArrayList<Network> networks = new ArrayList<>();
-        int netNumber;
-        netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
+        int netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
         // System.out.println(Integer.toString(netNumber) + " networks caricate");
 
         for (int i = 0; i < netNumber; i++) {
@@ -176,8 +170,7 @@ public class DataLoader {
 
     private ArrayList<PetrisNetwork> loadPetrisNetworks(Scanner scanner, String data) {
         ArrayList<PetrisNetwork> pNetworks = new ArrayList<>();
-        int netNumber;
-        netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
+        int netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
         // System.out.println(Integer.toString(netNumber) + " petri's networks
         // caricate");
 
@@ -190,11 +183,9 @@ public class DataLoader {
 
     private ArrayList<PriorityPetrisNetwork> loadPriorityPetrisNetworks(Scanner scanner, String data) {
         ArrayList<PriorityPetrisNetwork> pNetworks = new ArrayList<>();
-        int netNumber;
-        netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
+        int netNumber = Integer.valueOf(data.replaceAll("[^0-9]", ""));
         // System.out.println(Integer.toString(netNumber) + " petri's networks
         // caricate");
-
         for (int i = 0; i < netNumber; i++) {
             PriorityPetrisNetwork net = loadPriorityPetrisNetwork(scanner);
             pNetworks.add(net);
@@ -246,6 +237,7 @@ public class DataLoader {
                 dimScannerValue = dimensioneScanner.next();
                 dimensione = Integer.valueOf(dimScannerValue.replaceAll("[^0-9]", ""));
                 column = dimensione;
+                dimensioneScanner.close();
             } else if (data.contains("Matrix in")) {
                 matrixIn = loadMatrix(rows, column, scanner);
             } else if (data.contains("Matrix out")) {
@@ -253,9 +245,7 @@ public class DataLoader {
                 net = new Network(netNumber, netName, matrixIn, matrixOut);
                 return net;
             }
-
         }
-
         return net;
     }
 
