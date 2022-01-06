@@ -2,6 +2,7 @@ package Models;
 
 import Utils.*;
 import Utils.Menu;
+import View.Console;
 
 import static Utils.InputManager.*;
 import static Models.PetrisNetworksManager.*;
@@ -28,6 +29,7 @@ public class NetworksManager {
         static String fileName = "Networks";
         static String pfileName = "Petri_Networks";
         static String pnpfileName = "Priority_Petri_Networks";
+        private Menu menu;
 
 
         private NetworkManager() {
@@ -35,6 +37,7 @@ public class NetworksManager {
             savedNets = new ArrayList<>(nets);
             savedpNets = new ArrayList<>(pnets);
             savedpnpNets = new ArrayList<>(pnpnets);
+            menu = new Menu(new Console());
         }
 
         public static void main(String[] args) {
@@ -47,28 +50,28 @@ public class NetworksManager {
                 () -> mainMenu(),
                 () -> userMenu()    
             ));
-            Menu.selectMenu(Menu.IDENTIFICATION, actions);
+            menu.selectMenu(Menu.IDENTIFICATION, actions);
         }
 
         private void mainMenu() {
             ArrayList<Runnable> actions = new ArrayList<>(Arrays.asList(
                 () -> selectNet(),
                 () -> saveNetworks(),
-                () -> pNetsMenu(pnets, savedNets, savedpNets),
+                () -> pNetsMenu(pnets, savedNets, savedpNets, menu),
                 () -> savePetrisNetworks(),
-                () -> pnpMenu(pnpnets, savedpNets, savedpnpNets),
+                () -> pnpMenu(pnpnets, savedpNets, savedpnpNets, menu),
                 () -> savePriorityPetrisNetwork(),
                 () -> importFile()                
             ));
-            Menu.selectMenu(Menu.SELEZIONE_AZIONE_NET, actions);
+            menu.selectMenu(Menu.SELEZIONE_AZIONE_NET, actions);
         }
         
         private void userMenu() {
             ArrayList<Runnable> actions = new ArrayList<>(Arrays.asList(
-                () -> selectPNet(savedpNets),
-                () -> selectPPNet(savedpnpNets)
+                () -> selectPNet(savedpNets, menu),
+                () -> selectPPNet(savedpnpNets, menu)
             ));
-            Menu.selectMenu(Menu.USER_MENU, actions);
+            menu.selectMenu(Menu.USER_MENU, actions);
         }
             
        
@@ -77,13 +80,13 @@ public class NetworksManager {
             if (nets.isEmpty()) nets.add(new Network(0, "Rete zero"));
             int netsSize = nets.size();
 
-            Menu.selectNets(nets);
+            menu.selectNets(nets);
 
             do {
             	input = -1;
                 input = input + readInt();
                 if (input == -1) return;
-                else if (input < 0 || input > netsSize) Menu.print(Menu.INSERIMENTO_VALIDO);
+                else if (input < 0 || input > netsSize) menu.print(Menu.INSERIMENTO_VALIDO);
                 else if (input == netsSize) createNet();
                 else modifyNet(nets.get(input));
             } while (input < 0 || input > netsSize);
@@ -99,7 +102,7 @@ public class NetworksManager {
         }
 
         private void saveNetworks() {
-        	ArrayList<Network> sv = save(fileName, nets, savedNets);
+        	ArrayList<Network> sv = save(fileName, nets, savedNets, menu);
         	if(sv == null)return;
         	savedNets = sv;
         }
@@ -116,11 +119,11 @@ public class NetworksManager {
                 () -> addLink(),
                 () -> setNetName()            
             ));
-            Menu.printNetStructure(activeNetwork);
-            Menu.selectMenu(Menu.AGGIUNGI, actions);
+            menu.printNetStructure(activeNetwork);
+            menu.selectMenu(Menu.AGGIUNGI, actions);
             activeNetwork.generateMatrix();
             if (checkIfNetExists(activeNetwork.getId(), activeNetwork, nets)) {
-                Menu.print(Menu.NET_ALREADY_EXISTS);
+                menu.print(Menu.NET_ALREADY_EXISTS);
                 modifyNet();
             }
         }
@@ -137,12 +140,12 @@ public class NetworksManager {
             String ingoing;
             int input = -1;
             ArrayList<Transition> transitions = activeNetwork.getTransitions();
-            Menu.selectTransitions(transitions);
-            input = select(transitions);
+            menu.selectTransitions(transitions);
+            input = select(transitions, menu);
             if (input == -1) return;
-            Menu.print(Menu.P_INGRESSO_O_USCITA);
+            menu.print(Menu.P_INGRESSO_O_USCITA);
             do {
-                Menu.print(Menu.S_N);
+                menu.print(Menu.S_N);
                 ingoing = inString().toLowerCase();
             } while (!ingoing.equals("n") && !ingoing.equals("y"));
 
@@ -153,12 +156,12 @@ public class NetworksManager {
             String ingoing;
             int input;
             ArrayList<Place> places = activeNetwork.getPlaces();
-            Menu.selectPlaces(places);
-            input = select(places);
+            menu.selectPlaces(places);
+            input = select(places, menu);
             if (input == -1) return;
-            Menu.print(Menu.T_INGRESSO_O_USCITA);
+            menu.print(Menu.T_INGRESSO_O_USCITA);
             do {
-                Menu.print(Menu.S_N);
+                menu.print(Menu.S_N);
                 ingoing = inString().toLowerCase();
             } while (!ingoing.equals("n") && !ingoing.equals("y"));
 
@@ -171,34 +174,34 @@ public class NetworksManager {
             int inputY;
             ArrayList<Place> places = activeNetwork.getPlaces();
             ArrayList<Transition> transitions = activeNetwork.getTransitions();
-            Menu.print(Menu.SELETIONA_POT);
+            menu.print(Menu.SELETIONA_POT);
             do {
                 String s = inString();
                 if (s.equals("p")) {
-                    Menu.selectPlaces(places);
-                    inputX = select(places);
+                    menu.selectPlaces(places);
+                    inputX = select(places, menu);
                     if (inputX == -1) return;
-                    Menu.selectTransitions(transitions);
-                    inputY = select(transitions);
+                    menu.selectTransitions(transitions);
+                    inputY = select(transitions, menu);
                     if (inputY == -1) return;
                     l = new Link(places.get(inputX), transitions.get(inputY));
                     break;
                 } else if (s.equals("t")) {
-                    Menu.selectTransitions(transitions);
-                    inputX = select(transitions);
+                	menu.selectTransitions(transitions);
+                    inputX = select(transitions, menu);
                     if (inputX == -1) return;
-                    Menu.selectPlaces(places);
-                    inputY = select(places);
+                    menu.selectPlaces(places);
+                    inputY = select(places, menu);
                     if (inputY == -1) return;
                     l = new Link(transitions.get(inputX), places.get(inputY));
                     break;
                 } else {
-                    Menu.print(Menu.INSERIMENTO_VALIDO);
+                	menu.print(Menu.INSERIMENTO_VALIDO);
                 }
             } while (true);
 
             if (activeNetwork.checkLinkExist(l))
-                Menu.print(Menu.LINK_GIA_ESISTENTE);
+            	menu.print(Menu.LINK_GIA_ESISTENTE);
             else activeNetwork.getLinks().add(l);
         }
        
@@ -210,23 +213,23 @@ public class NetworksManager {
         
         public void setNetName() {
         	String nuovoNome;
-        	Menu.print(Menu.ASSEGNA_NOME_NET);
+        	menu.print(Menu.ASSEGNA_NOME_NET);
         	do {
         		nuovoNome = inString();
         		if(!nuovoNome.toLowerCase().replaceAll("[^a-z]", "").equals("name")) break;
-        		Menu.print(Menu.INSERIMENTO_VALIDO);
+        		menu.print(Menu.INSERIMENTO_VALIDO);
         	}while(true);
         	activeNetwork.setName(nuovoNome);
         }
         
         public void savePetrisNetworks(){
-        	ArrayList<PetrisNetwork> sv = savePnets(pfileName, pnets, savedpNets);
+        	ArrayList<PetrisNetwork> sv = savePnets(pfileName, pnets, savedpNets, menu);
         	if(sv == null)return;
         	savedpNets = sv;
         }
         
         private void savePriorityPetrisNetwork() {
-        	ArrayList<PriorityPetrisNetwork> sv = savePnpnets(pnpfileName, pnpnets, savedpnpNets);
+        	ArrayList<PriorityPetrisNetwork> sv = savePnpnets(pnpfileName, pnpnets, savedpnpNets, menu);
         	if(sv == null)return;
         	savedpnpNets = sv;
 			
@@ -235,19 +238,19 @@ public class NetworksManager {
         public void importFile() {
             ArrayList<Runnable> actions = new ArrayList<>(Arrays.asList(
                 () -> {
-                    Network n = importNet(nets);
+                    Network n = importNet(nets, menu);
                     if(n != null)nets.add(n);
                 },
                 () -> {
-                    PetrisNetwork pn = importPetrisNet(pnets, savedNets);
+                    PetrisNetwork pn = importPetrisNet(pnets, savedNets, menu);
                     if(pn != null)pnets.add(pn);
                 },
                 () -> {
-                    PriorityPetrisNetwork pnp = importPriorityPetrisNet(pnpnets, savedpNets);
+                    PriorityPetrisNetwork pnp = importPriorityPetrisNet(pnpnets, savedpNets, menu);
                     if(pnp != null)pnpnets.add(pnp);
                 }        
             ));
-            Menu.selectMenu(Menu.IMPORT_MENU, actions);
+            menu.selectMenu(Menu.IMPORT_MENU, actions);
         }
         
     }

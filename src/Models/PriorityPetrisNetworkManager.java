@@ -11,86 +11,87 @@ import java.util.List;
 import Utils.DataPetriSaver;
 import Utils.DataPriorityPetriSaver;
 import Utils.Menu;
+import View.UI;
 
 public class PriorityPetrisNetworkManager {
 	
-	public static void pnpMenu(ArrayList<PriorityPetrisNetwork> pnp, ArrayList<PetrisNetwork> pn, ArrayList<PriorityPetrisNetwork> savedpnpNets) {
+	public static void pnpMenu(ArrayList<PriorityPetrisNetwork> pnp, ArrayList<PetrisNetwork> pn, ArrayList<PriorityPetrisNetwork> savedpnpNets, Menu menu) {
         ArrayList<Runnable> actions = new ArrayList<>(Arrays.asList(
-			() -> selectPPNet(savedpnpNets),
-			() -> Menu.print(pnp),
-			() -> createPPNet(pnp, pn)
+			() -> selectPPNet(savedpnpNets, menu),
+			() -> menu.print(pnp),
+			() -> createPPNet(pnp, pn, menu)
 		));
-		Menu.selectMenu(Menu.PNP_MENU, actions);
+        menu.selectMenu(Menu.PNP_MENU, actions);
 	}
 	
-	private static void createPPNet(ArrayList<PriorityPetrisNetwork> pnp, ArrayList<PetrisNetwork> pn) {
+	private static void createPPNet(ArrayList<PriorityPetrisNetwork> pnp, ArrayList<PetrisNetwork> pn, Menu menu) {
 		if(pn.isEmpty()) {
-			Menu.print(Menu.NO_PRIORITY_NETS_PER_PETRI);
+			menu.print(Menu.NO_PRIORITY_NETS_PER_PETRI);
 			return;
 		}
-		Menu.print(Menu.SELEZIONA_RETE_DI_PETRI_PER_PETRI_CON_PRIORITA);
-		Menu.print(pn);
-		int input = select(pn);
+		menu.print(Menu.SELEZIONA_RETE_DI_PETRI_PER_PETRI_CON_PRIORITA);
+		menu.print(pn);
+		int input = select(pn, menu);
 		if(input == -1)return;
 		System.out.println(input);
-		createPNet(pnp, pn.get(input));
+		createPNet(pnp, pn.get(input), menu);
 	}
 
-	private static void createPNet(ArrayList<PriorityPetrisNetwork> pnp, PetrisNetwork pn) {
+	private static void createPNet(ArrayList<PriorityPetrisNetwork> pnp, PetrisNetwork pn, Menu menu) {
 		String name;
 		int id = pnp.size();
 		int[] priority = new int[pn.getTransitions().size()];
 		
-		Menu.print(Menu.INSERIRE_PRIORITA_TRANSIZIONI);
+		menu.print(Menu.INSERIRE_PRIORITA_TRANSIZIONI);
 		for(int i = 0; i < priority.length; i++) {
-			Menu.print(pn.getTransitions().get(i).toString());
+			menu.print(pn.getTransitions().get(i).toString());
 			priority[i] = readInt();
 			if(priority[i]<1) {
-				Menu.print(Menu.INSERIMENTO_VALIDO);
+				menu.print(Menu.INSERIMENTO_VALIDO);
 				i--;
 			}
 		}
 		
-		Menu.print(Menu.ASSEGNA_NOME_NET);
+		menu.print(Menu.ASSEGNA_NOME_NET);
 		do {
 			name = inString();
 			if(!name.toLowerCase().replaceAll("[^a-z]", "").equals("name"))break;
-			Menu.print(Menu.INSERIMENTO_VALIDO);
+			menu.print(Menu.INSERIMENTO_VALIDO);
 		}while(true);
 		
 		PriorityPetrisNetwork pPetri = new PriorityPetrisNetwork(pn, id, name, priority);
 		if(checkIfNetExists(pPetri, pnp)) {
-			Menu.print(Menu.NET_ALREADY_EXISTS);
+			menu.print(Menu.NET_ALREADY_EXISTS);
 			return;
 		}
 		pnp.add(pPetri);
 		
 	}
 
-	public static void selectPPNet(ArrayList<PriorityPetrisNetwork> pnp) {
+	public static void selectPPNet(ArrayList<PriorityPetrisNetwork> pnp, Menu menu) {
 		int input;
 		if(pnp.isEmpty()) {
-			Menu.print(Menu.NO_PRIORITY_PETRIS_NETS);
+			menu.print(Menu.NO_PRIORITY_PETRIS_NETS);
 			return;
 		}
 		
         int pnSize = pnp.size();
-        Menu.print(pnp);
+        menu.print(pnp);
 
         do {
         	input = -1;
             input = input + readInt();
-            if (input < 0 || input > pnSize-1) Menu.print(Menu.INSERIMENTO_VALIDO);
-            else use(pnp.get(input));
+            if (input < 0 || input > pnSize-1) menu.print(Menu.INSERIMENTO_VALIDO);
+            else use(pnp.get(input), menu);
         } while (input < 0 || input > pnSize-1);
 	}
 	
-	private static void use(PriorityPetrisNetwork pnp) {
+	private static void use(PriorityPetrisNetwork pnp, Menu menu) {
 		PetrisNetSimulator pns = new PetrisNetSimulator(); 
-		Menu.printNetStructure(pnp);
-		Menu.printPetriNetMarking(pnp);
-		Menu.printTransitionPriority(pnp, pnp.getPriority());		
-		pns.simulate(pnp);
+		menu.printNetStructure(pnp);
+		menu.printPetriNetMarking(pnp);
+		menu.printTransitionPriority(pnp, pnp.getPriority());		
+		pns.simulate(pnp, menu);
 	}
 	
 	public static Network convertToPetrisNet(PriorityPetrisNetwork pn, int id) {

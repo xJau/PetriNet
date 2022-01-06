@@ -8,17 +8,17 @@ import Utils.DataLoader;
 import java.util.ArrayList;
 
 public class NetImporter {
-	public static Network importNet(ArrayList<Network> nets) {
+	public static Network importNet(ArrayList<Network> nets, Menu menu) {
     	DataLoader d = new DataLoader("/Networks", "Importare");
-    	String s = selectFile(d);
+    	String s = selectFile(d, menu);
 
     	if(s == null) {
-    		Menu.printError(Menu.NESSUN_FILE);
+    		menu.printError(Menu.NESSUN_FILE);
     		return null;
     	}
 
     	d.selectFile(s);
-    	Menu.print(s);
+    	menu.print(s);
 
     	ArrayList<Network> output;
     	try{
@@ -26,7 +26,7 @@ public class NetImporter {
 			if(output.isEmpty()) throw new Exception();
     	}
     	catch(Exception e){
-    		Menu.printError(Menu.FILE_VUOTO_O_NON_COMPATIBILE);
+    		menu.printError(Menu.FILE_VUOTO_O_NON_COMPATIBILE);
     		return null;
     	}
 
@@ -35,37 +35,37 @@ public class NetImporter {
 		  net.getName().isEmpty() ||
 		  !net.checkIfEntriesAreCorrect()
 		){
-    		Menu.printError(Menu.FILE_VUOTO_O_NON_COMPATIBILE);
+    		menu.printError(Menu.FILE_VUOTO_O_NON_COMPATIBILE);
     		return null;
     	}
     	if(checkIfNetExists(nets.size(), net, nets)) {
-    		Menu.printError(Menu.NET_ALREADY_EXISTS);
+    		menu.printError(Menu.NET_ALREADY_EXISTS);
     		return null;
     	}
     	if(!net.checkConnectivity()) {
-    		Menu.printError(Menu.RETE_NON_CONNESSA);
+    		menu.printError(Menu.RETE_NON_CONNESSA);
     		return null;
     	}
     	return net;
     }
 	
     
-    public static PetrisNetwork importPetrisNet(ArrayList<PetrisNetwork> pnets, ArrayList<Network> savedNets) {
+    public static PetrisNetwork importPetrisNet(ArrayList<PetrisNetwork> pnets, ArrayList<Network> savedNets, Menu menu) {
     	DataLoader d = new DataLoader("/PetrisNetworks", "Importare");
-    	String s = selectFile(d);
+    	String s = selectFile(d, menu);
     	if(s == null) {
-    		Menu.printError(Menu.NESSUN_FILE);
+    		menu.printError(Menu.NESSUN_FILE);
     		return null;
     	}
     	d.selectFile(s);
-    	Menu.print(s);
+    	menu.print(s);
     	ArrayList<PetrisNetwork> output;
     	try{
     		output = d.readPetrisFile();
 			if(output.isEmpty()) throw new Exception();
     	}
     	catch(Exception e){
-    		Menu.printError(Menu.FILE_VUOTO_O_NON_COMPATIBILE);
+    		menu.printError(Menu.FILE_VUOTO_O_NON_COMPATIBILE);
     		return null;
     	}
     	PetrisNetwork net = output.get(0);
@@ -74,33 +74,33 @@ public class NetImporter {
 		  !net.checkMarking() ||
 		  !net.checkIfEntriesAreCorrect()
 		) {
-    		Menu.printError(Menu.FILE_VUOTO_O_NON_COMPATIBILE);
+    		menu.printError(Menu.FILE_VUOTO_O_NON_COMPATIBILE);
     		return null;
     	}
     	if(checkIfNetExists(pnets.size(), net, pnets)) {
-    		Menu.printError(Menu.NET_ALREADY_EXISTS);
+    		menu.printError(Menu.NET_ALREADY_EXISTS);
     		return null;
     	}
     	if(!checkIfNetExists(savedNets.size(), convertToNet(net, savedNets.size()), savedNets)) {
-    		Menu.printError(Menu.NET_FATHER_DONT_EXIST);
+    		menu.printError(Menu.NET_FATHER_DONT_EXIST);
     		return null;
     	}
     	if(!net.checkConnectivity()) {
-    		Menu.printError(Menu.RETE_NON_CONNESSA);
+    		menu.printError(Menu.RETE_NON_CONNESSA);
     		return null;
     	}    	
     	return net;
     }
     
-    public static PriorityPetrisNetwork importPriorityPetrisNet(ArrayList<PriorityPetrisNetwork> pnpnets, ArrayList<PetrisNetwork> savedpNets) {
+    public static PriorityPetrisNetwork importPriorityPetrisNet(ArrayList<PriorityPetrisNetwork> pnpnets, ArrayList<PetrisNetwork> savedpNets, Menu menu) {
     	DataLoader d = new DataLoader("/PriorityPetrisNetworks", "Importare");
-    	String s = selectFile(d);
+    	String s = selectFile(d, menu);
     	if(s == null) {
-    		Menu.printError(Menu.NESSUN_FILE);
+    		menu.printError(Menu.NESSUN_FILE);
     		return null;
     	}
     	d.selectFile(s);
-    	Menu.print(s);
+    	menu.print(s);
 
     	ArrayList<PriorityPetrisNetwork> output;
     	try{
@@ -110,7 +110,7 @@ public class NetImporter {
 			}
     	}
     	catch(Exception e){
-    		Menu.printError(Menu.FILE_VUOTO_O_NON_COMPATIBILE);
+    		menu.printError(Menu.FILE_VUOTO_O_NON_COMPATIBILE);
     		return null;
     	}
 
@@ -121,25 +121,25 @@ public class NetImporter {
 		  !net.checkIfEntriesAreCorrect() ||
 		  !net.checkPriority()
 		) {
-    		Menu.printError(Menu.FILE_VUOTO_O_NON_COMPATIBILE);
+    		menu.printError(Menu.FILE_VUOTO_O_NON_COMPATIBILE);
     		return null;
     	}
     	if(checkIfNetExists(pnpnets.size(), net, pnpnets)) {
-    		Menu.printError(Menu.NET_ALREADY_EXISTS);
+    		menu.printError(Menu.NET_ALREADY_EXISTS);
     		return null;
     	}
     	if(!checkIfNetExists(savedpNets.size(), convertToPetrisNet(net, savedpNets.size()), savedpNets)) {
-    		Menu.printError(Menu.NET_FATHER_DONT_EXIST);
+    		menu.printError(Menu.NET_FATHER_DONT_EXIST);
     		return null;
     	}
     	if(!net.checkConnectivity()) {
-    		Menu.printError(Menu.RETE_NON_CONNESSA);
+    		menu.printError(Menu.RETE_NON_CONNESSA);
     		return null;
     	}
     	return net;
     }
     
-    public static String selectFile(DataLoader d) {
+    public static String selectFile(DataLoader d, Menu menu) {
     	boolean stop;
     	int i = 1;
     	String[] nameList = d.directoryInspection();
@@ -147,7 +147,7 @@ public class NetImporter {
     	if(nameList.length == 0) return null;
     	
     	for(String s : nameList) {
-    		Menu.print(i + ")" + s);
+    		menu.print(i + ")" + s);
     		i++;
     	}
 
@@ -155,7 +155,7 @@ public class NetImporter {
     		stop = true;
     		i = readInt();
     		if(i < 1 || i > nameList.length) {
-    			Menu.print(Menu.INSERIMENTO_VALIDO);
+    			menu.print(Menu.INSERIMENTO_VALIDO);
     			stop = false;
     		}
     	}while(!stop);

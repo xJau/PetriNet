@@ -13,7 +13,7 @@ import Utils.Menu;
 
 public class NetSaver {
 	
-	protected static ArrayList<Network> save(String fileName, ArrayList<Network> nets, ArrayList<Network> savedNets) {
+	protected static ArrayList<Network> save(String fileName, ArrayList<Network> nets, ArrayList<Network> savedNets, Menu menu) {
         ArrayList<Network> savableNets = new ArrayList<>();
         ArrayList<Network> savingNets = new ArrayList<>();
         savableNets.addAll(nets);
@@ -21,24 +21,24 @@ public class NetSaver {
         int input = -1;
         do {
             if (savableNets.isEmpty()) {
-                Menu.print(Menu.NO_RETI);
+            	menu.print(Menu.NO_RETI);
                 break;
             }
-            Menu.selectNetsToSave(savableNets);
+            menu.selectNetsToSave(savableNets);
             if (input == 0) return null;
-            input = select(savableNets);
+            input = select(savableNets, menu);
             if (input == -2) {
-                Menu.print(Menu.NO_RETI);
+            	menu.print(Menu.NO_RETI);
                 return null;
             }
             if (input == -1) return null;
             savingNets.add(savableNets.get(input));
             savableNets.remove(input);
-            Menu.print(Menu.SALVA_O_CONTINUA);
+            menu.print(Menu.SALVA_O_CONTINUA);
             do {
                 input = readInt();
                 if (input == 1) stop = true;
-                else if (input < 1 || input > 2) Menu.print(Menu.INSERIMENTO_VALIDO);
+                else if (input < 1 || input > 2) menu.print(Menu.INSERIMENTO_VALIDO);
             } while (input < 1 || input > 2);
 
         } while (!stop);
@@ -50,7 +50,7 @@ public class NetSaver {
         return savedNets;
     }
 	
-	protected static ArrayList<PetrisNetwork> savePnets(String fileName , ArrayList<PetrisNetwork> pnets, ArrayList<PetrisNetwork> savedpNets) {
+	protected static ArrayList<PetrisNetwork> savePnets(String fileName , ArrayList<PetrisNetwork> pnets, ArrayList<PetrisNetwork> savedpNets, Menu menu) {
         ArrayList<PetrisNetwork> savableNets = new ArrayList<>();
         ArrayList<PetrisNetwork> savingNets = new ArrayList<>();
         savableNets.addAll(pnets);
@@ -58,25 +58,25 @@ public class NetSaver {
         int input = -1;
         do {
             if (savableNets.isEmpty()) {
-                Menu.print(Menu.NO_RETI);
+            	menu.print(Menu.NO_RETI);
                 break;
             }
             if (input == 0) return null;
 			
-			Menu.selectNetsToSave(savableNets);
-            input = select(savableNets);
+            menu.selectNetsToSave(savableNets);
+            input = select(savableNets, menu);
             if (input == -2) {
-                Menu.print(Menu.NO_RETI);
+            	menu.print(Menu.NO_RETI);
                 return null;
             }
             if (input == -1) return null;
             savingNets.add(savableNets.get(input));
             savableNets.remove(input);
-            Menu.print(Menu.SALVA_O_CONTINUA);
+            menu.print(Menu.SALVA_O_CONTINUA);
             do {
                 input = readInt();
                 if (input == 1) stop = true;
-                else if (input < 1 || input > 2) Menu.print(Menu.INSERIMENTO_VALIDO);
+                else if (input < 1 || input > 2) menu.print(Menu.INSERIMENTO_VALIDO);
             } while (input < 1 || input > 2);
         } while (!stop);
         
@@ -87,7 +87,7 @@ public class NetSaver {
         return savedpNets;
     }
 	
-	public static ArrayList<PriorityPetrisNetwork> savePnpnets(String fileName , ArrayList<PriorityPetrisNetwork> pnets, ArrayList<PriorityPetrisNetwork> savedpnpNets) {
+	public static ArrayList<PriorityPetrisNetwork> savePnpnets(String fileName , ArrayList<PriorityPetrisNetwork> pnets, ArrayList<PriorityPetrisNetwork> savedpnpNets, Menu menu) {
         ArrayList<PriorityPetrisNetwork> savableNets = new ArrayList<>();
         ArrayList<PriorityPetrisNetwork> savingNets = new ArrayList<>();
         savableNets.addAll(pnets);
@@ -95,24 +95,24 @@ public class NetSaver {
         int input = -1;
         do {
             if (savableNets.isEmpty()) {
-                Menu.print(Menu.NO_RETI);
+            	menu.print(Menu.NO_RETI);
                 break;
             }
-            Menu.selectNetsToSave(savableNets);
+            menu.selectNetsToSave(savableNets);
             if (input == 0) return null;
-            input = select(savableNets);
+            input = select(savableNets, menu);
             if (input == -2) {
-                Menu.print(Menu.NO_RETI);
+            	menu.print(Menu.NO_RETI);
                 return null;
             }
             if (input == -1) return null;
             savingNets.add(savableNets.get(input));
             savableNets.remove(input);
-            Menu.print(Menu.SALVA_O_CONTINUA);
+            menu.print(Menu.SALVA_O_CONTINUA);
             do {
                 input = readInt();
                 if (input == 1) stop = true;
-                else if (input < 1 || input > 2) Menu.print(Menu.INSERIMENTO_VALIDO);
+                else if (input < 1 || input > 2) menu.print(Menu.INSERIMENTO_VALIDO);
             } while (input < 1 || input > 2);
 
         } while (!stop);

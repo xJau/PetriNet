@@ -8,23 +8,23 @@ import Utils.Menu;
 
 public class PetrisNetSimulator {
 
-	public void simulate(PetrisNetwork pn) {
+	public void simulate(PetrisNetwork pn, Menu menu) {
 		int[] marking = Arrays.copyOf(pn.getMarking(), pn.getMarking().length);
 		int input;
 		do {
-			Menu.print(Menu.SIMULATORE_MENU);
+			menu.print(Menu.SIMULATORE_MENU);
 			input = readInt();
 			if(input == 1) {
-				int idT = selectTransition(pn, marking);
+				int idT = selectTransition(pn, marking, menu);
 				if(idT == -1) {
-					Menu.print(Menu.NESSUNA_TRANSIZIONE_ABILITATA);
+					menu.print(Menu.NESSUNA_TRANSIZIONE_ABILITATA);
 					return;
 				}
 				iteration(pn, idT, marking);
-				Menu.printNetStructure(pn);
-				Menu.printPetriNetMarking(pn, marking);
+				menu.printNetStructure(pn);
+				menu.printPetriNetMarking(pn, marking);
 			}
-			else Menu.print(Menu.INSERIMENTO_VALIDO);
+			else menu.print(Menu.INSERIMENTO_VALIDO);
 		}while(input != 0);
 	}
 	
@@ -40,23 +40,23 @@ public class PetrisNetSimulator {
 		
 	}
 	
-	public int selectTransition(PetrisNetwork pn, int[] marking) {
+	public int selectTransition(PetrisNetwork pn, int[] marking, Menu menu) {
 		ArrayList<Transition> enableTransitions = findEnableTransitions(pn, marking);
 		int input;
 		
 		if(enableTransitions.size() == 1) {
-			Menu.print(enableTransitions);
-			Menu.print(Menu.UNA_SOLA_TRANSIZIONE_ABILITATA);
+			menu.print(enableTransitions);
+			menu.print(Menu.UNA_SOLA_TRANSIZIONE_ABILITATA);
 			return enableTransitions.get(0).getId();
 		}
 		else if(enableTransitions.isEmpty())return -1;
 		else {
-			Menu.print(Menu.SELEZIONA_TRANSIZIONE_PER_SCATTO);
-			Menu.print(enableTransitions);
+			menu.print(Menu.SELEZIONA_TRANSIZIONE_PER_SCATTO);
+			menu.print(enableTransitions);
 			do {
 				input = -1;
                 input = input + readInt();
-                if (input < 0 || input > enableTransitions.size()-1) Menu.print(Menu.INSERIMENTO_VALIDO);
+                if (input < 0 || input > enableTransitions.size()-1) menu.print(Menu.INSERIMENTO_VALIDO);
             } while (input < 0 || input > enableTransitions.size()-1);
 			return enableTransitions.get(input).getId();
 		}
@@ -95,47 +95,47 @@ public class PetrisNetSimulator {
 		return enableTransitions;
 	}
 	
-	public void simulate(PriorityPetrisNetwork pnp) {
+	public void simulate(PriorityPetrisNetwork pnp, Menu menu) {
 		int[] marking = Arrays.copyOf(pnp.getMarking(), pnp.getMarking().length);
 		int input;
 		boolean stop = false;
 		
 		do {
-			Menu.print(Menu.SIMULATORE_MENU);
+			menu.print(Menu.SIMULATORE_MENU);
 			input = readInt();
 			if(input == 1) {
-				int idT = selectTransition(pnp, marking);
+				int idT = selectTransition(pnp, marking, menu);
 				if(idT == -1) {
-					Menu.print(Menu.NESSUNA_TRANSIZIONE_ABILITATA);
+					menu.print(Menu.NESSUNA_TRANSIZIONE_ABILITATA);
 					return;
 				}
 				iteration(pnp, idT, marking);
-				Menu.printNetStructure(pnp);
-				Menu.printPetriNetMarking(pnp, marking);
-				Menu.printTransitionPriority(pnp, pnp.getPriority());
+				menu.printNetStructure(pnp);
+				menu.printPetriNetMarking(pnp, marking);
+				menu.printTransitionPriority(pnp, pnp.getPriority());
 			}
 			else if(input == 0)stop = true;
-			else Menu.print(Menu.INSERIMENTO_VALIDO);
+			else menu.print(Menu.INSERIMENTO_VALIDO);
 		}while(!stop);
 	}
 	
-	public int selectTransition(PriorityPetrisNetwork pnp, int[] marking) {
+	public int selectTransition(PriorityPetrisNetwork pnp, int[] marking, Menu menu) {
 		ArrayList<Transition> enableTransitions = findEnableTransitions(pnp, marking);
 		int input;
 		
 		if(enableTransitions.size() == 1) {
-			Menu.print(enableTransitions);
-			Menu.print(Menu.UNA_SOLA_TRANSIZIONE_ABILITATA);
+			menu.print(enableTransitions);
+			menu.print(Menu.UNA_SOLA_TRANSIZIONE_ABILITATA);
 			return enableTransitions.get(0).getId();
 		}
 		else if(enableTransitions.isEmpty()) return -1;
 		else {
-			Menu.print(Menu.SELEZIONA_TRANSIZIONE_PER_SCATTO);
-			Menu.print(enableTransitions);
+			menu.print(Menu.SELEZIONA_TRANSIZIONE_PER_SCATTO);
+			menu.print(enableTransitions);
 			do {
 				input = -1;
                 input = input + readInt();
-                if (input < 0 || input > enableTransitions.size()-1) Menu.print(Menu.INSERIMENTO_VALIDO);
+                if (input < 0 || input > enableTransitions.size()-1) menu.print(Menu.INSERIMENTO_VALIDO);
             } while (input < 0 || input > enableTransitions.size()-1);
 			return enableTransitions.get(input).getId();
 		}

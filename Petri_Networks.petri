@@ -1,15 +1,5 @@
 Available Petri's Networks: 6
 	id: 0
-	Name: rwrwe
-		Dimension: 1 : 2
-			Matrix in:
-				2 3 
-			Matrix out:
-				0 0 
-	Marking Dimension: 1
-	Marking: 
-		1 
-	id: 1
 	Name: provaPetriSimulatore
 		Dimension: 3 : 1
 			Matrix in:
@@ -23,6 +13,16 @@ Available Petri's Networks: 6
 	Marking Dimension: 3
 	Marking: 
 		5 5 0 
+	id: 1
+	Name: rwrwe
+		Dimension: 1 : 2
+			Matrix in:
+				2 3 
+			Matrix out:
+				0 0 
+	Marking Dimension: 1
+	Marking: 
+		1 
 	id: 2
 	Name: altraprova
 		Dimension: 3 : 1
