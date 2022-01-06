@@ -1,8 +1,10 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+/out/
 # Datasource local storage ignored files
 /../../../../../../:\Users\bigno\IdeaProjects\PetriNet1.0\.idea/dataSources/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+
