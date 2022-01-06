@@ -11,67 +11,67 @@ import Utils.Menu;
 import static Utils.MatrixOperation.*;
 
 public class PetrisNetworksManager {	
-	public static void pNetsMenu(ArrayList<PetrisNetwork> pn, ArrayList<Network> n, ArrayList<PetrisNetwork> savedpNets) {
+	public static void pNetsMenu(ArrayList<PetrisNetwork> pn, ArrayList<Network> n, ArrayList<PetrisNetwork> savedpNets, Menu menu) {
 		ArrayList<Runnable> actions = new ArrayList<>(Arrays.asList(
-			() -> selectPNet(savedpNets),
-			() -> Menu.print(pn),
-			() -> createPNet(pn, n)
+			() -> selectPNet(savedpNets, menu),
+			() -> menu.print(pn),
+			() -> createPNet(pn, n, menu)
 		));
-		Menu.selectMenu(Menu.PN_MENU, actions);
+		menu.selectMenu(Menu.PN_MENU, actions);
 	}
 	
-	public static void createPNet(ArrayList<PetrisNetwork> pn, ArrayList<Network> n) {
+	public static void createPNet(ArrayList<PetrisNetwork> pn, ArrayList<Network> n, Menu menu) {
 		if(n.isEmpty()) {
-			Menu.print(Menu.NO_NETS_PER_PETRI);
+			menu.print(Menu.NO_NETS_PER_PETRI);
 			return;
 		}
-		Menu.print(Menu.SELEZIONA_RETE_PER_PETRI);
-		Menu.print(n);
-		int input = select(n);
+		menu.print(Menu.SELEZIONA_RETE_PER_PETRI);
+		menu.print(n);
+		int input = select(n, menu);
 		if(input == -1) return;
 		System.out.println(input);
-		createPNet(pn, n.get(input));
+		createPNet(pn, n.get(input), menu);
 		
 	}
 	
-	public static void createPNet(ArrayList<PetrisNetwork> pn, Network n) {
+	public static void createPNet(ArrayList<PetrisNetwork> pn, Network n, Menu menu) {
 		String name;
 		int id = pn.size();
 		int[] marking = new int[n.getPlaces().size()];
 		int[] linksWeight = new int[n.getLinks().size()];
 		
-		Menu.print(Menu.INSERIRE_MARCATURA_INIZIALE);
+		menu.print(Menu.INSERIRE_MARCATURA_INIZIALE);
 		for(int i = 0; i < marking.length; i++) {
-			Menu.print(n.getPlaces().get(i).toString());
+			menu.print(n.getPlaces().get(i).toString());
 			marking[i] = readInt();
 			if(marking[i]<0) {
-				Menu.print(Menu.INSERIMENTO_VALIDO);
+				menu.print(Menu.INSERIMENTO_VALIDO);
 				i--;
 			}
 		}
 		
-		Menu.print(Menu.INSERIRE_PESI_LINK);
+		menu.print(Menu.INSERIRE_PESI_LINK);
 		for(int i = 0; i < linksWeight.length; i++) {
-			Menu.print(n.getLinks().get(i).toString());
+			menu.print(n.getLinks().get(i).toString());
 			linksWeight[i] = readInt();
 			if(linksWeight[i]<1) {
-				Menu.print(Menu.INSERIMENTO_VALIDO);
+				menu.print(Menu.INSERIMENTO_VALIDO);
 				i--;
 			}
 		}
 		
 		
-		Menu.print(Menu.ASSEGNA_NOME_NET);
+		menu.print(Menu.ASSEGNA_NOME_NET);
 		do {
 			name = inString();
 			if(!name.toLowerCase().replaceAll("[^a-z]", "").equals("name")) break;
-			Menu.print(Menu.INSERIMENTO_VALIDO);
+			menu.print(Menu.INSERIMENTO_VALIDO);
 		}while(true);
 		
 		PetrisNetwork petri = new PetrisNetwork(n, id, name, marking);
 		petri.setWeight(linksWeight);
 		if(checkIfNetExists(petri, pn)) {
-			Menu.print(Menu.NET_ALREADY_EXISTS);
+			menu.print(Menu.NET_ALREADY_EXISTS);
 			return;
 		}
 		pn.add(petri);
@@ -79,28 +79,28 @@ public class PetrisNetworksManager {
 	
 	
 	
-	public static void selectPNet(ArrayList<PetrisNetwork> pn) {
+	public static void selectPNet(ArrayList<PetrisNetwork> pn, Menu menu) {
 		int input;
 		if(pn.isEmpty()) {
-			Menu.print(Menu.NO_PETRIS_NETS);
+			menu.print(Menu.NO_PETRIS_NETS);
 			return;
 		}
 		
         int pnSize = pn.size();
-        Menu.print(pn);
+        menu.print(pn);
 
         do {
         	input = -1;
             input = input + readInt();
-            if (input < 0 || input > pnSize-1) Menu.print(Menu.INSERIMENTO_VALIDO);
-            else use(pn.get(input));
+            if (input < 0 || input > pnSize-1) menu.print(Menu.INSERIMENTO_VALIDO);
+            else use(pn.get(input), menu);
         } while (input < 0 || input > pnSize-1);	
 	}
 	
-	public static void use(PetrisNetwork pn) {
+	public static void use(PetrisNetwork pn, Menu menu) {
 		PetrisNetSimulator pns = new PetrisNetSimulator(); 
-		Menu.printNetStructure(pn);
-		Menu.printPetriNetMarking(pn);
+		menu.printNetStructure(pn);
+		menu.printPetriNetMarking(pn);
 		
 		pns.simulate(pn);	
 	}

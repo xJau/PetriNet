@@ -1,10 +1,13 @@
 package Utils;
 
 import Models.*;
+import View.UI;
+
 import java.util.ArrayList;
 
 public class Menu {
 
+	public UI ui;
 	public static final String NUOVO_VALORE = ") Per crearne una nuova";
     public static final String RITORNA_AL_MAIN_MENU = "Per tornare al men� principale";
     public static final String SELEZIONA_POSTI = "Seleziona il posto da collegare";
@@ -54,102 +57,106 @@ public class Menu {
      		+ " una rete di petri con priorit� specifica\n(0)Per chiudere";
     public static final String IDENTIFICATION = "(1)Configuratore\n(2)Fruitore";
     public static final String NESSUN_FILE = "Non ci sono reti importabili";
+    
+    public Menu(UI ui) {
+    	this.ui = ui;
+    }
 
-    public static void selectNets(ArrayList<? extends Network> nets) {
+    public void selectNets(ArrayList<? extends Network> nets) {
 
         int netsSize = nets.size();
 
         print(nets);
-        System.out.println((netsSize + 1) + NUOVO_VALORE );
-        System.out.println("\n0) "+RITORNA_AL_MAIN_MENU);
+        print((netsSize + 1) + NUOVO_VALORE );
+        print("\n0) "+RITORNA_AL_MAIN_MENU);
 
     }
-    public static void selectNetsToSave(ArrayList<? extends Network> nets) {
+    public void selectNetsToSave(ArrayList<? extends Network> nets) {
         print(nets);
-        System.out.println("\n0) "+RITORNA_AL_MAIN_MENU);
+        print("\n0) "+RITORNA_AL_MAIN_MENU);
     }
     
-    public static void printNetStructure(Network n) {
+    public void printNetStructure(Network n) {
         for (Link link : n.getLinks()) {
             String in = link.getInGoingNode().toString();
             String out = link.getOutGoingNode().toString();
-            System.out.println(in + " --> " + out);
+            print(in + " --> " + out);
         }
     }
     
-    public static void printNetStructure(PetrisNetwork n) {
+    public void printNetStructure(PetrisNetwork n) {
     	int [][]mIn = n.getMatrixIn();
 		int [][]mOut = n.getMatrixOut();
         for (Link link : n.getLinks()) {
             String in = link.getInGoingNode().toString();
             String out = link.getOutGoingNode().toString();
             if (link.getOutGoingNode() instanceof Transition)
-            	System.out.println(in + " --> " + out + " peso = "+ mIn[link.getInGoingNode().getId()][link.getOutGoingNode().getId()]);
+            	print(in + " --> " + out + " peso = "+ mIn[link.getInGoingNode().getId()][link.getOutGoingNode().getId()]);
             else if (link.getInGoingNode() instanceof Transition)
-            	System.out.println(in + " --> " + out +" peso = "+ mOut[link.getOutGoingNode().getId()][link.getInGoingNode().getId()]);
+            	print(in + " --> " + out +" peso = "+ mOut[link.getOutGoingNode().getId()][link.getInGoingNode().getId()]);
         }
     }
     
-    public static void printPetriNetMarking(PetrisNetwork n) {
+    public void printPetriNetMarking(PetrisNetwork n) {
     	int[] m = n.getMarking();
     	for(int i = 0; i < m.length; i++) {
-    		System.out.println(n.getPlaces().get(i).toString()+ " marcatura = "+ m[i]);
+    		print(n.getPlaces().get(i).toString()+ " marcatura = "+ m[i]);
     	}
     }
     
-    public static void printPetriNetMarking(PetrisNetwork n, int[] m) {
+    public void printPetriNetMarking(PetrisNetwork n, int[] m) {
     	for(int i = 0; i < m.length; i++) {
-    		System.out.println(n.getPlaces().get(i).toString()+ " marcatura = "+ m[i]);
+    		print(n.getPlaces().get(i).toString()+ " marcatura = "+ m[i]);
     	}
     }
     
-    public static void print(ArrayList<? extends Identifiable> id) {
+    public void print(ArrayList<? extends Identifiable> id) {
     	if(id.isEmpty()) {
     		print("Lista vuota");
     		return;
     	}
         for (int i = 0; i < id.size(); i++) {
-            System.out.println((i + 1)  + ") " + id.get(i).toString());
+        	print((i + 1)  + ") " + id.get(i).toString());
         }
     }
     
-    public static void print(String s) {
-    	System.out.println(s);
+    public void print(String s) {
+    	ui.print(s);
     }
 
-    public static void selectPlaces(ArrayList<Place> places){
-        System.out.println(SELEZIONA_POSTI);
+    public void selectPlaces(ArrayList<Place> places){
+    	print(SELEZIONA_POSTI);
         print(places);
-        System.out.println("\n0) "+FINE);
+        print("\n0) "+FINE);
     }
 
-	public static void printError(String err){
-		System.out.println("ERRORE: " + err);
+	public void printError(String err){
+		print("ERRORE: " + err);
 	}
 
-    public static void selectTransitions(ArrayList<Transition> transitions) {
+    public void selectTransitions(ArrayList<Transition> transitions) {
 
-        System.out.println(SELEZIONA_TRANSIZIONE);
+    	print(SELEZIONA_TRANSIZIONE);
         print(transitions);
-        System.out.println("\n0) "+FINE);
+        print("\n0) "+FINE);
     }
 
-	public static void printTransitionPriority(PriorityPetrisNetwork pnp, int[] priority) {
+	public void printTransitionPriority(PriorityPetrisNetwork pnp, int[] priority) {
 		for(int i = 0; i < priority.length; i++) {
-    		System.out.println(pnp.getTransitions().get(i).toString()+ " priorit� = "+ priority[i]);
+			print(pnp.getTransitions().get(i).toString()+ " priorit� = "+ priority[i]);
     	}
 		
 	}
 
-	public static void selectMenu(String menuText, ArrayList<Runnable> list) {
-		Menu.print(menuText);
+	public void selectMenu(String menuText, ArrayList<Runnable> list) {
+		print(menuText);
 		int nOfElements = list.size();
 		int value = -1;
 		do {
-			Menu.print("> ");
+			print("> ");
 			value = InputManager.readInt();
 			if(value < 0 || value > nOfElements) {
-				Menu.print(Menu.INSERIMENTO_VALIDO);
+				print(Menu.INSERIMENTO_VALIDO);
 				continue;
 			}
 			break;
