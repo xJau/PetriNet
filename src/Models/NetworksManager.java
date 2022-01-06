@@ -8,6 +8,7 @@ import static Models.PetrisNetworksManager.*;
 import static Models.PriorityPetrisNetworkManager.*;
 import static Models.NetImporter.*;
 import static Models.Selector.select;
+import static Models.NetSaver.*;
 
 import java.util.*;
 
@@ -54,7 +55,7 @@ public class NetworksManager {
         private void mainMenu() {
             ArrayList<Runnable> actions = new ArrayList<>(Arrays.asList(
                 () -> { while(true) { selectNet(); }},
-                () -> save(fileName),
+                () -> saveNetworks(),
                 () -> pNetsMenu(pnets, savedNets, savedpNets),
                 () -> savePetrisNetworks(),
                 () -> pnpMenu(pnpnets, savedpNets, savedpnpNets),
@@ -99,47 +100,10 @@ public class NetworksManager {
             pnpnets = loader.readPriorityPetrisFile();
         }
 
-        private void save(String fileName) {
-            ArrayList<Network> savableNets = new ArrayList<>();
-            ArrayList<Network> savingNets = new ArrayList<>();
-            savableNets.addAll(nets);
-            boolean stop = false;
-            int input = -1;
-            do {
-                if (savableNets.isEmpty()) {
-                    Menu.print(Menu.NO_RETI);
-                    break;
-                }
-                Menu.selectNetsToSave(savableNets);
-                if (input == 0) return;
-                input = select(savableNets);
-                if (input == -2) {
-                    Menu.print(Menu.NO_RETI);
-                    return;
-                }
-                if (input == -1) return;
-                savingNets.add(savableNets.get(input));
-                savableNets.remove(input);
-                Menu.print(Menu.SALVA_O_CONTINUA);
-                do {
-                    input = readInt();
-                    if (input == 1) stop = true;
-                    else if (input < 1 || input > 2) Menu.print(Menu.INSERIMENTO_VALIDO);
-                } while (input < 1 || input > 2);
-
-            } while (!stop);
-            
-            savedNets = savingNets;
-            sortNetId(savedNets);
-            DataSaver saver = new DataSaver(savedNets, fileName);
-            saver.writeFile();
-        }
-        
-        
-        public void sortNetId(List <Network> n) {
-        	for(int i = 0; i<n.size(); i++) {
-        		n.get(i).setId(i);
-        	}
+        private void saveNetworks() {
+        	ArrayList<Network> sv = save(fileName, nets, savedNets);
+        	if(sv == null)return;
+        	savedNets = sv;
         }
 
         public void modifyNet(Network network) {

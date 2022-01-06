@@ -112,48 +112,6 @@ public class PetrisNetworksManager {
 		return new Network(id, pn.getName(), matrixIn, matrixOut);
 	}
 	
-	public static ArrayList<PetrisNetwork> savePnets(String fileName , ArrayList<PetrisNetwork> pnets, ArrayList<PetrisNetwork> savedpNets) {
-        ArrayList<PetrisNetwork> savableNets = new ArrayList<>();
-        ArrayList<PetrisNetwork> savingNets = new ArrayList<>();
-        savableNets.addAll(pnets);
-        boolean stop = false;
-        int input = -1;
-        do {
-            if (savableNets.isEmpty()) {
-                Menu.print(Menu.NO_RETI);
-                break;
-            }
-            if (input == 0) return null;
-			
-			Menu.selectNetsToSave(savableNets);
-            input = select(savableNets);
-            if (input == -2) {
-                Menu.print(Menu.NO_RETI);
-                return null;
-            }
-            if (input == -1) return null;
-            savingNets.add(savableNets.get(input));
-            savableNets.remove(input);
-            Menu.print(Menu.SALVA_O_CONTINUA);
-            do {
-                input = readInt();
-                if (input == 1) stop = true;
-                else if (input < 1 || input > 2) Menu.print(Menu.INSERIMENTO_VALIDO);
-            } while (input < 1 || input > 2);
-        } while (!stop);
-        
-        savedpNets = savingNets;
-        sortNetId(savedpNets);
-        DataPetriSaver saver = new DataPetriSaver(savedpNets, fileName);
-        saver.writeFile();
-        return savedpNets;
-    }
-	
-	private static void sortNetId(List <? extends Network> n) {
-    	for(int i = 0; i<n.size(); i++)
-    		n.get(i).setId(i);
-    }
-	
 	private static boolean checkIfNetExists(Network net, ArrayList<? extends Network> nets) {
         for (Network n : nets)
             if (net.equals(n)) return true;
