@@ -10,6 +10,7 @@ public class InputManager {
 			i = s.nextInt();
 		}
 		catch(Exception e) {
+			s.next();
 			i = -1;
 		}
 		return i;
