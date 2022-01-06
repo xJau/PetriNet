@@ -1,41 +1,31 @@
 package Models;
 
-import static Utils.InputManager.inInt;
+import static Utils.InputManager.readInt;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import Utils.Menu;
 
 public class PetrisNetSimulator {
 
-	Menu menu;
-	
-	public PetrisNetSimulator() {
-		menu = new Menu();
-	}
-	
 	public void simulate(PetrisNetwork pn) {
 		int[] marking = Arrays.copyOf(pn.getMarking(), pn.getMarking().length);
 		int input;
-		boolean stop = false;
-		
 		do {
-			menu.simulatorMenu();
-			input = inInt();
+			Menu.print(Menu.SIMULATORE_MENU);
+			input = readInt();
 			if(input == 1) {
 				int idT = selectTransition(pn, marking);
 				if(idT == -1) {
-					menu.noEnableTransitions();
+					Menu.print(Menu.NESSUNA_TRANSIZIONE_ABILITATA);
 					return;
 				}
 				iteration(pn, idT, marking);
-				menu.printNetStructure(pn);
-				menu.printPetriNetMarking(pn, marking);
+				Menu.printNetStructure(pn);
+				Menu.printPetriNetMarking(pn, marking);
 			}
-			else if(input == 0)stop = true;
-			else menu.printValue();
-		}while(!stop);
+			else Menu.print(Menu.INSERIMENTO_VALIDO);
+		}while(input != 0);
 	}
 	
 
@@ -55,22 +45,21 @@ public class PetrisNetSimulator {
 		int input;
 		
 		if(enableTransitions.size() == 1) {
-			menu.print(enableTransitions);
-			menu.onlyOneEnableTransition();
+			Menu.print(enableTransitions);
+			Menu.print(Menu.UNA_SOLA_TRANSIZIONE_ABILITATA);
 			return enableTransitions.get(0).getId();
 		}
 		else if(enableTransitions.isEmpty())return -1;
 		else {
-			menu.selTrantionForFire();
-			menu.print(enableTransitions);
+			Menu.print(Menu.SELEZIONA_TRANSIZIONE_PER_SCATTO);
+			Menu.print(enableTransitions);
 			do {
 				input = -1;
-                input = input + inInt();
-                if (input < 0 || input > enableTransitions.size()-1) menu.printValue();
+                input = input + readInt();
+                if (input < 0 || input > enableTransitions.size()-1) Menu.print(Menu.INSERIMENTO_VALIDO);
             } while (input < 0 || input > enableTransitions.size()-1);
 			return enableTransitions.get(input).getId();
 		}
-		
 	}
 	
 	public ArrayList<Transition> findEnableTransitions(PetrisNetwork pn, int[] marking) {
@@ -112,21 +101,21 @@ public class PetrisNetSimulator {
 		boolean stop = false;
 		
 		do {
-			menu.simulatorMenu();
-			input = inInt();
+			Menu.print(Menu.SIMULATORE_MENU);
+			input = readInt();
 			if(input == 1) {
 				int idT = selectTransition(pnp, marking);
 				if(idT == -1) {
-					menu.noEnableTransitions();
+					Menu.print(Menu.NESSUNA_TRANSIZIONE_ABILITATA);
 					return;
 				}
 				iteration(pnp, idT, marking);
-				menu.printNetStructure(pnp);
-				menu.printPetriNetMarking(pnp, marking);
-				menu.printTransitionPriority(pnp, pnp.getPriority());
+				Menu.printNetStructure(pnp);
+				Menu.printPetriNetMarking(pnp, marking);
+				Menu.printTransitionPriority(pnp, pnp.getPriority());
 			}
 			else if(input == 0)stop = true;
-			else menu.printValue();
+			else Menu.print(Menu.INSERIMENTO_VALIDO);
 		}while(!stop);
 	}
 	
@@ -135,23 +124,20 @@ public class PetrisNetSimulator {
 		int input;
 		
 		if(enableTransitions.size() == 1) {
-			menu.print(enableTransitions);
-			menu.onlyOneEnableTransition();
+			Menu.print(enableTransitions);
+			Menu.print(Menu.UNA_SOLA_TRANSIZIONE_ABILITATA);
 			return enableTransitions.get(0).getId();
 		}
-		else if(enableTransitions.isEmpty())return -1;
+		else if(enableTransitions.isEmpty()) return -1;
 		else {
-			menu.selTrantionForFire();
-			menu.print(enableTransitions);
+			Menu.print(Menu.SELEZIONA_TRANSIZIONE_PER_SCATTO);
+			Menu.print(enableTransitions);
 			do {
 				input = -1;
-                input = input + inInt();
-                if (input < 0 || input > enableTransitions.size()-1) menu.printValue();
+                input = input + readInt();
+                if (input < 0 || input > enableTransitions.size()-1) Menu.print(Menu.INSERIMENTO_VALIDO);
             } while (input < 0 || input > enableTransitions.size()-1);
 			return enableTransitions.get(input).getId();
 		}
-		
-	}
-	
-	
+	}	
 }

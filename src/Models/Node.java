@@ -1,16 +1,11 @@
 package Models;
 
-public abstract class Node implements Identificable{
-
+public abstract class Node implements Identifiable {
     private int id;
+    
+    public Node(int id) { this.id = id; }
 
-    public Node(int id) {
-        this.id = id;
-
-    }
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
     
 	@Override
 	public boolean equals(Object node) {
@@ -18,5 +13,4 @@ public abstract class Node implements Identificable{
         if (node == null || getClass() != node.getClass()) return false;
 		return this.id == ((Node)node).getId();
 	}
-	
 }

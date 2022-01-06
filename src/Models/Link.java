@@ -1,7 +1,6 @@
 package Models;
 
 public class Link {
-
     private Node inGoingNode;
     private Node outGoingNode;
 
@@ -10,16 +9,11 @@ public class Link {
         this.outGoingNode = out;
     }
 
-    public Node getInGoingNode() {
-        return inGoingNode;
-    }
-
-    public Node getOutGoingNode() {
-        return outGoingNode;
-    }
+    public Node getInGoingNode() { return inGoingNode; }
+    public Node getOutGoingNode() { return outGoingNode; }
     
     public String toString() {
-    	return inGoingNode.toString()+" --> "+outGoingNode.toString();
+    	return inGoingNode.toString() + " --> " + outGoingNode.toString();
     }
 
 	@Override
