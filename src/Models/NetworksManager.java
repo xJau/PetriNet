@@ -39,9 +39,7 @@ public class NetworksManager {
 
         public static void main(String[] args) {
             NetworkManager manager = new NetworkManager();
-            do {
-                manager.identification();
-            } while (true);
+            manager.identification();
         }
         
         private void identification() {

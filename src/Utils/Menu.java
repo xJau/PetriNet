@@ -142,19 +142,21 @@ public class Menu {
 	}
 
 	public static void selectMenu(String menuText, ArrayList<Runnable> list) {
-		Menu.print(menuText);
-		int nOfElements = list.size();
-		int value = -1;
-		do {
-			Menu.print("> ");
-			value = InputManager.readInt();
-			if(value < 0 || value > nOfElements) {
-				Menu.print(Menu.INSERIMENTO_VALIDO);
-				continue;
-			}
-			break;
-		} while(true);
-		if(value == 0) return;
-		list.get(value-1).run();
+		while(true) {
+            Menu.print(menuText);
+            int nOfElements = list.size();
+            int value = -1;
+            do {
+                Menu.print("> ");
+                value = InputManager.readInt();
+                if(value < 0 || value > nOfElements) {
+                    Menu.print(Menu.INSERIMENTO_VALIDO);
+                    continue;
+                }
+                break;
+            } while(true);
+            if(value == 0) return;
+            list.get(value-1).run();
+        }
 	}
 }
