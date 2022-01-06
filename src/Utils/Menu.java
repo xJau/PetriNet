@@ -55,7 +55,7 @@ public class Menu {
     public static final String USER_PNP_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri con priorit� specifica\n(0)Per chiudere";
     public static final String USER_MENU = "\n(1)Per visualizzare ed eventualmente simulare una rete di petri specifica\n(2)Per visualizzare ed eventualmente simulare"
      		+ " una rete di petri con priorit� specifica\n(0)Per chiudere";
-    public static final String IDENTIFICATION = "(1)Configuratore\n(2)Fruitore";
+    public static final String IDENTIFICATION = "(1)Configuratore\n(2)Fruitore\n(0)Chiudi";
     public static final String NESSUN_FILE = "Non ci sono reti importabili";
     
     public Menu(UI ui) {
