@@ -52,7 +52,7 @@ public class NetworksManager {
 
         private void mainMenu() {
             ArrayList<Runnable> actions = new ArrayList<>(Arrays.asList(
-                () -> { while(true) { selectNet(); }},
+                () -> selectNet(),
                 () -> saveNetworks(),
                 () -> pNetsMenu(pnets, savedNets, savedpNets),
                 () -> savePetrisNetworks(),
