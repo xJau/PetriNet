@@ -7,6 +7,7 @@ import static Utils.InputManager.*;
 import static Models.PetrisNetworksManager.*;
 import static Models.PriorityPetrisNetworkManager.*;
 import static Models.NetImporter.*;
+import static Models.Selector.select;
 
 import java.util.*;
 
@@ -96,17 +97,6 @@ public class NetworksManager {
             pnets = loader.readPetrisFile();
             loader = new DataLoader(pnpfileName);
             pnpnets = loader.readPriorityPetrisFile();
-        }
-
-        public int select(List<? extends Identifiable> id) {
-            int input;
-            if (id.size() == 0) return -2;
-            do {
-                input = -1;
-                input = input + readInt();
-                if (input == -2 || input > id.size()-1) Menu.print(Menu.INSERIMENTO_VALIDO);
-            } while (input < -1 || input > id.size()-1);
-            return input;
         }
 
         private void save(String fileName) {
