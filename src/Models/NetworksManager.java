@@ -16,7 +16,7 @@ import java.util.*;
 
 public class NetworksManager {
 
-    public static class NetworkManager {
+    public static class NetworkManager implements NetworkManagerInterface {
 
     	static DataLoader loader;
         static ArrayList<Network> nets = new ArrayList<>();
@@ -32,7 +32,7 @@ public class NetworksManager {
         private Menu menu;
 
 
-        private NetworkManager() {
+        public NetworkManager() {
             load();
             savedNets = new ArrayList<>(nets);
             savedpNets = new ArrayList<>(pnets);

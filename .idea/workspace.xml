@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="412b17ed-29ab-4c90-aac8-6c2e94a4de0c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_junit_jupiter_junit_jupiter_5_8_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/NetworkTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Models/NetworkManagerInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PetriNet1.0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PetriNet1.0.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetImporter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetImporter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/Network.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/Network.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetworksManager$NetworkManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetworksManager$NetworkManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetworksManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetworksManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetSimulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetSimulator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetwork.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetworksManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetworksManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PriorityPetrisNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PriorityPetrisNetwork.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PriorityPetrisNetworkManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PriorityPetrisNetworkManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/Transition.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/Transition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataLoader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataPetriSaver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataPetriSaver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataPriorityPetriSaver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataPriorityPetriSaver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataSaver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataSaver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Network.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/NetworksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/NetworksManager.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Utils/DataSaver.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.classpath" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Models/NetworksManager.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Models/Network.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectId" id="1xfQJMlHnQ3lh7LuUrtsU33NT9q" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="true" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/Models" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="android.project.structure" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="Models" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NetworkTest.checkConnectivity_connectedNet_resultsConnected" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PetriNet1.0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Test" />
+      <option name="MAIN_CLASS_NAME" value="Test.NetworkTest" />
+      <option name="METHOD_NAME" value="checkConnectivity_connectedNet_resultsConnected" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NetworkTest.checkConnectivity_notConnectedNet_resultsNotConnected" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PetriNet1.0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Test" />
+      <option name="MAIN_CLASS_NAME" value="Test.NetworkTest" />
+      <option name="METHOD_NAME" value="checkConnectivity_notConnectedNet_resultsNotConnected" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NetworkTest.connect_twoConnectedNodes_dontAddElementToList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PetriNet1.0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Test" />
+      <option name="MAIN_CLASS_NAME" value="Test.NetworkTest" />
+      <option name="METHOD_NAME" value="connect_twoConnectedNodes_dontAddElementToList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NetworkTest.connect_twoNotConnectedNodes_addElementToList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PetriNet1.0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Test" />
+      <option name="MAIN_CLASS_NAME" value="Test.NetworkTest" />
+      <option name="METHOD_NAME" value="connect_twoNotConnectedNodes_addElementToList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NetworkTest.genereteMatrix_correctInputs_correctNodesArrayDimensions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PetriNet1.0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Test" />
+      <option name="MAIN_CLASS_NAME" value="Test.NetworkTest" />
+      <option name="METHOD_NAME" value="genereteMatrix_correctInputs_correctNodesArrayDimensions" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.NetworkTest.checkConnectivity_notConnectedNet_resultsNotConnected" />
+        <item itemvalue="JUnit.NetworkTest.checkConnectivity_connectedNet_resultsConnected" />
+        <item itemvalue="JUnit.NetworkTest.connect_twoNotConnectedNodes_addElementToList" />
+        <item itemvalue="JUnit.NetworkTest.connect_twoConnectedNodes_dontAddElementToList" />
+        <item itemvalue="JUnit.NetworkTest.genereteMatrix_correctInputs_correctNodesArrayDimensions" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="412b17ed-29ab-4c90-aac8-6c2e94a4de0c" name="Default Changelist" comment="" />
+      <created>1630743589670</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1630743589670</updated>
+      <workItem from="1630743592608" duration="257000" />
+      <workItem from="1632124433181" duration="209000" />
+      <workItem from="1632943969690" duration="3376000" />
+      <workItem from="1633244913570" duration="550000" />
+      <workItem from="1633341226479" duration="867000" />
+      <workItem from="1641526010089" duration="3512000" />
+      <workItem from="1641529623062" duration="5957000" />
+      <workItem from="1641543900525" duration="9074000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/helloWorld" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Utils/MatrixOperation.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

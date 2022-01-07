@@ -65,7 +65,7 @@ public class Network implements Identifiable{
      * @param in
      * @param out
      */
-    private void connect(Node in, Node out) {
+    public void connect(Node in, Node out) {
         Link link = new Link(in, out);
         links.add(link);
     }
@@ -73,7 +73,7 @@ public class Network implements Identifiable{
     /**
      * Date le matrici di ingresso e di uscita genera i link della rete
      */
-    private void interConnect() {
+    public void interConnect() {
         for (int i = 0; i < matrixIn.length; i++) {
             Place place = places.get(i);
             for (int j = 0; j < matrixIn[0].length; j++) {
@@ -146,7 +146,7 @@ public class Network implements Identifiable{
         }
     }
     
-    public void generateMatrix(int[][] mIn, int[][] mOut) {
+    public void generateMatrix(int[][] mIn, int[]... mOut) {
         int tSize = transitions.size();
         int pSize = places.size();
         this.matrixIn = new int[pSize][tSize];
