@@ -18,7 +18,7 @@ public class NetImporter {
     	}
 
     	d.selectFile(s);
-    	menu.print(s);
+    	menu.println(s);
 
     	ArrayList<Network> output;
     	try{
@@ -58,7 +58,7 @@ public class NetImporter {
     		return null;
     	}
     	d.selectFile(s);
-    	menu.print(s);
+    	menu.println(s);
     	ArrayList<PetrisNetwork> output;
     	try{
     		output = d.readPetrisFile();
@@ -100,7 +100,7 @@ public class NetImporter {
     		return null;
     	}
     	d.selectFile(s);
-    	menu.print(s);
+    	menu.println(s);
 
     	ArrayList<PriorityPetrisNetwork> output;
     	try{
@@ -147,7 +147,7 @@ public class NetImporter {
     	if(nameList.length == 0) return null;
     	
     	for(String s : nameList) {
-    		menu.print(i + ")" + s);
+    		menu.println(i + ")" + s);
     		i++;
     	}
 
@@ -155,7 +155,7 @@ public class NetImporter {
     		stop = true;
     		i = readInt();
     		if(i < 1 || i > nameList.length) {
-    			menu.print(Menu.INSERIMENTO_VALIDO);
+    			menu.println(Menu.INSERIMENTO_VALIDO);
     			stop = false;
     		}
     	}while(!stop);

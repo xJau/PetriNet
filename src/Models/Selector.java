@@ -14,7 +14,7 @@ public class Selector {
         do {
             input = -1;
             input = input + readInt();
-            if (input == -2 || input > id.size()-1) menu.print(Menu.INSERIMENTO_VALIDO);
+            if (input == -2 || input > id.size()-1) menu.println(Menu.INSERIMENTO_VALIDO);
         } while (input < -1 || input > id.size()-1);
         return input;
     }

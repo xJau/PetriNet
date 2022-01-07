@@ -2,9 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="412b17ed-29ab-4c90-aac8-6c2e94a4de0c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Test/NetworkUniquenessMethodTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/NetworkManagerInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetImporter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetImporter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetworksManager$NetworkManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetworksManager$NetworkManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetSimulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetSimulator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetworksManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetworksManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PriorityPetrisNetworkManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PriorityPetrisNetworkManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/NetImporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/NetImporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/NetSaver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/NetSaver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/NetworksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/NetworksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/PetrisNetSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/PetrisNetSimulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/PetrisNetworksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/PetrisNetworksManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/PriorityPetrisNetworkManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/PriorityPetrisNetworkManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Selector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Selector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/UI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,9 +29,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -79,14 +94,29 @@
       <recent name="Models" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.NetworkUniquenessMethodTest.checkIfNetExists_newNetwork_returnTrue">
+    <configuration name="NetworksManager$NetworkManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Models.NetworksManager$NetworkManager" />
+      <module name="PetriNet1.0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -123,7 +153,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NetworkTest.connect_twoConnectedNodes_dontAddElementToList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="NetworkUniquenessMethodTest.checkIfNetExists_existingNetwork_returnFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PetriNet1.0" />
       <extension name="coverage">
         <pattern>
@@ -132,14 +162,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Test" />
-      <option name="MAIN_CLASS_NAME" value="Test.NetworkTest" />
-      <option name="METHOD_NAME" value="connect_twoConnectedNodes_dontAddElementToList" />
+      <option name="MAIN_CLASS_NAME" value="Test.NetworkUniquenessMethodTest" />
+      <option name="METHOD_NAME" value="checkIfNetExists_existingNetwork_returnFalse" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NetworkTest.connect_twoNotConnectedNodes_addElementToList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="NetworkUniquenessMethodTest.checkIfNetExists_newNetwork_returnTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PetriNet1.0" />
       <extension name="coverage">
         <pattern>
@@ -148,24 +178,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Test" />
-      <option name="MAIN_CLASS_NAME" value="Test.NetworkTest" />
-      <option name="METHOD_NAME" value="connect_twoNotConnectedNodes_addElementToList" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="NetworkTest.genereteMatrix_correctInputs_correctNodesArrayDimensions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="PetriNet1.0" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Test" />
-      <option name="MAIN_CLASS_NAME" value="Test.NetworkTest" />
-      <option name="METHOD_NAME" value="genereteMatrix_correctInputs_correctNodesArrayDimensions" />
+      <option name="MAIN_CLASS_NAME" value="Test.NetworkUniquenessMethodTest" />
+      <option name="METHOD_NAME" value="checkIfNetExists_newNetwork_returnTrue" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -173,11 +187,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.NetworkTest.checkConnectivity_notConnectedNet_resultsNotConnected" />
+        <item itemvalue="JUnit.NetworkUniquenessMethodTest.checkIfNetExists_newNetwork_returnTrue" />
+        <item itemvalue="JUnit.NetworkUniquenessMethodTest.checkIfNetExists_existingNetwork_returnFalse" />
+        <item itemvalue="Application.NetworksManager$NetworkManager" />
         <item itemvalue="JUnit.NetworkTest.checkConnectivity_connectedNet_resultsConnected" />
-        <item itemvalue="JUnit.NetworkTest.connect_twoNotConnectedNodes_addElementToList" />
-        <item itemvalue="JUnit.NetworkTest.connect_twoConnectedNodes_dontAddElementToList" />
-        <item itemvalue="JUnit.NetworkTest.genereteMatrix_correctInputs_correctNodesArrayDimensions" />
+        <item itemvalue="JUnit.NetworkTest.checkConnectivity_notConnectedNet_resultsNotConnected" />
       </list>
     </recent_temporary>
   </component>

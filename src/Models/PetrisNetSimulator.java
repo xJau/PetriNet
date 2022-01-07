@@ -12,19 +12,19 @@ public class PetrisNetSimulator {
 		int[] marking = Arrays.copyOf(pn.getMarking(), pn.getMarking().length);
 		int input;
 		do {
-			menu.print(Menu.SIMULATORE_MENU);
+			menu.println(Menu.SIMULATORE_MENU);
 			input = readInt();
 			if(input == 1) {
 				int idT = selectTransition(pn, marking, menu);
 				if(idT == -1) {
-					menu.print(Menu.NESSUNA_TRANSIZIONE_ABILITATA);
+					menu.println(Menu.NESSUNA_TRANSIZIONE_ABILITATA);
 					return;
 				}
 				iteration(pn, idT, marking);
 				menu.printNetStructure(pn);
 				menu.printPetriNetMarking(pn, marking);
 			}
-			else menu.print(Menu.INSERIMENTO_VALIDO);
+			else menu.println(Menu.INSERIMENTO_VALIDO);
 		}while(input != 0);
 	}
 	
@@ -45,18 +45,18 @@ public class PetrisNetSimulator {
 		int input;
 		
 		if(enableTransitions.size() == 1) {
-			menu.print(enableTransitions);
-			menu.print(Menu.UNA_SOLA_TRANSIZIONE_ABILITATA);
+			menu.println(enableTransitions);
+			menu.println(Menu.UNA_SOLA_TRANSIZIONE_ABILITATA);
 			return enableTransitions.get(0).getId();
 		}
 		else if(enableTransitions.isEmpty())return -1;
 		else {
-			menu.print(Menu.SELEZIONA_TRANSIZIONE_PER_SCATTO);
-			menu.print(enableTransitions);
+			menu.println(Menu.SELEZIONA_TRANSIZIONE_PER_SCATTO);
+			menu.println(enableTransitions);
 			do {
 				input = -1;
                 input = input + readInt();
-                if (input < 0 || input > enableTransitions.size()-1) menu.print(Menu.INSERIMENTO_VALIDO);
+                if (input < 0 || input > enableTransitions.size()-1) menu.println(Menu.INSERIMENTO_VALIDO);
             } while (input < 0 || input > enableTransitions.size()-1);
 			return enableTransitions.get(input).getId();
 		}
@@ -101,12 +101,12 @@ public class PetrisNetSimulator {
 		boolean stop = false;
 		
 		do {
-			menu.print(Menu.SIMULATORE_MENU);
+			menu.println(Menu.SIMULATORE_MENU);
 			input = readInt();
 			if(input == 1) {
 				int idT = selectTransition(pnp, marking, menu);
 				if(idT == -1) {
-					menu.print(Menu.NESSUNA_TRANSIZIONE_ABILITATA);
+					menu.println(Menu.NESSUNA_TRANSIZIONE_ABILITATA);
 					return;
 				}
 				iteration(pnp, idT, marking);
@@ -115,7 +115,7 @@ public class PetrisNetSimulator {
 				menu.printTransitionPriority(pnp, pnp.getPriority());
 			}
 			else if(input == 0)stop = true;
-			else menu.print(Menu.INSERIMENTO_VALIDO);
+			else menu.println(Menu.INSERIMENTO_VALIDO);
 		}while(!stop);
 	}
 	
@@ -124,18 +124,18 @@ public class PetrisNetSimulator {
 		int input;
 		
 		if(enableTransitions.size() == 1) {
-			menu.print(enableTransitions);
-			menu.print(Menu.UNA_SOLA_TRANSIZIONE_ABILITATA);
+			menu.println(enableTransitions);
+			menu.println(Menu.UNA_SOLA_TRANSIZIONE_ABILITATA);
 			return enableTransitions.get(0).getId();
 		}
 		else if(enableTransitions.isEmpty()) return -1;
 		else {
-			menu.print(Menu.SELEZIONA_TRANSIZIONE_PER_SCATTO);
-			menu.print(enableTransitions);
+			menu.println(Menu.SELEZIONA_TRANSIZIONE_PER_SCATTO);
+			menu.println(enableTransitions);
 			do {
 				input = -1;
                 input = input + readInt();
-                if (input < 0 || input > enableTransitions.size()-1) menu.print(Menu.INSERIMENTO_VALIDO);
+                if (input < 0 || input > enableTransitions.size()-1) menu.println(Menu.INSERIMENTO_VALIDO);
             } while (input < 0 || input > enableTransitions.size()-1);
 			return enableTransitions.get(input).getId();
 		}

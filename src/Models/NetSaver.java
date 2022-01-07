@@ -21,24 +21,24 @@ public class NetSaver {
         int input = -1;
         do {
             if (savableNets.isEmpty()) {
-            	menu.print(Menu.NO_RETI);
+            	menu.println(Menu.NO_RETI);
                 break;
             }
             menu.selectNetsToSave(savableNets);
             if (input == 0) return null;
             input = select(savableNets, menu);
             if (input == -2) {
-            	menu.print(Menu.NO_RETI);
+            	menu.println(Menu.NO_RETI);
                 return null;
             }
             if (input == -1) return null;
             savingNets.add(savableNets.get(input));
             savableNets.remove(input);
-            menu.print(Menu.SALVA_O_CONTINUA);
+            menu.println(Menu.SALVA_O_CONTINUA);
             do {
                 input = readInt();
                 if (input == 1) stop = true;
-                else if (input < 1 || input > 2) menu.print(Menu.INSERIMENTO_VALIDO);
+                else if (input < 1 || input > 2) menu.println(Menu.INSERIMENTO_VALIDO);
             } while (input < 1 || input > 2);
 
         } while (!stop);
@@ -58,7 +58,7 @@ public class NetSaver {
         int input = -1;
         do {
             if (savableNets.isEmpty()) {
-            	menu.print(Menu.NO_RETI);
+            	menu.println(Menu.NO_RETI);
                 break;
             }
             if (input == 0) return null;
@@ -66,17 +66,17 @@ public class NetSaver {
             menu.selectNetsToSave(savableNets);
             input = select(savableNets, menu);
             if (input == -2) {
-            	menu.print(Menu.NO_RETI);
+            	menu.println(Menu.NO_RETI);
                 return null;
             }
             if (input == -1) return null;
             savingNets.add(savableNets.get(input));
             savableNets.remove(input);
-            menu.print(Menu.SALVA_O_CONTINUA);
+            menu.println(Menu.SALVA_O_CONTINUA);
             do {
                 input = readInt();
                 if (input == 1) stop = true;
-                else if (input < 1 || input > 2) menu.print(Menu.INSERIMENTO_VALIDO);
+                else if (input < 1 || input > 2) menu.println(Menu.INSERIMENTO_VALIDO);
             } while (input < 1 || input > 2);
         } while (!stop);
         
@@ -95,24 +95,24 @@ public class NetSaver {
         int input = -1;
         do {
             if (savableNets.isEmpty()) {
-            	menu.print(Menu.NO_RETI);
+            	menu.println(Menu.NO_RETI);
                 break;
             }
             menu.selectNetsToSave(savableNets);
             if (input == 0) return null;
             input = select(savableNets, menu);
             if (input == -2) {
-            	menu.print(Menu.NO_RETI);
+            	menu.println(Menu.NO_RETI);
                 return null;
             }
             if (input == -1) return null;
             savingNets.add(savableNets.get(input));
             savableNets.remove(input);
-            menu.print(Menu.SALVA_O_CONTINUA);
+            menu.println(Menu.SALVA_O_CONTINUA);
             do {
                 input = readInt();
                 if (input == 1) stop = true;
-                else if (input < 1 || input > 2) menu.print(Menu.INSERIMENTO_VALIDO);
+                else if (input < 1 || input > 2) menu.println(Menu.INSERIMENTO_VALIDO);
             } while (input < 1 || input > 2);
 
         } while (!stop);

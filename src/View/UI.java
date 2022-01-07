@@ -2,6 +2,7 @@ package View;
 
 public interface UI {
 	
-	public void print(String string);
-	
+	void println(String string);
+	void print(String string);
+
 }

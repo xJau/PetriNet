@@ -86,7 +86,7 @@ public class NetworksManager {
             	input = -1;
                 input = input + readInt();
                 if (input == -1) return;
-                else if (input < 0 || input > netsSize) menu.print(Menu.INSERIMENTO_VALIDO);
+                else if (input < 0 || input > netsSize) menu.println(Menu.INSERIMENTO_VALIDO);
                 else if (input == netsSize) createNet();
                 else modifyNet(nets.get(input));
             } while (input < 0 || input > netsSize);
@@ -123,7 +123,7 @@ public class NetworksManager {
             menu.selectMenu(Menu.AGGIUNGI, actions);
             activeNetwork.generateMatrix();
             if (checkIfNetExists(activeNetwork.getId(), activeNetwork, nets)) {
-                menu.print(Menu.NET_ALREADY_EXISTS);
+                menu.println(Menu.NET_ALREADY_EXISTS);
                 modifyNet();
             }
         }
@@ -143,9 +143,9 @@ public class NetworksManager {
             menu.selectTransitions(transitions);
             input = select(transitions, menu);
             if (input == -1) return;
-            menu.print(Menu.P_INGRESSO_O_USCITA);
+            menu.println(Menu.P_INGRESSO_O_USCITA);
             do {
-                menu.print(Menu.S_N);
+                menu.println(Menu.S_N);
                 ingoing = inString().toLowerCase();
             } while (!ingoing.equals("n") && !ingoing.equals("y"));
 
@@ -159,9 +159,9 @@ public class NetworksManager {
             menu.selectPlaces(places);
             input = select(places, menu);
             if (input == -1) return;
-            menu.print(Menu.T_INGRESSO_O_USCITA);
+            menu.println(Menu.T_INGRESSO_O_USCITA);
             do {
-                menu.print(Menu.S_N);
+                menu.println(Menu.S_N);
                 ingoing = inString().toLowerCase();
             } while (!ingoing.equals("n") && !ingoing.equals("y"));
 
@@ -174,7 +174,7 @@ public class NetworksManager {
             int inputY;
             ArrayList<Place> places = activeNetwork.getPlaces();
             ArrayList<Transition> transitions = activeNetwork.getTransitions();
-            menu.print(Menu.SELETIONA_POT);
+            menu.println(Menu.SELETIONA_POT);
             do {
                 String s = inString();
                 if (s.equals("p")) {
@@ -196,12 +196,12 @@ public class NetworksManager {
                     l = new Link(transitions.get(inputX), places.get(inputY));
                     break;
                 } else {
-                	menu.print(Menu.INSERIMENTO_VALIDO);
+                	menu.println(Menu.INSERIMENTO_VALIDO);
                 }
             } while (true);
 
             if (activeNetwork.checkLinkExist(l))
-            	menu.print(Menu.LINK_GIA_ESISTENTE);
+            	menu.println(Menu.LINK_GIA_ESISTENTE);
             else activeNetwork.getLinks().add(l);
         }
        
@@ -213,11 +213,11 @@ public class NetworksManager {
         
         public void setNetName() {
         	String nuovoNome;
-        	menu.print(Menu.ASSEGNA_NOME_NET);
+        	menu.println(Menu.ASSEGNA_NOME_NET);
         	do {
         		nuovoNome = inString();
         		if(!nuovoNome.toLowerCase().replaceAll("[^a-z]", "").equals("name")) break;
-        		menu.print(Menu.INSERIMENTO_VALIDO);
+        		menu.println(Menu.INSERIMENTO_VALIDO);
         	}while(true);
         	activeNetwork.setName(nuovoNome);
         }

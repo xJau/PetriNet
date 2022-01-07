@@ -5,8 +5,7 @@ import static Models.Selector.select;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import Utils.DataPetriSaver;
+
 import Utils.Menu;
 import static Utils.MatrixOperation.*;
 
@@ -14,7 +13,7 @@ public class PetrisNetworksManager {
 	public static void pNetsMenu(ArrayList<PetrisNetwork> pn, ArrayList<Network> n, ArrayList<PetrisNetwork> savedpNets, Menu menu) {
 		ArrayList<Runnable> actions = new ArrayList<>(Arrays.asList(
 			() -> selectPNet(savedpNets, menu),
-			() -> menu.print(pn),
+			() -> menu.println(pn),
 			() -> createPNet(pn, n, menu)
 		));
 		menu.selectMenu(Menu.PN_MENU, actions);
@@ -22,11 +21,11 @@ public class PetrisNetworksManager {
 	
 	public static void createPNet(ArrayList<PetrisNetwork> pn, ArrayList<Network> n, Menu menu) {
 		if(n.isEmpty()) {
-			menu.print(Menu.NO_NETS_PER_PETRI);
+			menu.println(Menu.NO_NETS_PER_PETRI);
 			return;
 		}
-		menu.print(Menu.SELEZIONA_RETE_PER_PETRI);
-		menu.print(n);
+		menu.println(Menu.SELEZIONA_RETE_PER_PETRI);
+		menu.println(n);
 		int input = select(n, menu);
 		if(input == -1) return;
 		System.out.println(input);
@@ -40,38 +39,38 @@ public class PetrisNetworksManager {
 		int[] marking = new int[n.getPlaces().size()];
 		int[] linksWeight = new int[n.getLinks().size()];
 		
-		menu.print(Menu.INSERIRE_MARCATURA_INIZIALE);
+		menu.println(Menu.INSERIRE_MARCATURA_INIZIALE);
 		for(int i = 0; i < marking.length; i++) {
-			menu.print(n.getPlaces().get(i).toString());
+			menu.println(n.getPlaces().get(i).toString());
 			marking[i] = readInt();
 			if(marking[i]<0) {
-				menu.print(Menu.INSERIMENTO_VALIDO);
+				menu.println(Menu.INSERIMENTO_VALIDO);
 				i--;
 			}
 		}
 		
-		menu.print(Menu.INSERIRE_PESI_LINK);
+		menu.println(Menu.INSERIRE_PESI_LINK);
 		for(int i = 0; i < linksWeight.length; i++) {
-			menu.print(n.getLinks().get(i).toString());
+			menu.println(n.getLinks().get(i).toString());
 			linksWeight[i] = readInt();
 			if(linksWeight[i]<1) {
-				menu.print(Menu.INSERIMENTO_VALIDO);
+				menu.println(Menu.INSERIMENTO_VALIDO);
 				i--;
 			}
 		}
 		
 		
-		menu.print(Menu.ASSEGNA_NOME_NET);
+		menu.println(Menu.ASSEGNA_NOME_NET);
 		do {
 			name = inString();
 			if(!name.toLowerCase().replaceAll("[^a-z]", "").equals("name")) break;
-			menu.print(Menu.INSERIMENTO_VALIDO);
+			menu.println(Menu.INSERIMENTO_VALIDO);
 		}while(true);
 		
 		PetrisNetwork petri = new PetrisNetwork(n, id, name, marking);
 		petri.setWeight(linksWeight);
 		if(checkIfNetExists(petri, pn)) {
-			menu.print(Menu.NET_ALREADY_EXISTS);
+			menu.println(Menu.NET_ALREADY_EXISTS);
 			return;
 		}
 		pn.add(petri);
@@ -82,17 +81,17 @@ public class PetrisNetworksManager {
 	public static void selectPNet(ArrayList<PetrisNetwork> pn, Menu menu) {
 		int input;
 		if(pn.isEmpty()) {
-			menu.print(Menu.NO_PETRIS_NETS);
+			menu.println(Menu.NO_PETRIS_NETS);
 			return;
 		}
 		
         int pnSize = pn.size();
-        menu.print(pn);
+        menu.println(pn);
 
         do {
         	input = -1;
             input = input + readInt();
-            if (input < 0 || input > pnSize-1) menu.print(Menu.INSERIMENTO_VALIDO);
+            if (input < 0 || input > pnSize-1) menu.println(Menu.INSERIMENTO_VALIDO);
             else use(pn.get(input), menu);
         } while (input < 0 || input > pnSize-1);	
 	}
