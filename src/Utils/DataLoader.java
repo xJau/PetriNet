@@ -37,7 +37,6 @@ public class DataLoader {
             file = new File(this.filePath);
         } catch (IOException e) {
             e.printStackTrace();
-            //TODO: Gestire
         }
 
     }

@@ -21,7 +21,6 @@ public class MatrixOperation {
             if (counter == x.length) return true;
         }
         return false;
-        //TODO: eventualmente restituire vettore con indice delle colonne che hanno tutti gli elementi pari a n
     }
 
     public static boolean checkRows(int[][] x, int n) {
@@ -32,7 +31,6 @@ public class MatrixOperation {
             if (counter == x[0].length) return true;
         }
         return false;
-        //TODO: eventualmente restituire vettore con indice delle righe che hanno tutti gli elementi pari a n
     }
 
     public static int[][] matrixSum(int[][] x, int[][] y) {
