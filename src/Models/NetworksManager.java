@@ -16,7 +16,7 @@ import java.util.*;
 
 public class NetworksManager {
 
-    public static class NetworkManager implements NetworkManagerInterface {
+    public static class NetworkManager {
 
     	static DataLoader loader;
         static ArrayList<Network> nets = new ArrayList<>();

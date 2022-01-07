@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="412b17ed-29ab-4c90-aac8-6c2e94a4de0c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_junit_jupiter_junit_jupiter_5_8_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/NetworkTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Models/NetworkManagerInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PetriNet1.0.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PetriNet1.0.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetImporter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetImporter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/Network.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/Network.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetworksManager$NetworkManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetworksManager$NetworkManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetworksManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/NetworksManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetSimulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetSimulator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetwork.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetworksManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PetrisNetworksManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PriorityPetrisNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PriorityPetrisNetwork.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PriorityPetrisNetworkManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/PriorityPetrisNetworkManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/Transition.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Models/Transition.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataLoader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataPetriSaver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataPetriSaver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataPriorityPetriSaver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataPriorityPetriSaver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataSaver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/DataSaver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PetriNet1.0/Utils/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Network.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/NetworkManagerInterface.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/NetworksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/NetworksManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -214,7 +196,7 @@
       <workItem from="1633341226479" duration="867000" />
       <workItem from="1641526010089" duration="3512000" />
       <workItem from="1641529623062" duration="5957000" />
-      <workItem from="1641543900525" duration="9074000" />
+      <workItem from="1641543900525" duration="9727000" />
     </task>
     <servers />
   </component>
